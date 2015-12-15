@@ -1,0 +1,3 @@
+[submodule "moderncpp"]
+	path = moderncpp
+	url = git@bitbucket.org:xtofl/moderncpp.git

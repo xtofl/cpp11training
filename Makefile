@@ -1,11 +1,21 @@
 CXX = clang++
+CXXFLAGS = --std=c++11
 
 
 SOURCES = $(wildcard **/*.cpp)
-MAINS = $(patsubst %.cpp,%.out,$(SOURCES))
+OBJECTS = $(patsubst %.cpp,%.o,$(SOURCES))
+MAINS = $(patsubst %.cpp,%.out,$(wildcard **/*main.cpp))
 
-all: $(MAINS)
+$(MAINS): $(OBJECTS)
+
+all: $(OBJECTS) $(MAINS)
+
+clean:
+	rm $(OBJECTS) $(MAINS)
 
 
-%.out: %.cpp
+%.o: %.cpp
+	$(CXX) $(CXXFLAGS) $< -o $@
+
+%.out: %.o
 	$(CXX) $(CXXFLAGS) $< -o $@
