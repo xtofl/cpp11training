@@ -50,17 +50,23 @@ public:
 
     int first;
     int after_last;
+    void operator++() { ++first; }
+    bool operator != (const Range &other) const { return first != other.after_last; }
+    int operator *() const { return first; }
 };
+
+namespace std {
+    Range begin(const Range &r) { return r; }
+    Range end(const Range &r) { return{ r.after_last, r.after_last }; }
+}
 
 // TODO: make this compile
 TEST(range_based_for, we_can_iterate_over_a_collection)
 {
     int result = 0;
-#ifdef solving_this
     for (const auto &element : Range{ 1, 11 })
     { 
         result += element;
     }
-#endif
     EXPECT_EQ(55, result);
 }
