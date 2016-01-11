@@ -29,7 +29,12 @@ namespace detail {
 
 int find_number(const Word & name)
 {
-	return 0;
+	for (const auto &m : mappings) {
+		const auto &it = m.second.find(name);
+		if (it != end(m.second)) return it->second;
+	}
+
+	throw std::range_error("unknown number");
 }
 
 int translate(const Language &language, const Word & name)
