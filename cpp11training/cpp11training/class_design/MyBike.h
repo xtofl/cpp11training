@@ -4,6 +4,7 @@
 
 class MyBike : public Vehicle {
 public:
+    MyBike() : Vehicle{ "My Bike" } {}
 	virtual int horse_power() const {
 		return 1;
 	}

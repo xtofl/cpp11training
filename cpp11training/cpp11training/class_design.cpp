@@ -13,7 +13,7 @@
 // make it trivial to add a constructor Thing::Thing(std::string name)
 TEST(class_design, adding_constructors_should_be_trivial)
 {
-	Piano p; // Piano p{"my piano"}
+    Piano p{ "my piano" };
 	EXPECT_EQ("making music", p.purpose());
 	EXPECT_NEAR(130.0, p.size_in_cm(), 0.00001);
 	EXPECT_EQ("my piano", p.name());
