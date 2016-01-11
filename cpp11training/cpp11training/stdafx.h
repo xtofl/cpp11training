@@ -5,10 +5,11 @@
 
 #pragma once
 
+#ifdef MSVC
 #include "targetver.h"
-
 #include <stdio.h>
 #include <tchar.h>
+#endif
 
 
 
