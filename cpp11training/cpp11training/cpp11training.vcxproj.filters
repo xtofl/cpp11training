@@ -59,5 +59,8 @@
     <ClCompile Include="class_design.cpp">
       <Filter>Source Files\simple</Filter>
     </ClCompile>
+    <ClCompile Include="rangebased_for.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
