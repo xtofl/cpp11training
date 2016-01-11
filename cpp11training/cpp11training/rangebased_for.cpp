@@ -12,7 +12,7 @@ TEST(range_based_for, rewrite_to_cpp11)
     {
         result += *it;
     };
-    EXPECT_EQ(45, result);
+    EXPECT_EQ(55, result);
 }
 
 
@@ -32,11 +32,11 @@ result_type sum(const Container &c)
 TEST(range_based_for, use_on_generic_containers_also_arrays)
 {
     std::vector<int> ints{ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
-    EXPECT_EQ(45, sum(ints) );
+    EXPECT_EQ(55, sum(ints) );
 // TODO: make this compile (and run...)
 #if working_on_this
     long longs[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
-    EXPECT_EQ(45, sum(longs));
+    EXPECT_EQ(55, sum(longs));
 #endif
 }
 
@@ -57,10 +57,10 @@ TEST(range_based_for, we_can_iterate_over_a_collection)
 {
     int result = 0;
 #ifdef solving_this
-    for (const auto &element : Range{ 1, 10 })
+    for (const auto &element : Range{ 1, 11 })
     { 
         result += element;
     }
 #endif
-    EXPECT_EQ(45, result);
+    EXPECT_EQ(55, result);
 }
