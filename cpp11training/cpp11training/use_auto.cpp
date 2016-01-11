@@ -39,11 +39,12 @@ int find_number(const Word & name)
 
 int translate(const Language &language, const Word & name)
 {
-	return 0;
+	return mappings.at(language).at(name);
 }
 
 void set_entry(const Language &language, Word word, int i)
 {
+	mappings[language][word] = i;
 }
 
 TEST(find_number, we_can_just_auto_translate)
