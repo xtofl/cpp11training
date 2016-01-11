@@ -16,15 +16,14 @@ TEST(range_based_for, rewrite_to_cpp11)
 }
 
 
-template<class Container, class result_type = typename Container::value_type>
-result_type sum(const Container &c)
+template<class Container>
+auto sum(const Container &c) -> typename std::remove_const<typename std::remove_reference<decltype(*std::begin(c))>::type>::type
 {
-    result_type result = 0;
-    typename Container::const_iterator it = c.begin();
-    const typename Container::const_iterator itEnd = c.end();
-    for (; it != itEnd; ++it)
-    {
-        result += *it;
+    using value_type = std::remove_const<std::remove_reference<decltype(*std::begin(c))>::type>::type;
+    value_type result{ 0 };
+    static_assert(!std::is_const<value_type>::value, "can't work on const...");
+    for (const auto &value : c) {
+        result += value;
     }
     return result;
 }
@@ -33,11 +32,10 @@ TEST(range_based_for, use_on_generic_containers_also_arrays)
 {
     std::vector<int> ints{ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
     EXPECT_EQ(55, sum(ints) );
-// TODO: make this compile (and run...)
-#if working_on_this
+
     long longs[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
     EXPECT_EQ(55, sum(longs));
-#endif
+
 }
 
 class Range {
