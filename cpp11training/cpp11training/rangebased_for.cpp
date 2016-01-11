@@ -26,5 +26,5 @@ TEST(range_based_for, we_can_iterate_over_a_collection)
         result += element;
     }
 #endif
-    EXPECT_EQ(90, result);
+    EXPECT_EQ(45, result);
 }
