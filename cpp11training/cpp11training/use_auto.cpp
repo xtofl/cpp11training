@@ -10,11 +10,22 @@
 using Language = std::string;
 using Word = std::string;
 using Number = int;
+using LanguageLib = std::map<Language, std::map<Word, Number>>;
 
-std::map<Language, std::map<Word, Number>> mappings{
+LanguageLib mappings{
 	{ "nl-nl",{ { "een", 1 },{ "twee", 2 } } },
 	{ "en-en",{ { "one", 1 },{ "two", 2 } } }
 };
+
+
+namespace detail {
+	//TODO: reduce type lenght using deferred function type...
+	template<class Library, class Level1Key, class Level2Key>
+	typename Library::value_type::second_type::value_type::second_type find_two_level(const Library &library, const Level1Key &key1, const Level2Key &key2)
+	{
+		return typename Library::value_type::second_type::value_type::second_type();
+	}
+}
 
 int find_number(const Word & name)
 {
@@ -44,4 +55,10 @@ TEST(change_number, we_can_change_entries)
 {
 	EXPECT_NO_THROW(set_entry("en-en", "three", 3));
 	EXPECT_EQ(3, translate("en-en", "three"));
+}
+
+
+TEST(change_number, we_can_use_generic_lookup_with_deferred_return_type)
+{
+	EXPECT_EQ(1, detail::find_two_level(mappings, "nl-nl", "een"));
 }
