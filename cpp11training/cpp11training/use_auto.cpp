@@ -19,11 +19,11 @@ LanguageLib mappings{
 
 
 namespace detail {
-	//TODO: reduce type lenght using deferred function type...
+
 	template<class Library, class Level1Key, class Level2Key>
-	typename Library::value_type::second_type::value_type::second_type find_two_level(const Library &library, const Level1Key &key1, const Level2Key &key2)
+	auto find_two_level(const Library &library, const Level1Key &key1, const Level2Key &key2) -> decltype(library.at(key1).at(key2))
 	{
-		return typename Library::value_type::second_type::value_type::second_type();
+		return library.at(key1).at(key2);
 	}
 }
 
@@ -39,7 +39,7 @@ int find_number(const Word & name)
 
 int translate(const Language &language, const Word & name)
 {
-	return mappings.at(language).at(name);
+	return detail::find_two_level(mappings, language, name);
 }
 
 void set_entry(const Language &language, Word word, int i)
