@@ -69,25 +69,36 @@ TEST(uniform_initialization, initialize_an_object)
 
 class Connection {
 public:
-    ProtocolMessage receive() { return ProtocolMessage(); };
-    void send(ProtocolMessage) {}
+    ProtocolMessage receive() {
+        return messages.back();
+    };
+    void send(ProtocolMessage m) {
+        messages.emplace_back(std::move(m));
+    }
 
     std::vector<ProtocolMessage> messages;
 };
 
 class Peer {
 public:
+    Peer(std::shared_ptr<Connection> connection)
+        : connection{ std::move(connection) }
+    {}
     void send(std::string text){
-        ProtocolMessage message;
-        connection->send(message);
+        connection->send({ ProtocolMessage::ConversationId{ 0 }, ProtocolMessage::Type::text, {} });
     }
     void send(int number) {
-        ProtocolMessage message;
-        connection->send(message);
+        connection->send({ ProtocolMessage::ConversationId{ 0 }, ProtocolMessage::Type::number, {} });
     }
 
-    std::string receiveText() { return ""; }
-    int receiveNumber() { return 10; }
+    std::string receiveText() {
+        const auto &message = connection->receive();
+        return reinterpret_cast<const char*>(&message.bytes.at(0));
+    }
+    int receiveNumber() {
+        const auto &message = connection->receive();
+        return reinterpret_cast<const int&>(message.bytes.at(0));
+    }
 private:
     std::shared_ptr<Connection> connection;
 };
@@ -95,25 +106,29 @@ private:
 TEST(uniform_initialization, initialize_a_class_object)
 {
     auto connection = std::make_shared<Connection>();
-    Peer peer;
+    Peer peer{ connection };
     peer.send(10);
     ASSERT_EQ(1u, connection->messages.size());
     EXPECT_EQ(ProtocolMessage::Type::number, connection->messages.back().type);
-    ProtocolMessage response;
-    connection->messages.emplace_back(std::move(response));
+    int value = 20;
+    ProtocolMessage::Bytes bytes{ reinterpret_cast<const std::uint8_t*>(&value), reinterpret_cast<const std::uint8_t*>(&value) +sizeof(value) };
+    ProtocolMessage response{ ProtocolMessage::ConversationId{ 0 }, ProtocolMessage::Type::number, bytes };
+    connection->messages.emplace_back(response);
     const auto number = peer.receiveNumber();
     EXPECT_EQ(20, number);
 }
 
-//TODO #define we_can_use_an_initializer_list
-#ifdef we_can_use_an_initializer_list
-std::string concatenate(...) {
-    return s;
+
+std::string concatenate(std::initializer_list<std::string> items) {
+    std::string result;
+    for (auto &i : items) {
+        result += i;
+    }
+    return result;
 }
 
 TEST(uniform_initialization, initializer_list_concat)
 {
     EXPECT_EQ("", concatenate({}));
-    EXPECT_EQ("abcdefghi", concatenate( "abc", "def", "ghi" ));
+    EXPECT_EQ("abcdefghi", concatenate({ "abc", "def", "ghi" }));
 }
-#endif
