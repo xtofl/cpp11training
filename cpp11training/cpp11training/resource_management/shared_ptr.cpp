@@ -87,3 +87,37 @@ TEST(shared_ptr, not_only_for_objects)
         EXPECT_FALSE(pool.allocated(0));
     }
 }
+
+class Child;
+
+class Parent {
+public:
+    std::vector<std::shared_ptr<Child>> children;
+    std::function<void()> call = [] {};
+    std::function<void()> destructed = [] {};
+};
+
+class Child {
+public:
+    Child(std::shared_ptr<Parent> parent) : parent(std::move(parent)) {}
+    void call_parent() {
+        parent->call();
+    }
+    std::shared_ptr<Parent> parent;
+    std::function<void()> destructed = [] {};
+};
+
+TEST(shared_ptr, breaking_cycles)
+{
+    bool parent_destructed = false;
+    bool parent_called = false;
+    bool child_destructed = false;
+    {
+        auto parent = std::make_shared<Parent>();
+        parent->children.emplace_back(std::make_shared<Child>(parent));
+        parent->children.back()->call_parent();
+        EXPECT_TRUE(parent_called);
+    }
+    EXPECT_TRUE(parent_destructed);
+    EXPECT_TRUE(child_destructed);
+}
