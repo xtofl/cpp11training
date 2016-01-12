@@ -62,5 +62,8 @@
     <ClCompile Include="rangebased_for.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="types_and_metaprogramming.cpp">
+      <Filter>Source Files\simple</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
