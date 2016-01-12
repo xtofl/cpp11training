@@ -19,6 +19,9 @@
     <Filter Include="Source Files\simple\class_design">
       <UniqueIdentifier>{f70ec325-99af-4e1c-b0f9-6a92a867e70c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\resource_management">
+      <UniqueIdentifier>{81a63d97-8a81-4f93-88d3-fb5778d6a2f0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -73,6 +76,9 @@
     </ClCompile>
     <ClCompile Include="lambdas.cpp">
       <Filter>Source Files\simple</Filter>
+    </ClCompile>
+    <ClCompile Include="resource_management\unique_ptr.cpp">
+      <Filter>Source Files\resource_management</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
