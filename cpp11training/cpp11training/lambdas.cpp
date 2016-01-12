@@ -141,3 +141,21 @@ TEST(lambdas, take_care_of_object_lifetimes)
     }
 
 }
+
+
+#if __cplusplus >= 201402L // but msvc has __cplusplus still defined to 199711L... https://connect.microsoft.com/VisualStudio/feedback/details/763051/a-value-of-predefined-macro-cplusplus-is-still-199711l
+#include <algorithm>
+
+TEST(lambdas, you_dont_have_to_specify_the_argument_types_in_cpp14)
+{
+    auto stringify = [](auto i) {
+        return std::to_string(i);
+    };
+    {
+        EXPECT_EQ("1", stringify(1));
+    }
+    {
+        EXPECT_EQ("1.0", stringify(1.0));
+    }
+}
+#endif
