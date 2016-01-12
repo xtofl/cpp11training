@@ -96,3 +96,16 @@ TEST(uniform_initialization, initialize_a_class_object)
     const auto number = peer.receiveNumber();
     EXPECT_EQ(20, number);
 }
+
+//TODO #define we_can_use_an_initializer_list
+#ifdef we_can_use_an_initializer_list
+std::string concatenate(...) {
+    return s;
+}
+
+TEST(uniform_initialization, initializer_list_concat)
+{
+    EXPECT_EQ("", concatenate({}));
+    EXPECT_EQ("abcdefghi", concatenate( "abc", "def", "ghi" ));
+}
+#endif
