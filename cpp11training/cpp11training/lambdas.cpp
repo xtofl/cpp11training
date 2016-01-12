@@ -143,13 +143,13 @@ TEST(lambdas, take_care_of_object_lifetimes)
     std::function<std::vector<int>()> read;
     {
         std::vector<int> i{ {1, 2, 3, 4} };
-        read = [&] { return i; };
+        read = [=] { return i; };
     }
     EXPECT_EQ(4u, read().size());
 
     {
         std::vector<int> i{ {1, 2, 3, 4} };
-        read = [&] { return i; };
+        read = [=] { return i; };
         auto j = std::move(i);
         EXPECT_EQ(4u, read().size());
     }
