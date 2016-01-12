@@ -9,13 +9,13 @@
 
 TEST(uniform_initialization, initialize_builtins)
 {
-    const int a;
+    int a;
     EXPECT_EQ(5, a);
-    const char * a_pointer;
-    EXPECT_EQ(&a, a_pointer);
-    const int an_array[5];
+    int * a_pointer = new int; // yey a leak
+    EXPECT_TRUE(&a == a_pointer);
+    int an_array[5];
     EXPECT_EQ(5, an_array[4]);
-    const std::string a_string;
+    std::string a_string;
     EXPECT_EQ("abc", a_string);
 }
 
