@@ -96,6 +96,7 @@ public:
     std::vector<std::shared_ptr<Child>> children;
     std::function<void()> call = [] {};
     std::function<void()> destructed = [] {};
+    ~Parent() { destructed(); }
 };
 
 class Child {
@@ -106,6 +107,7 @@ public:
     }
     std::shared_ptr<Parent> parent;
     std::function<void()> destructed = [] {};
+    ~Child() { destructed(); }
 };
 
 TEST(shared_ptr, breaking_cycles)
