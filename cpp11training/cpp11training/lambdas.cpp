@@ -123,3 +123,21 @@ TEST(lambdas, we_can_add_a_policy_to_a_function)
     EXPECT_NO_THROW(safe_reciproc(0.0));
     EXPECT_EQ("division by zero", status);
 }
+
+TEST(lambdas, take_care_of_object_lifetimes)
+{
+    std::function<std::vector<int>()> read;
+    {
+        std::vector<int> i{ {1, 2, 3, 4} };
+        read = [&] { return i; };
+    }
+    EXPECT_EQ(4u, read().size());
+
+    {
+        std::vector<int> i{ {1, 2, 3, 4} };
+        read = [&] { return i; };
+        auto j = std::move(i);
+        EXPECT_EQ(4u, read().size());
+    }
+
+}
