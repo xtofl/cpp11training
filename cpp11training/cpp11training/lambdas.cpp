@@ -85,10 +85,9 @@ TEST(lambdas, we_can_instantiate_based_on_a_typename)
 }
 
 
-// TODO: make 
 std::function<double(double)> make_adder(double operand)
 {
-    return std::function<double(double)>{};
+    return [=](double value) { return value + operand; };
 }
 
 TEST(lambdas, we_can_instantiate_functions_at_runtime)
@@ -100,12 +99,11 @@ TEST(lambdas, we_can_instantiate_functions_at_runtime)
 
 TEST(lambdas, we_can_bind_arguments)
 {
-    auto add5 = std::plus<int>();
-//TODO: #define we_can_bind_an_argument
-#ifdef we_can_bind_an_argument
+    auto add5 = std::bind(std::plus<int>(), 5, std::placeholders::_1);
+
     EXPECT_EQ(5, add5(0));
     EXPECT_EQ(15, add5(10));
-#endif
+
 }
 
 std::function<double(double)> make_safe(std::function<double(double)> unsafe_function, std::function<bool(double)> check)
