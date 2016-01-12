@@ -1,22 +1,18 @@
 #include "stdafx.h"
 #include "gtest/gtest.h"
+#include <cstdint>
 
-enum A { letter, number };
+enum class A : std::uint64_t { letter, number };
+enum class B { newspaper, letter };
 
-//TODO fefine it
-#ifdef using_enum_classes
-enum B { newspaper, letter };
-#endif
 
 TEST(enums, enums_are_not_confusing)
 {
-    A character = number;
+    A character = A::number;
     switch (character) {
-    case letter:
+    case A::letter:
         FAIL(); break;
-
-//TODO: make it compile
-    case number:
+    case A::number:
         SUCCEED(); break;
     }
 }
