@@ -71,5 +71,8 @@
     <ClCompile Include="uniform_initialization.cpp">
       <Filter>Source Files\simple</Filter>
     </ClCompile>
+    <ClCompile Include="lambdas.cpp">
+      <Filter>Source Files\simple</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
