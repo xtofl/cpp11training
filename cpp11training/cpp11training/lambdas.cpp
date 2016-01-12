@@ -34,3 +34,25 @@ TEST(lambdas, we_can_capture_local_variables_by_reference)
         EXPECT_EQ(i, receiver);
     }
 }
+
+
+TEST(lambdas, we_can_add_state)
+{
+    int foo_calls = 0;
+    foo();
+    EXPECT_EQ(1, foo_calls);
+    foo();
+    EXPECT_EQ(2, foo_calls);
+
+    {
+        // sum of lengths
+        EXPECT_EQ(3, length("abc"));
+        EXPECT_EQ(7, length("efgh"));
+    }
+    {
+        // average length
+        EXPECT_NEAR(3.0, length("abc"), 0.01);
+        EXPECT_NEAR(3.5, length("abcd"), 0.01);
+        EXPECT_NEAR(3.3, length("abc"), 0.01);
+    }
+}
