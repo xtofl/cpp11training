@@ -56,3 +56,22 @@ TEST(lambdas, we_can_add_state)
         EXPECT_NEAR(3.333, length("ijk"), 0.01);
     }
 }
+
+
+#include "class_design/Thing.h"
+#include "class_design/MyBike.h"
+#include "class_design/Piano.h"
+
+// TODO: convert this into a map<key, lambda>
+std::unique_ptr<Thing> make(const std::string &what)
+{
+    return nullptr;
+}
+
+TEST(lambdas, we_can_instantiate_based_on_a_typename)
+{
+    auto f = make("my bike");
+    EXPECT_FALSE(dynamic_cast<MyBike*>(f.get()) == nullptr);
+    auto i = make("piano");
+    EXPECT_FALSE(dynamic_cast<Piano*>(f.get()) == nullptr);
+}
