@@ -73,7 +73,7 @@ TEST(lambdas, we_can_instantiate_based_on_a_typename)
     auto f = make("my bike");
     EXPECT_FALSE(dynamic_cast<MyBike*>(f.get()) == nullptr);
     auto i = make("piano");
-    EXPECT_FALSE(dynamic_cast<Piano*>(f.get()) == nullptr);
+    EXPECT_FALSE(dynamic_cast<Piano*>(i.get()) == nullptr);
 }
 
 
