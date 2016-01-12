@@ -108,7 +108,15 @@ TEST(lambdas, we_can_bind_arguments)
 
 std::function<double(double)> make_safe(std::function<double(double)> unsafe_function, std::function<bool(double)> check)
 {
-    return std::function<double(double)>{};
+    return [=](double value) {
+        if (check(value)) {
+            return unsafe_function(value);
+        }
+        else
+        {
+            return double{};
+        }
+    };
 }
 
 TEST(lambdas, we_can_add_a_policy_to_a_function)
