@@ -10,19 +10,19 @@
 
 TEST(uniform_initialization, initialize_builtins)
 {
-    int a;
+    int a{ 5 };
     EXPECT_EQ(5, a);
-    int * a_pointer = new int; // yey a leak
+    int * a_pointer{ &a }; // yey a leak
     EXPECT_TRUE(&a == a_pointer);
-    int an_array[5];
+    int an_array[5]{ 1, 2, 3, 4, 5 };
     EXPECT_EQ(5, an_array[4]);
-    std::string a_string;
+    std::string a_string{ "abc" };
     EXPECT_EQ("abc", a_string);
 }
 
 TEST(uniform_initialization, initialize_a_vector)
 {
-    std::vector<int> ints;
+    std::vector<int> ints{ {1, 2, 3, 4, 5} };
     EXPECT_EQ(5u, ints.size());
     EXPECT_EQ(1, ints.at(0));
     EXPECT_EQ(2, ints.at(1));
@@ -34,7 +34,7 @@ TEST(uniform_initialization, initialize_a_vector)
 
 TEST(uniform_initialization, initialize_a_map)
 {
-    std::map<int, char> ascii;
+    std::map<int, char> ascii{ {'a', 'a'}, {'b', 'b'} };
     EXPECT_EQ('a', ascii.at('a'));
     EXPECT_EQ('b', ascii.at('b'));
 }
@@ -50,12 +50,17 @@ struct ProtocolMessage {
     Bytes bytes;
 
     ProtocolMessage() : conversation(-1), type(Type::number), bytes() {}
+    ProtocolMessage(ConversationId id, Type t, Bytes bytes)
+        : conversation(id)
+        , type(t)
+        , bytes(std::move(bytes))
+    {}
 };
 
 
 TEST(uniform_initialization, initialize_an_object)
 {
-    const ProtocolMessage message;
+    const ProtocolMessage message( 1, ProtocolMessage::Type::text, {'a', 'b'} );
     EXPECT_EQ(ProtocolMessage::Type::text, message.type);
     ASSERT_EQ(2u, message.bytes.size());
     EXPECT_EQ('a', message.bytes.at(0));
