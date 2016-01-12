@@ -95,6 +95,7 @@
   <ItemGroup>
     <ClCompile Include="cpp11training.cpp" />
     <ClCompile Include="class_design.cpp" />
+    <ClCompile Include="enums.cpp" />
     <ClCompile Include="rangebased_for.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
