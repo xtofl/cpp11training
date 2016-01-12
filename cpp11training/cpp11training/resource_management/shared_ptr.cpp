@@ -23,7 +23,7 @@ namespace {
         void foo() {
             resource->use();
         }
-        Resource *resource;
+        std::shared_ptr<Resource> resource;
     };
 
 }
@@ -31,7 +31,7 @@ namespace {
 
 TEST(shared_ptr, resource_is_cleant_up_after_last_user_gone)
 {
-    auto resource = new Resource;
+    auto resource = std::make_shared<Resource>();
     bool destructed = false;
     resource->destructed = [&] { destructed = true; };
 
@@ -77,10 +77,11 @@ TEST(shared_ptr, not_only_for_objects)
 {
     Pool pool;
     try {
-        // TODO: make sure h does not leak
-        auto h = pool.allocate();
+        std::shared_ptr<Pool::Handle> h(
+            new Pool::Handle(pool.allocate()),
+            [&](Pool::Handle* h) { pool.free(*h); delete h; });
 
-        ASSERT_EQ(0, h);
+        ASSERT_EQ(0, *h);
         throw std::runtime_error("");
     }
     catch (const std::runtime_error &)
@@ -101,11 +102,11 @@ public:
 
 class Child {
 public:
-    Child(std::shared_ptr<Parent> parent) : parent(std::move(parent)) {}
+    Child(const std::shared_ptr<Parent>& parent) : parent(parent) {}
     void call_parent() {
-        parent->call();
+        parent.lock()->call();
     }
-    std::shared_ptr<Parent> parent;
+    std::weak_ptr<Parent> parent;
     std::function<void()> destructed = [] {};
     ~Child() { destructed(); }
 };
