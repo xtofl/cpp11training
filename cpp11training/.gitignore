@@ -1,0 +1,17 @@
+ipch/
+Debug/
+Release/
+.vs/
+
+*.exe
+*.ilk
+*.pdb
+*.idb
+*.log
+*.tlog
+*.VC.opendb
+*.sdf
+
+
+*.swp
+
