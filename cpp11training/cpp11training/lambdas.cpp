@@ -75,3 +75,51 @@ TEST(lambdas, we_can_instantiate_based_on_a_typename)
     auto i = make("piano");
     EXPECT_FALSE(dynamic_cast<Piano*>(f.get()) == nullptr);
 }
+
+
+// TODO: make 
+std::function<double(double)> make_adder(double operand)
+{
+    return std::function<double(double)>{};
+}
+
+TEST(lambdas, we_can_instantiate_functions_at_runtime)
+{
+    auto add5 = make_adder(5.0);
+    EXPECT_NEAR(5.0, add5(0.0), 0.001);
+    EXPECT_NEAR(15.0, add5(10.0), 0.001);
+}
+
+TEST(lambdas, we_can_bind_arguments)
+{
+    auto add5 = std::plus<int>();
+//TODO: #define we_can_bind_an_argument
+#ifdef we_can_bind_an_argument
+    EXPECT_EQ(5, add5(0));
+    EXPECT_EQ(15, add5(10));
+#endif
+}
+
+std::function<double(double)> make_safe(std::function<double(double)> unsafe_function, std::function<bool(double)> check)
+{
+    return std::function<double(double)>{};
+}
+
+TEST(lambdas, we_can_add_a_policy_to_a_function)
+{
+    const auto &reciproc = [](double f) { return 1. / f; };
+    
+    std::string status;
+    const auto &safe_reciproc = make_safe(reciproc, [&](double f) {
+        if (f == 0.0) {
+            status = "division by zero";
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    });
+    EXPECT_NO_THROW(safe_reciproc(0.0));
+    EXPECT_EQ("division by zero", status);
+}
