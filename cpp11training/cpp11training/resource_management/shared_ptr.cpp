@@ -50,6 +50,7 @@ TEST(shared_ptr, resource_is_cleant_up_after_last_user_gone)
     EXPECT_FALSE(destructed);
 
     users_copy.clear();
+    resource = nullptr;
     EXPECT_TRUE(destructed);
 }
 
@@ -114,7 +115,12 @@ TEST(shared_ptr, breaking_cycles)
     bool child_destructed = false;
     {
         auto parent = std::make_shared<Parent>();
+        parent->destructed = [&] { parent_destructed = true; };
+        parent->call = [&] { parent_called = true; };
+
         parent->children.emplace_back(std::make_shared<Child>(parent));
+        parent->children.back()->destructed = [&] { child_destructed = true; };
+
         parent->children.back()->call_parent();
         EXPECT_TRUE(parent_called);
     }
