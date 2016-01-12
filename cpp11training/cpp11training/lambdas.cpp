@@ -51,8 +51,8 @@ TEST(lambdas, we_can_add_state)
     }
     {
         // average length
-        EXPECT_NEAR(3.0, length("abc"), 0.01);
-        EXPECT_NEAR(3.5, length("abcd"), 0.01);
-        EXPECT_NEAR(3.3, length("abc"), 0.01);
+        EXPECT_NEAR(3.000, length("abc"), 0.01);
+        EXPECT_NEAR(3.500, length("efgh"), 0.01);
+        EXPECT_NEAR(3.333, length("ijk"), 0.01);
     }
 }
