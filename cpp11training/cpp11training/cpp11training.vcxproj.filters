@@ -80,5 +80,8 @@
     <ClCompile Include="resource_management\unique_ptr.cpp">
       <Filter>Source Files\resource_management</Filter>
     </ClCompile>
+    <ClCompile Include="resource_management\shared_ptr.cpp">
+      <Filter>Source Files\resource_management</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
