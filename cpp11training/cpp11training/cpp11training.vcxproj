@@ -102,6 +102,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="types_and_metaprogramming.cpp" />
+    <ClCompile Include="uniform_initialization.cpp" />
     <ClCompile Include="use_auto.cpp" />
   </ItemGroup>
   <ItemGroup>

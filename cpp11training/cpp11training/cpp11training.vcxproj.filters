@@ -68,5 +68,8 @@
     <ClCompile Include="enums.cpp">
       <Filter>Source Files\simple</Filter>
     </ClCompile>
+    <ClCompile Include="uniform_initialization.cpp">
+      <Filter>Source Files\simple</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
