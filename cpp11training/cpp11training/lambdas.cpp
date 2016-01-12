@@ -69,7 +69,11 @@ TEST(lambdas, we_can_add_state)
 // TODO: convert this into a map<key, lambda>
 std::unique_ptr<Thing> make(const std::string &what)
 {
-    return nullptr;
+    std::map<std::string, std::function<std::unique_ptr<Thing>()>> factories{
+        { "my bike", [] { return std::unique_ptr<Thing>{new MyBike()}; } },
+        { "piano", [] { return std::unique_ptr<Thing>{new Piano()}; } },
+    };
+    return factories.at(what)();
 }
 
 TEST(lambdas, we_can_instantiate_based_on_a_typename)
