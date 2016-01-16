@@ -48,6 +48,9 @@
     <ClInclude Include="class_design\MyBike.h">
       <Filter>Source Files\simple\class_design</Filter>
     </ClInclude>
+    <ClInclude Include="perftest.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -82,6 +85,9 @@
     </ClCompile>
     <ClCompile Include="resource_management\shared_ptr.cpp">
       <Filter>Source Files\resource_management</Filter>
+    </ClCompile>
+    <ClCompile Include="move\moveable_objects.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
