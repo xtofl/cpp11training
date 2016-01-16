@@ -84,7 +84,7 @@ TEST(move, DISABLED_there_should_be_only_one_owner)
     EXPECT_FALSE(pool.contains("one"));
     EXPECT_TRUE(pool.contains("two"));
 
-    pool.return_(r1);
+    pool.return_(std::move(r1));
     EXPECT_EQ(2u, pool.size());
     EXPECT_TRUE(pool.contains("one")); 
     EXPECT_TRUE(pool.contains("two"));
