@@ -58,10 +58,14 @@ TEST(move, DISABLED_there_should_be_only_one_owner)
         }
         
         Resource borrow() {
-            return Resource{ "?" };
+            Resource r = std::move(resources.front());
+            resources.erase(resources.begin());
+            return r;
         }
         
-        void return_(Resource) {}
+        void return_(Resource &&r) {
+            resources.emplace_back(std::move(r));
+        }
 
         bool contains(const std::string &id) const
         {
