@@ -3,7 +3,4 @@
 	url = git@bitbucket.org:xtofl/moderncpp.git
 [submodule "cpp11training/dependencies/googletest"]
 	path = cpp11training/dependencies/googletest
-	url = git@github.com:google/googletest.git
-[submodule "Submod"]
 	url = git@github.com:xtofl/googletest.git
-	branch = master
