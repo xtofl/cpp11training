@@ -37,11 +37,11 @@
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\..\..\blizzardproject\thirdparty\gtest\1.7.0\project\vc130\import_gtest.props" />
+    <Import Project="..\dependencies\import_googletest.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\..\..\blizzardproject\thirdparty\gtest\1.7.0\project\vc130\import_gtest.props" />
+    <Import Project="..\dependencies\import_googletest.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -58,6 +58,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>$(ProjectDir);E:\workspaces\blizzardproject\thirdparty\gtest\1.7.0\dist\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -73,6 +74,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -99,7 +101,6 @@
     <ClCompile Include="class_design.cpp" />
     <ClCompile Include="enums.cpp" />
     <ClCompile Include="lambdas.cpp" />
-    <ClCompile Include="move\moveable_objects.cpp" />
     <ClCompile Include="rangebased_for.cpp" />
     <ClCompile Include="resource_management\shared_ptr.cpp" />
     <ClCompile Include="resource_management\unique_ptr.cpp" />
@@ -112,9 +113,8 @@
     <ClCompile Include="use_auto.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\blizzardproject\thirdparty\gtest\1.7.0\project\vc130\gtest.vcxproj">
-      <Project>{c8f6c172-56f2-4e76-b5fa-c3b423b31be7}</Project>
-      <UseLibraryDependencyInputs>true</UseLibraryDependencyInputs>
+    <ProjectReference Include="..\dependencies\googletest\googlemock\msvc\2015\gmock.vcxproj">
+      <Project>{34681f0d-ce45-415d-b5f2-5c662dfe3bd5}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
