@@ -52,7 +52,7 @@ struct ProtocolMessage {
 
 TEST(uniform_initialization, initialize_an_object)
 {
-    const ProtocolMessage message;
+    const ProtocolMessage message{};
     EXPECT_EQ(ProtocolMessage::Type::text, message.type);
     ASSERT_EQ(2u, message.bytes.size());
     EXPECT_EQ('a', message.bytes.at(0));
