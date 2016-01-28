@@ -16,7 +16,7 @@ TEST(range_based_for, rewrite_to_cpp11)
 }
 
 
-template<class Container, class result_type = Container::value_type>
+template<class Container, class result_type = typename Container::value_type>
 result_type sum(const Container &c)
 {
     result_type result = 0;
