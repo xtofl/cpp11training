@@ -47,6 +47,8 @@ struct ProtocolMessage {
     ConversationId conversation;
     Type type;
     Bytes bytes;
+
+    ProtocolMessage() : conversation(-1), type(Type::number), bytes() {}
 };
 
 
