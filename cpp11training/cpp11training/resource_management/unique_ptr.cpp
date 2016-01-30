@@ -31,18 +31,17 @@ TEST(unique_ptr, object_is_destructed_when_ptr_out_of_scope)
 
 TEST(unique_ptr, cant_copy_a_unique_ptr)
 {
-//TODO #define i_know_what_is_wrong
+#define i_know_what_is_wrong
 #ifdef i_know_what_is_wrong
-    std::vector<std::unique_ptr<int>> values{ {
-            std::make_unique<int>(1),
-            std::make_unique<int>(2),
-        }
-    };
+    std::vector<std::unique_ptr<int>> values;
+    for (const auto &i : { 1, 2 }) values.emplace_back(std::make_unique<int>(i));
 
     EXPECT_EQ(1, *values.at(0));
     EXPECT_EQ(2, *values.at(1));
 
-    auto copy = values;
+    std::vector<std::unique_ptr<int>> copy;
+    for (const auto &pi: values) copy.emplace_back(std::make_unique<int>(*pi));
+
 
     EXPECT_EQ(1, *copy.at(0));
     EXPECT_EQ(2, *copy.at(1));
