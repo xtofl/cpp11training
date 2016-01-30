@@ -5,49 +5,26 @@
 #include <functional>
 
 class JarPotVessel {
+public:
+    std::function<void()> destructed = [] {};
+    ~JarPotVessel()
+    {
+        destructed();
+    }
 };
-
-namespace helper {
-
-    template<class Base>
-    class NotifyDestruction : public Base {
-    public:
-        using Base::Base;
-
-        std::function<void()> destructed = [] {};
-        virtual ~NotifyDestruction() {
-            destructed();
-        }
-    };
-
-    template<class T>
-    struct Container {
-        Container(NotifyDestruction<T> *t)
-            : destructed{ false }
-            , thing {t}
-        {
-            thing->destructed = [=] { destructed = true; };
-        }
-        bool destructed;
-        NotifyDestruction<T> *thing;
-    };
-
-    template<class T> Container<T> make_destructable() {
-        Container<T> r{ new NotifyDestruction<T>{} };
-        return r;
-    };
-}
 
 TEST(unique_ptr, object_is_destructed_when_ptr_out_of_scope)
 {
-    auto thing_wrapper = helper::make_destructable<JarPotVessel>();
+    auto thing_wrapper = new JarPotVessel();
+    bool destructed = false;
+    thing_wrapper->destructed = [&] { destructed = true; };
+
     {
-        EXPECT_FALSE(thing_wrapper.destructed);
+        ASSERT_FALSE(destructed);
         auto other_wrapper = std::move(thing_wrapper); // there must be only one!
-        EXPECT_FALSE(other_wrapper.destructed);
-        EXPECT_TRUE(thing_wrapper.destructed);
+        EXPECT_FALSE(destructed);
     };
-    EXPECT_TRUE(thing_wrapper.destructed);
+    EXPECT_TRUE(destructed);
 }
 
 TEST(unique_ptr, cant_copy_a_unique_ptr)
