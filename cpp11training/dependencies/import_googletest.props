@@ -10,6 +10,10 @@
     <ClCompile>
       <AdditionalIncludeDirectories>$(GMOCK_DIR)/include;$(GMOCK_DIR);$(GTEST_DIR)/include;$(GTEST_DIR)</AdditionalIncludeDirectories>
     </ClCompile>
+    <Link>
+      <AdditionalDependencies>gmock.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)$(Configuration)\</AdditionalLibraryDirectories>
+    </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
     <BuildMacro Include="GMOCK_DIR">
