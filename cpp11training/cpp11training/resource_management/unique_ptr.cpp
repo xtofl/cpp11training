@@ -37,6 +37,12 @@ TEST(unique_ptr, cant_copy_a_unique_ptr)
         }
     };
 
+    EXPECT_EQ(1, *values.at(0));
+    EXPECT_EQ(2, *values.at(1));
+
     auto copy = values;
+
+    EXPECT_EQ(1, *copy.at(0));
+    EXPECT_EQ(2, *copy.at(1));
 #endif
 }
