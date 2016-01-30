@@ -63,7 +63,7 @@ TEST(uniform_initialization, initialize_an_object)
 
 class Connection {
 public:
-    ProtocolMessage receive() {};
+    ProtocolMessage receive() { return ProtocolMessage(); };
     void send(ProtocolMessage) {}
 
     std::vector<ProtocolMessage> messages;
