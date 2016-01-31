@@ -8,7 +8,7 @@
 #include <cstdint>
 
 
-TEST(uniform_initialization, DISABLED_initialize_builtins)
+TEST(uniform_initialization, initialize_builtins)
 {
     int a;
     EXPECT_EQ(5, a);
@@ -20,7 +20,7 @@ TEST(uniform_initialization, DISABLED_initialize_builtins)
     EXPECT_EQ("abc", a_string);
 }
 
-TEST(uniform_initialization, DISABLED_initialize_a_vector)
+TEST(uniform_initialization, initialize_a_vector)
 {
     std::vector<int> ints;
     EXPECT_EQ(5u, ints.size());
@@ -32,7 +32,7 @@ TEST(uniform_initialization, DISABLED_initialize_a_vector)
 }
 
 
-TEST(uniform_initialization, DISABLED_initialize_a_map)
+TEST(uniform_initialization, initialize_a_map)
 {
     std::map<int, char> ascii;
     EXPECT_EQ('a', ascii.at('a'));
@@ -53,7 +53,7 @@ struct ProtocolMessage {
 };
 
 
-TEST(uniform_initialization, DISABLED_initialize_an_object)
+TEST(uniform_initialization, initialize_an_object)
 {
     const ProtocolMessage message;
     EXPECT_EQ(ProtocolMessage::Type::text, message.type);
@@ -87,7 +87,7 @@ private:
     std::shared_ptr<Connection> connection;
 };
 
-TEST(uniform_initialization, DISABLED_initialize_a_class_object)
+TEST(uniform_initialization, initialize_a_class_object)
 {
     auto connection = std::make_shared<Connection>();
     Peer peer;
@@ -106,7 +106,7 @@ std::string concatenate(...) {
     return s;
 }
 
-TEST(uniform_initialization, DISABLED_initializer_list_concat)
+TEST(uniform_initialization, initializer_list_concat)
 {
     EXPECT_EQ("", concatenate({}));
     EXPECT_EQ("abcdefghi", concatenate( "abc", "def", "ghi" ));

@@ -13,7 +13,7 @@ public:
     }
 };
 
-TEST(unique_ptr, DISABLED_object_is_destructed_when_ptr_out_of_scope)
+TEST(unique_ptr, object_is_destructed_when_ptr_out_of_scope)
 {
 	// TODO: make `thing_wrapper` 'own' the object,
 	// to prevent it from leaking
@@ -29,7 +29,7 @@ TEST(unique_ptr, DISABLED_object_is_destructed_when_ptr_out_of_scope)
     EXPECT_TRUE(destructed);
 }
 
-TEST(unique_ptr, DISABLED_cant_copy_a_unique_ptr)
+TEST(unique_ptr, cant_copy_a_unique_ptr)
 {
 //TODO #define i_know_what_is_wrong
 #ifdef i_know_what_is_wrong

@@ -12,7 +12,7 @@
 void foo() { throw std::runtime_error{ "not implemented" }; }
 int length(const std::string &s) { return 100; }
 
-TEST(lambdas, DISABLED_we_can_define_local_lambdas)
+TEST(lambdas, we_can_define_local_lambdas)
 {
 	// TODO: create a lambda that returns the length
 	// of a string, and a `foo` that does just nothing
@@ -21,7 +21,7 @@ TEST(lambdas, DISABLED_we_can_define_local_lambdas)
     EXPECT_NO_THROW(foo());
 }
 
-TEST(lambdas, DISABLED_we_can_capture_the_local_variables_by_value)
+TEST(lambdas, we_can_capture_the_local_variables_by_value)
 {
     for (int i = 0; i != 10; ++i)
     {
@@ -29,7 +29,7 @@ TEST(lambdas, DISABLED_we_can_capture_the_local_variables_by_value)
     }
 }
 
-TEST(lambdas, DISABLED_we_can_capture_local_variables_by_reference)
+TEST(lambdas, we_can_capture_local_variables_by_reference)
 {
     int receiver = 0;
     for (int i = 0; i != 10; ++i)
@@ -40,7 +40,7 @@ TEST(lambdas, DISABLED_we_can_capture_local_variables_by_reference)
 }
 
 
-TEST(lambdas, DISABLED_we_can_add_state)
+TEST(lambdas, we_can_add_state)
 {
     int foo_calls = 0;
     foo();
@@ -72,7 +72,7 @@ std::unique_ptr<Thing> make(const std::string &what)
     return nullptr;
 }
 
-TEST(lambdas, DISABLED_we_can_instantiate_based_on_a_typename)
+TEST(lambdas, we_can_instantiate_based_on_a_typename)
 {
     auto f = make("my bike");
     EXPECT_FALSE(dynamic_cast<MyBike*>(f.get()) == nullptr);
@@ -87,14 +87,14 @@ std::function<double(double)> make_adder(double operand)
     return std::function<double(double)>{};
 }
 
-TEST(lambdas, DISABLED_we_can_instantiate_functions_at_runtime)
+TEST(lambdas, we_can_instantiate_functions_at_runtime)
 {
     auto add5 = make_adder(5.0);
     EXPECT_NEAR(5.0, add5(0.0), 0.001);
     EXPECT_NEAR(15.0, add5(10.0), 0.001);
 }
 
-TEST(lambdas, DISABLED_we_can_bind_arguments)
+TEST(lambdas, we_can_bind_arguments)
 {
     auto add5 = std::plus<int>();
 //TODO: #define we_can_bind_an_argument
@@ -109,7 +109,7 @@ std::function<double(double)> make_safe(std::function<double(double)> unsafe_fun
     return std::function<double(double)>{};
 }
 
-TEST(lambdas, DISABLED_we_can_add_a_policy_to_a_function)
+TEST(lambdas, we_can_add_a_policy_to_a_function)
 {
     const auto &reciproc = [](double f) { return 1. / f; };
     
@@ -128,7 +128,7 @@ TEST(lambdas, DISABLED_we_can_add_a_policy_to_a_function)
     EXPECT_EQ("division by zero", status);
 }
 
-TEST(lambdas, DISABLED_take_care_of_object_lifetimes)
+TEST(lambdas, take_care_of_object_lifetimes)
 {
     std::function<std::vector<int>()> read;
     {
@@ -150,7 +150,7 @@ TEST(lambdas, DISABLED_take_care_of_object_lifetimes)
 #if __cplusplus >= 201402L // but msvc has __cplusplus still defined to 199711L... https://connect.microsoft.com/VisualStudio/feedback/details/763051/a-value-of-predefined-macro-cplusplus-is-still-199711l
 #include <algorithm>
 
-TEST(lambdas, DISABLED_you_dont_have_to_specify_the_argument_types_in_cpp14)
+TEST(lambdas, you_dont_have_to_specify_the_argument_types_in_cpp14)
 {
     auto stringify = [](auto i) {
         return std::to_string(i);
