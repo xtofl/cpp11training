@@ -5,7 +5,7 @@
 // ... imagine a huge class hierarchy
 class Thing {
 public:
-	virtual ~Thing() = default;
+	virtual ~Thing() {}
 	virtual double size_in_cm() const = 0;
 	virtual std::string purpose() const = 0;
 	
