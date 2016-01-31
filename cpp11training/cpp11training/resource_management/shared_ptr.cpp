@@ -29,7 +29,7 @@ namespace {
 }
 
 
-TEST(shared_ptr, resource_is_cleant_up_after_last_user_gone)
+TEST(shared_ptr, DISABLED_resource_is_cleant_up_after_last_user_gone)
 {
     auto resource = new Resource;
     bool destructed = false;
@@ -73,7 +73,7 @@ public:
     }
 };
 
-TEST(shared_ptr, not_only_for_objects)
+TEST(shared_ptr, DISABLED_not_only_for_objects)
 {
     Pool pool;
     try {
@@ -110,7 +110,7 @@ public:
     ~Child() { destructed(); }
 };
 
-TEST(shared_ptr, breaking_cycles)
+TEST(shared_ptr, DISABLED_breaking_cycles)
 {
     bool parent_destructed = false;
     bool parent_called = false;

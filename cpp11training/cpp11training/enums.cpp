@@ -8,7 +8,7 @@ enum A { letter, number };
 enum B { newspaper, letter };
 #endif
 
-TEST(enums, enums_are_not_confusing)
+TEST(enums, DISABLED_enums_are_not_confusing)
 {
     A character = number;
     switch (character) {
@@ -23,7 +23,7 @@ TEST(enums, enums_are_not_confusing)
     }
 }
 
-TEST(enums, the_size_is_under_control)
+TEST(enums, DISABLED_the_size_is_under_control)
 {
     EXPECT_EQ(8, sizeof(A));
 }

@@ -41,7 +41,7 @@ void set_entry(const Language &language, Word word, int i)
 {
 }
 
-TEST(find_number, we_can_just_auto_translate)
+TEST(find_number, DISABLED_we_can_just_auto_translate)
 {
 	EXPECT_EQ(1, find_number("een"));
 	EXPECT_EQ(2, find_number("twee"));
@@ -51,14 +51,14 @@ TEST(find_number, we_can_just_auto_translate)
 }
 
 
-TEST(change_number, we_can_change_entries)
+TEST(change_number, DISABLED_we_can_change_entries)
 {
 	EXPECT_NO_THROW(set_entry("en-en", "three", 3));
 	EXPECT_EQ(3, translate("en-en", "three"));
 }
 
 
-TEST(change_number, we_can_use_generic_lookup_with_deferred_return_type)
+TEST(change_number, DISABLED_we_can_use_generic_lookup_with_deferred_return_type)
 {
 	EXPECT_EQ(1, detail::find_two_level(mappings, "nl-nl", "een"));
 }

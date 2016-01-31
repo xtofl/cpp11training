@@ -4,7 +4,7 @@
 
 #include <string>
 
-TEST(range_based_for, rewrite_to_cpp11)
+TEST(range_based_for, DISABLED_rewrite_to_cpp11)
 {
     std::vector<int> ints{ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
     int result = 0;
@@ -29,7 +29,7 @@ result_type sum(const Container &c)
     return result;
 }
 
-TEST(range_based_for, use_on_generic_containers_also_arrays)
+TEST(range_based_for, DISABLED_use_on_generic_containers_also_arrays)
 {
     std::vector<int> ints{ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
     EXPECT_EQ(55, sum(ints) );
@@ -53,7 +53,7 @@ public:
 };
 
 // TODO: make this compile
-TEST(range_based_for, we_can_iterate_over_a_collection)
+TEST(range_based_for, DISABLED_we_can_iterate_over_a_collection)
 {
     int result = 0;
 #ifdef solving_this
