@@ -6,12 +6,16 @@ Exercises to traing your C++11.
 
 ## Getting started
 
+### Linux
+
 On Linux all you need is
 
     git clone git@bitbucket.org:xtofl/cpp11training2015
     cd cpp11training2015/cpp11training
     cmake .
     make
+
+### Windows
 
 On Windows not all is ready yet: you need google test as a submodule:
 
