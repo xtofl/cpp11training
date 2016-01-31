@@ -5,6 +5,7 @@
 #include <map>
 #include <string>
 #include <memory>
+#include <cstdint>
 
 
 TEST(uniform_initialization, initialize_builtins)
