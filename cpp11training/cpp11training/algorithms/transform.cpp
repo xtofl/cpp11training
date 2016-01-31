@@ -2,7 +2,7 @@
 
 #include <gtest/gtest.h>
 #include <vector>
-#include <map>
+#include <unordered_map>
 
 // TODO: use algorithms to calculate the square of each element
 TEST(apply_transform, DISABLED_basic_arithmetic)
@@ -34,7 +34,7 @@ TEST(apply_transform, DISABLED_string_representation)
 
 TEST(apply_transform, DISABLED_extract_map_keys)
 {
-    const std::map<std::string, int> numbers{ {
+    const std::unordered_map<std::string, int> numbers{ {
         { "two", 2},
         { "five", 5},
         { "ten", 10},
