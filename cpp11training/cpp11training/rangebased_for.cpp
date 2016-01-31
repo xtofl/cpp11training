@@ -19,7 +19,7 @@ TEST(range_based_for, rewrite_to_cpp11)
 template<class Container>
 auto sum(const Container &c) -> typename std::remove_const<typename std::remove_reference<decltype(*std::begin(c))>::type>::type
 {
-    using value_type = std::remove_const<typename std::remove_reference<decltype(*std::begin(c))>::type>::type;
+    using value_type = typename std::remove_const<typename std::remove_reference<decltype(*std::begin(c))>::type>::type;
     value_type result{ 0 };
     static_assert(!std::is_const<value_type>::value, "can't work on const...");
     for (const auto &value : c) {
