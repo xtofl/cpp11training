@@ -22,6 +22,9 @@
     <Filter Include="Source Files\resource_management">
       <UniqueIdentifier>{81a63d97-8a81-4f93-88d3-fb5778d6a2f0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\algorithms">
+      <UniqueIdentifier>{e4fc0080-7d6d-4265-9ab2-784ae67118b8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -86,8 +89,8 @@
     <ClCompile Include="resource_management\shared_ptr.cpp">
       <Filter>Source Files\resource_management</Filter>
     </ClCompile>
-    <ClCompile Include="move\moveable_objects.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="algorithms\transform.cpp">
+      <Filter>Source Files\algorithms</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
