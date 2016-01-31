@@ -5,6 +5,7 @@
 #include <map>
 #include <string>
 #include <memory>
+#include <cstdint>
 
 
 TEST(uniform_initialization, initialize_builtins)
@@ -47,6 +48,8 @@ struct ProtocolMessage {
     ConversationId conversation;
     Type type;
     Bytes bytes;
+
+    ProtocolMessage() : conversation(-1), type(Type::number), bytes() {}
 };
 
 

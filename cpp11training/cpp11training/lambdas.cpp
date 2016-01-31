@@ -6,6 +6,7 @@
 #include <string>
 #include <memory>
 #include <functional>
+#include <exception>
 
 // should override these with local lambdas
 void foo() { throw std::runtime_error{ "not implemented" }; }
