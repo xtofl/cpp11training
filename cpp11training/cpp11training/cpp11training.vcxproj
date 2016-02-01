@@ -99,6 +99,7 @@
   <ItemGroup>
     <ClCompile Include="algorithms\adjacent_find.cpp" />
     <ClCompile Include="algorithms\transform.cpp" />
+    <ClCompile Include="async\async_1.cpp" />
     <ClCompile Include="cpp11training.cpp" />
     <ClCompile Include="class_design.cpp" />
     <ClCompile Include="enums.cpp" />

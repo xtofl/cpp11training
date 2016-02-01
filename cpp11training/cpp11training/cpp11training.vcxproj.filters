@@ -25,6 +25,9 @@
     <Filter Include="Source Files\algorithms">
       <UniqueIdentifier>{e4fc0080-7d6d-4265-9ab2-784ae67118b8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\async">
+      <UniqueIdentifier>{b844615b-7039-44a1-bf3b-caaf75537e78}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -97,6 +100,9 @@
     </ClCompile>
     <ClCompile Include="set_algorithms.cpp">
       <Filter>Source Files\algorithms</Filter>
+    </ClCompile>
+    <ClCompile Include="async\async_1.cpp">
+      <Filter>Source Files\async</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
