@@ -118,8 +118,8 @@ TEST_F(WithSomeData, DISABLED_find_common_elements)
     const auto common = common_surnames(classmates, colleagues);
     EXPECT_EQ(2u, common.size());
     const auto common_contains_if = contains_if(common);
-    const auto contains_surname = [&](auto n) {
-        return common_contains_if([&](auto p) { return p.surname == n; });
+    const auto contains_surname = [&](const std::string n) {
+        return common_contains_if([&](const Person &p) { return p.surname == n; });
     };
     EXPECT_TRUE(contains_surname("Dickens"));
     EXPECT_TRUE(contains_surname("De Schrijver"));
