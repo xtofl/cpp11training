@@ -22,18 +22,18 @@ const auto samples = [](auto f)
     return values;
 };
 
-TEST(adjacent_find, DISABLED_where_is_the_first_top)
+TEST(adjacent_find, where_is_the_first_top)
 {
     const auto values = samples(make_f(1.1, 10, 6));
 
-    // TODO: calculate where the function values remain equal
-    const auto top = std::begin(values);
+    const auto top = std::adjacent_find(
+        std::begin(values), std::end(values));
 
     EXPECT_EQ(*top, *std::next(top));
 }
 
 
-TEST(adjacent_find, DISABLED_where_is_the_first_zero_crossing)
+TEST(adjacent_find, where_is_the_first_zero_crossing)
 {
     const auto values = samples([](auto x) { return x*x*x - 8 * x*x - 13 * x - 4; });
 
