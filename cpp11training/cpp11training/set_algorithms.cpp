@@ -2,7 +2,7 @@
 
 #include <gtest/gtest.h>
 #include <vector>
-#include <unordered_map>
+#include <algorithm>
 
 namespace {
     template<class Container>
