@@ -95,5 +95,8 @@
     <ClCompile Include="algorithms\adjacent_find.cpp">
       <Filter>Source Files\algorithms</Filter>
     </ClCompile>
+    <ClCompile Include="set_algorithms.cpp">
+      <Filter>Source Files\algorithms</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
