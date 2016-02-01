@@ -8,7 +8,7 @@
   <PropertyGroup />
   <ItemDefinitionGroup>
     <ClCompile>
-      <AdditionalIncludeDirectories>$(GMOCK_DIR)/include;$(GMOCK_DIR);$(GTEST_DIR)/include;$(GTEST_DIR)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(GMOCK_DIR)/include;$(GMOCK_DIR);$(GTEST_DIR)/include;$(GTEST_DIR);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalDependencies>gmock.lib</AdditionalDependencies>
