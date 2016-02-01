@@ -37,8 +37,12 @@ TEST(adjacent_find, DISABLED_where_is_the_first_zero_crossing)
 {
     const auto values = samples([](auto x) { return x*x*x - 8 * x*x - 13 * x - 4; });
 
-    // TODO: calculate where the function values crosses zero
-    const auto zerocrossing = std::begin(values);
+    const auto zerocrossing = std::adjacent_find(
+        std::begin(values), std::end(values),
+        [](int i, int j) {
+        return i*j < 0;
+    });
+
 
     EXPECT_TRUE( (*zerocrossing) * (*std::next(zerocrossing)) <= 0 );
 }
