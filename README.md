@@ -2,7 +2,7 @@
 
 Exercises to traing your C++11.
 
-[![Build Status](https://drone.io/bitbucket.org/xtofl/cpp11training2015/status.png)](https://drone.io/bitbucket.org/xtofl/cpp11training2015/latest)
+[![Build Status](https://drone.io/github.com/xtofl/cpp11training/status.png)](https://drone.io/github.com/xtofl/cpp11training/latest)
 
 ## Getting started
 
