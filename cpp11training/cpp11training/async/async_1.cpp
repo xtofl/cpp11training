@@ -61,12 +61,14 @@ public:
     auto get_parallel(const Urls &urls)
     {
         events.push({ "get_parallel: ", "entry" });
+
+        std::vector<std::future<std::string>> futures;
         for (const auto &url : urls)
         {
-            get(url);
+            futures.emplace_back(std::async([=] { return get(url); }));
         }
         events.push({ "get_parallel: ", "exit" });
-        return 0;
+        return futures;
     }
 
     const std::vector<std::string> urls{
@@ -74,7 +76,7 @@ public:
     };
 };
 
-TEST_F(AsyncTest, DISABLED_we_can_delegate_stuff)
+TEST_F(AsyncTest, we_can_delegate_stuff)
 {
     EXPECT_GT(2 * 1000_ms, duration([=] {get_parallel(urls); }, 1));
 }
