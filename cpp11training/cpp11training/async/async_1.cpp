@@ -92,3 +92,32 @@ TEST_F(AsyncTest, DISABLED_we_can_wait_for_delegated_stuff)
         events.index({ "get: http://google.com", "exit" }),
         events.index({ "post: http://spell_checker.com", "entry" }));
 }
+
+TEST_F(AsyncTest, DISABLED_we_can_delay_execution_till_input_is_known)
+{
+
+    const auto task = [=](int n) {
+        events.push({ "task: n received: " + std::to_string(n), "" });
+        for (int i = 0; i != n; ++i) {
+            std::this_thread::sleep_for(100_ms);
+        }
+        events.push({ "task returns " + std::to_string(n), "" });
+        return n;
+    };
+
+    int input = 0;
+    auto result_fut = std::async(std::launch::async,
+        task, input);
+
+    std::async(std::launch::async, [&] {
+        events.push({ "input defined", "" });
+        input = 10;
+    });
+
+    const auto result = result_fut.get();
+    events.push({ "{return value known: " + std::to_string(result), "" });
+
+    EXPECT_EQ(10, result);
+    EXPECT_LT(events.index({ "input defined", "" }), events.index({ "task: n received: 10", "" }));
+    EXPECT_LT(events.index({ "task returns 10", "" }), events.index({ "{return value known: 10", "" }));
+}
