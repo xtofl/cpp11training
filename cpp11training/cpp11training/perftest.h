@@ -9,10 +9,11 @@
 //    long repetitions = 1'000'000,
 //    auto clock = [] { return std::chrono::high_resolution_clock::now(); }
 //    )
+template<class Clock>
 std::chrono::milliseconds duration(
         std::function<void()> function_under_test,
-        long repetitions = 1'000'000,
-        std::function<std::chrono::time_point<std::chrono::steady_clock>()> clock = [] { return std::chrono::high_resolution_clock::now(); }
+        long repetitions,
+        Clock clock
     )
 {
     const auto before = clock();
@@ -21,6 +22,12 @@ std::chrono::milliseconds duration(
     return std::chrono::duration_cast<std::chrono::milliseconds>(after - before);
 };
 
+std::chrono::milliseconds duration(
+        std::function<void()> function_under_test,
+        long repetitions = 1'000'000)
+{
+	return duration(function_under_test, repetitions, [] { return std::chrono::high_resolution_clock::now(); });
+}
 
 namespace pretty_time {
     std::ostream &operator<<(std::ostream &out, std::chrono::milliseconds d) {
