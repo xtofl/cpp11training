@@ -7,7 +7,7 @@
 
 #include "perftest.h"
 
-TEST(move, speed_this_up)
+TEST(move, DISABLED_speed_this_up)
 {
     struct Heavy {
         int * data = nullptr;
@@ -42,7 +42,7 @@ TEST(move, speed_this_up)
 
 
 
-TEST(move, there_should_be_only_one_owner)
+TEST(move, DISABLED_there_should_be_only_one_owner)
 {
     class Resource {
     public:
