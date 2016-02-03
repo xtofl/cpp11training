@@ -34,7 +34,7 @@ TEST(apply_transform, DISABLED_string_representation)
 
 TEST(apply_transform, DISABLED_extract_map_keys)
 {
-    const std::unordered_map<std::string, int> numbers{ {
+    const std::vector<std::pair<std::string, int>> numbers{ {
         { "two", 2},
         { "five", 5},
         { "ten", 10},
