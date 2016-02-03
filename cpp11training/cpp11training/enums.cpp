@@ -16,10 +16,8 @@ TEST(enums, DISABLED_enums_are_not_confusing)
         FAIL(); break;
 
 //TODO: make it compile
-#ifdef using_enum_classes
     case number:
         SUCCEED(); break;
-#endif
     }
 }
 
