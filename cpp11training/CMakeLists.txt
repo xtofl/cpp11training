@@ -47,7 +47,7 @@ add_dependencies(${GTEST_LIBRARY} googletest)
 
 
 include_directories(cpp11training ${GTEST_INCLUDE_DIR})
-file (GLOB SOURCES cpp11training/*.cpp)
+file (GLOB_RECURSE SOURCES cpp11training/*.cpp)
 add_executable(cpp11exercises ${SOURCES})
 target_link_libraries(cpp11exercises gtest pthread)
 
