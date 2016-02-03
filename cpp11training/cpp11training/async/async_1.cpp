@@ -92,10 +92,10 @@ TEST_F(AsyncTest, DISABLED_we_can_wait_for_delegated_stuff)
         events.index({ "post: http://spell_checker.com", "entry" }));
 }
 
-TEST_F(AsyncTest, DISABLED_we_can_delay_execution_till_input_is_known)
+TEST_F(AsyncTest, we_can_delay_execution_till_input_is_known)
 {
-
-    const auto task = [=](int n) {
+    const auto task = [=](std::future<int> &n_future) {
+        const auto n = n_future.get();
         events.push({ "task: n received: " + std::to_string(n), "" });
         for (int i = 0; i != n; ++i) {
             std::this_thread::sleep_for(100_ms);
@@ -104,13 +104,14 @@ TEST_F(AsyncTest, DISABLED_we_can_delay_execution_till_input_is_known)
         return n;
     };
 
-    int input = 0;
+    std::promise<int> input_promise;
+    auto fut = input_promise.get_future();
     auto result_fut = std::async(std::launch::async,
-        task, input);
+        task, std::ref(fut));
 
     std::async(std::launch::async, [&] {
         events.push({ "input defined", "" });
-        input = 10;
+        input_promise.set_value(10);
     });
 
     const auto result = result_fut.get();
