@@ -156,7 +156,7 @@ TEST(lambdas, DISABLED_you_dont_have_to_specify_the_argument_types_in_cpp14)
         EXPECT_EQ("1", stringify(1));
     }
     {
-        EXPECT_EQ("1.0", stringify(1.0));
+        EXPECT_EQ(std::to_string(1.0), stringify(1.0));
     }
 }
 #endif
