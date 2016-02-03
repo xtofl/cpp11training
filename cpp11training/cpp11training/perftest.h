@@ -22,18 +22,16 @@ std::chrono::milliseconds duration(
     return std::chrono::duration_cast<std::chrono::milliseconds>(after - before);
 };
 
-std::chrono::milliseconds duration(
+inline std::chrono::milliseconds duration(
         std::function<void()> function_under_test,
         long repetitions = 1'000'000)
 {
 	return duration(function_under_test, repetitions, [] { return std::chrono::high_resolution_clock::now(); });
 }
 
-namespace pretty_time {
-    std::ostream &operator<<(std::ostream &out, std::chrono::milliseconds d) {
+namespace std {
+    inline std::ostream &operator<<(std::ostream &out, std::chrono::milliseconds d) {
         return out << d.count() << " ms";
     }
 }
 
-using namespace pretty_time;
-using pretty_time::operator<<;
