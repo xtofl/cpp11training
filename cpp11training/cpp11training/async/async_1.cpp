@@ -4,6 +4,7 @@
 
 #include <thread>
 #include <future>
+#include <algorithm>
 
 #include "perftest.h"
 
@@ -32,7 +33,7 @@ public:
 
         int index(const Event &e) {
             std::lock_guard<std::mutex> guard(mutex);
-            auto it = std::find(std::begin(events), end(events), e);
+            auto it = std::find(std::begin(events), std::end(events), e);
             return distance(std::begin(events), it);
         }
 
