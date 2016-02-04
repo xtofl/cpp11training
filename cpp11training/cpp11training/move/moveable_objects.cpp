@@ -7,7 +7,7 @@
 #include "HeavyObject.h"
 #include "perftest.h"
 
-TEST(move, speed_this_up)
+TEST(move, DISABLED_speed_this_up)
 {
     auto consume = [](std::vector<Heavy> prototype)
     {
