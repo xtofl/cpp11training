@@ -104,5 +104,8 @@
     <ClCompile Include="async\async_1.cpp">
       <Filter>Source Files\async</Filter>
     </ClCompile>
+    <ClCompile Include="move\moveable_objects.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

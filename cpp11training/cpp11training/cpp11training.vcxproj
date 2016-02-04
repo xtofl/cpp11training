@@ -104,6 +104,7 @@
     <ClCompile Include="class_design.cpp" />
     <ClCompile Include="enums.cpp" />
     <ClCompile Include="lambdas.cpp" />
+    <ClCompile Include="move\moveable_objects.cpp" />
     <ClCompile Include="rangebased_for.cpp" />
     <ClCompile Include="resource_management\shared_ptr.cpp" />
     <ClCompile Include="resource_management\unique_ptr.cpp" />
