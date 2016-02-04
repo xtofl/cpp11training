@@ -4,29 +4,14 @@
 #include <string>
 #include <vector>
 #include <algorithm>
-
+#include "HeavyObject.h"
 #include "perftest.h"
 
-TEST(move, DISABLED_speed_this_up)
+TEST(move, speed_this_up)
 {
-    struct Heavy {
-        int * data = nullptr;
-        size_t size = 0;
-        Heavy() {}
-        explicit Heavy(int size)
-            : data(new int[size])
-            , size(size)
-        {}
-        Heavy(const Heavy &other)
-            : data(new int[other.size])
-            , size(other.size)
-        {}
-        ~Heavy() { delete[] data; }
-    };
-
     auto consume = [](std::vector<Heavy> prototype)
     {
-        auto copy = prototype;
+        Consumer cons(std::move(prototype));
     };
 
     auto d = duration([&]

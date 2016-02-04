@@ -92,6 +92,7 @@
     <ClInclude Include="class_design\Piano.h" />
     <ClInclude Include="class_design\Thing.h" />
     <ClInclude Include="class_design\Vehicle.h" />
+    <ClInclude Include="move\HeavyObject.h" />
     <ClInclude Include="perftest.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
@@ -104,6 +105,7 @@
     <ClCompile Include="class_design.cpp" />
     <ClCompile Include="enums.cpp" />
     <ClCompile Include="lambdas.cpp" />
+    <ClCompile Include="HeavyObject.cpp" />
     <ClCompile Include="move\moveable_objects.cpp" />
     <ClCompile Include="rangebased_for.cpp" />
     <ClCompile Include="resource_management\shared_ptr.cpp" />

@@ -57,6 +57,9 @@
     <ClInclude Include="perftest.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="move\HeavyObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -105,6 +108,9 @@
       <Filter>Source Files\async</Filter>
     </ClCompile>
     <ClCompile Include="move\moveable_objects.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="HeavyObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
