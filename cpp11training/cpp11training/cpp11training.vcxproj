@@ -92,7 +92,7 @@
     <ClInclude Include="class_design\Piano.h" />
     <ClInclude Include="class_design\Thing.h" />
     <ClInclude Include="class_design\Vehicle.h" />
-    <ClInclude Include="move\HeavyObject.h" />
+    <ClInclude Include="HeavyObject.h" />
     <ClInclude Include="perftest.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />

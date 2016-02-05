@@ -57,7 +57,7 @@
     <ClInclude Include="perftest.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="move\HeavyObject.h">
+    <ClInclude Include="HeavyObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
