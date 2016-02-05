@@ -1,6 +1,6 @@
 #pragma once
 
-#include <vector>
+#include <array>
 #include <algorithm>
 
 struct Heavy {
@@ -15,11 +15,24 @@ struct Heavy {
         : data(new int[other.size])
         , size(other.size)
     {}
+    Heavy &operator=(const Heavy &other)
+    {
+        data = new int[other.size];
+        size = other.size;
+        return *this;
+    }
+
     ~Heavy() { delete[] data; }
 };
 
 class Consumer {
 public:
-    Consumer(std::vector<Heavy> prototype);
-    std::vector<Heavy> member;
+    // TODO: tweak this constant to make your test fail
+    // (the moveable_objects tests)
+    static constexpr size_t size = 100;
+
+    Consumer(std::array<Heavy, size> prototype);
+    static void access(std::array<Heavy, size> &);
+private:
+    std::array<Heavy, size> member;
 };

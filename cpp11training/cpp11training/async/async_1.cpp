@@ -8,10 +8,6 @@
 
 #include "perftest.h"
 
-std::chrono::milliseconds operator"" _ms(unsigned long long count) {
-    return std::chrono::milliseconds(count);
-}
-
 class AsyncTest : public ::testing::Test {
 public:
     AsyncTest()

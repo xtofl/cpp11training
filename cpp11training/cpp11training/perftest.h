@@ -3,6 +3,10 @@
 #include <functional>
 #include <chrono>
 
+inline std::chrono::milliseconds operator"" _ms(unsigned long long count) {
+    return std::chrono::milliseconds( count );
+}
+
 // I wish it could be done like this...
 //auto duration = [](
 //    auto function_under_test,
