@@ -10,8 +10,8 @@ Exercises to traing your C++11.
 
 On Linux all you need is
 
-    git clone git@bitbucket.org:xtofl/cpp11training2015
-    cd cpp11training2015/cpp11training
+    git clone git@github.com:xtofl/cpp11training
+    cd cpp11training/cpp11training
     cmake .
     make
 
@@ -19,10 +19,10 @@ On Linux all you need is
 
 On Windows not all is ready yet: you need google test as a submodule:
 
-    git clone --recurse-submodules git@bitbucket.org:xtofl/cpp11training2015
+    git clone --recurse-submodules git@github.com:xtofl/cpp11training
     
 and open the `cpp11training/cpp11training.sln` solution.
-   
+
 
 ## Exercising
 
