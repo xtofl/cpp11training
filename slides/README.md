@@ -6,7 +6,7 @@ can give you a good idea.
 
 ## coreextensions
 
-[This presentation](/cpp11training/slides/1.coreextensions-c11-121213071023-phpapp02-reordered.pptx/) is a reordered form of [This One](http://www.slideshare.net/adankevich/c11-15621074)
+[This presentation](/slides/1.coreextensions-c11-121213071023-phpapp02-reordered.pptx/) is a reordered form of [This One](http://www.slideshare.net/adankevich/c11-15621074)
 
     vector<Slide> slides("http://www.slideshare.net/adankevich/c11-15621074");
     auto rest = std::partition(begin(slides), end(slides),
@@ -16,7 +16,7 @@ can give you a good idea.
 
 ## lambda-functions
 
-[This presentation](/cpp11training/slides/2.lambdas-c11-121213071023-phpapp02-reordered.pptx/) is a reordered form of [This One](http://www.slideshare.net/adankevich/c11-15621074)
+[This presentation](/slides/2.lambdas-c11-121213071023-phpapp02-reordered.pptx/) is a reordered form of [This One](http://www.slideshare.net/adankevich/c11-15621074)
 
     vector<Slide> slides("http://www.slideshare.net/adankevich/c11-15621074");
     auto rest = std::partition(begin(slides), end(slides),
@@ -38,7 +38,7 @@ can give you a good idea.
 
 ## STL Algorithms
 
-[STL Algorithms.pdf](/cpp11training/slides/5.b.STL Algorithms.pdf/)
+[STL Algorithms.pdf](/slides/5.b.STL Algorithms.pdf/)
 
 
 ## Multithreading
