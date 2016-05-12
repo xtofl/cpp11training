@@ -20,6 +20,10 @@ namespace dont_touch_this {
 	struct Big {
 		std::array<int, 100000> data;
 	};
+
+	struct Gigantic {
+		std::array<int, 100000000> data;
+	};
 }
 
 namespace {
@@ -40,6 +44,15 @@ TEST(storage_types, DISABLED_evenBigObjectsCanBePassedAroundSomehow)
 	use(Tiny{});
 	use(Moderate{});
 	use(Big{});
+}
+
+TEST(storage_types, DISABLED_giganticObjectsCantBeOnTheStack)
+{
+	// TODO: update the allocation
+	// in order to make the test pass without
+	// stack overflows
+	Gigantic g;
+	use(g);
 }
 
 
