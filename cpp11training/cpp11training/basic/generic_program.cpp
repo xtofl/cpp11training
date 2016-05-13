@@ -17,10 +17,10 @@ TEST(generic, algorithmCanUseManyInputTypes)
 {
 	auto s = "abc";
 
-	EXPECT_EQ(Type::String, getTypeFor(s);
-	EXPECT_EQ(Type::String, getTypeFor(std::string{});
+	EXPECT_EQ(Type::String, getTypeFor(s));
+	EXPECT_EQ(Type::String, getTypeFor(std::string{}));
 	EXPECT_EQ(Type::Number, getTypeFor(1.0));
-	EXPECT_EQ(Type::Number, getTypeFor(sizeof(""));
+	EXPECT_EQ(Type::Number, getTypeFor(sizeof("")));
 }
 #endif
 
