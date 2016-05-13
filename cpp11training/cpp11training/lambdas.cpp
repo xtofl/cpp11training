@@ -14,6 +14,9 @@ int length(const std::string &s) { return 100; }
 
 TEST(lambdas, DISABLED_we_can_define_local_lambdas)
 {
+	// TODO: create a lambda that returns the length
+	// of a string, and a `foo` that does just nothing
+	//
     EXPECT_EQ(3, length("abc"));
     EXPECT_NO_THROW(foo());
 }
