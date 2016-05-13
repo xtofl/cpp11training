@@ -1,4 +1,4 @@
-#include <gtest/gest.h>
+#include <gtest/gtest.h>
 #include <string>
 
 enum class Type {
