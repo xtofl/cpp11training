@@ -3,6 +3,10 @@
 To solve the exercises you can work through numerous resources.  The ones enumerated here
 can give you a good idea.
 
+## basics
+
+A brief guide through 'basic' c++ concepts.  Actually this is kindof required knowledge for starting the rest of the course.
+[In pdf format](/slides/0.C++Basics.pdf) or on [google drive](https://docs.google.com/presentation/d/1gPbW8i_sN0PeqGqzjUAUlveDML-lbBXqXRyuz21b6Cc/edit?usp=sharing).
 
 ## coreextensions
 
