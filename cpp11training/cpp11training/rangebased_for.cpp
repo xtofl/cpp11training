@@ -53,10 +53,8 @@ public:
     int operator *() const { return first; }
 };
 
-namespace std {
-    Range begin(const Range &r) { return r; }
-    Range end(const Range &r) { return{ r.after_last, r.after_last }; }
-}
+Range begin(const Range &r) { return r; }
+Range end(const Range &r) { return{ r.after_last, r.after_last }; }
 
 // TODO: make this compile
 TEST(range_based_for, we_can_iterate_over_a_collection)
