@@ -3,6 +3,7 @@
 #include <gtest/gtest.h>
 #include <vector>
 #include <unordered_map>
+#include <algorithm>
 
 const auto make_f = [](auto a, auto b, auto c) {
     return [=](auto x) {
