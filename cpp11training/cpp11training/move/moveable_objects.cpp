@@ -7,6 +7,8 @@
 #include "HeavyObject.h"
 #include "perftest.h"
 
+// TODO: add move support to `HeavyObject` class
+//
 TEST(move, DISABLED_speed_this_up_by_adding_move_support)
 {
     auto constructing_objects = duration([&]
