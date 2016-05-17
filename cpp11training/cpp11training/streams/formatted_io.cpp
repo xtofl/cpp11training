@@ -62,4 +62,11 @@ TEST(formatted_io, DISABLED_we_can_write_basic_types_from_streams) {
     EXPECT_EQ("1 xyz 5.0", s_data);
 }
 
+TEST(formatted_io, DISABLED_we_can_print_numbers_in_hex)
+{
+    std::stringstream ss;
 
+    ss << 0xabcd;
+
+    EXPECT_EQ("0000ABCD", ss.str());
+}
