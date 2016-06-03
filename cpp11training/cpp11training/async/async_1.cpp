@@ -76,11 +76,22 @@ public:
 
 TEST_F(AsyncTest, DISABLED_we_can_delegate_stuff)
 {
+    // TODO: tweak get_parallel in order to starts retrieving all
+    // urls simultaneously
+    // PURPOSE: express parallelism
     EXPECT_GT(2 * 1000_ms, duration([=] {get_parallel(urls); }, 1));
 }
 
 TEST_F(AsyncTest, DISABLED_we_can_wait_for_delegated_stuff)
 {
+    // TODO: make sure the `post` call uses
+    // for the `get` call's results
+    // HINT: `get` should return a future, `post` should get an overload to
+    // consume it, and forward to the regular `post`.
+    // PURPOSE: control executaion over interdependent dependent tasks
+    //
+    // FLAW: we should also check that `post` has actually received the
+    // value returned by the `get`
     auto google = get("http://google.com");
     auto correct = post("http://spell_checker.com", google);
 
@@ -101,6 +112,10 @@ TEST_F(AsyncTest, DISABLED_we_can_delay_execution_till_input_is_known)
         events.push({ "task returns " + std::to_string(n), "" });
         return n;
     };
+    // TODO: redefine above `task` so that it can wait
+    // for it's argument, and that client code
+    // can wait for it's return value.
+    // HINT: ... accept and return a future and store the result in a promise.
 
     int input = 0;
     auto result_fut = std::async(std::launch::async,
