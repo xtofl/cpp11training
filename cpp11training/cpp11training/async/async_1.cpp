@@ -5,6 +5,7 @@
 #include <thread>
 #include <future>
 #include <algorithm>
+#include <map>
 
 #include "perftest.h"
 
@@ -13,6 +14,7 @@ public:
     AsyncTest()
     {}
 
+    using Args = std::map<std::string, std::string>;
     class Events {
     public:
         struct Event {
@@ -21,6 +23,7 @@ public:
             bool operator == (const Event &other) const {
                 return source == other.source && message == other.message;
             }
+            Args arguments;
         };
         void push(Event s) {
             std::lock_guard<std::mutex> guard(mutex);
@@ -31,6 +34,12 @@ public:
             std::lock_guard<std::mutex> guard(mutex);
             auto it = std::find(std::begin(events), std::end(events), e);
             return distance(std::begin(events), it);
+        }
+        const Event &find(const Event &e) {
+            std::lock_guard<std::mutex> guard(mutex);
+            auto it = std::find(std::begin(events), std::end(events), e);
+            if (it == std::end(events)) throw std::invalid_argument(e.message + ", " + e.source);
+            return *it;
         }
 
         std::mutex mutex;
@@ -48,12 +57,11 @@ public:
         return "results for " + url;
     }
 
-    template<class ...Args>
-    auto post(std::string url, const Args... args)
+    auto post(std::string url, Args args)
     {
-        events.push({ "post: " + url, "entry" });
+        events.push({ "post: " + url, "entry", std::move(args) });
         std::this_thread::sleep_for(1000_ms);
-        events.push({ "post: " + url, "exit" });
+        events.push({ "post: " + url, "exit"});
         return "posted to " + url;
     }
 
@@ -88,22 +96,22 @@ TEST_F(AsyncTest, DISABLED_we_can_wait_for_delegated_stuff)
     // for the `get` call's results
     // HINT: `get` should return a future, `post` should get an overload to
     // consume it, and forward to the regular `post`.
-    // PURPOSE: control executaion over interdependent dependent tasks
+    // PURPOSE: control execution over interdependent tasks
     //
-    // FLAW: we should also check that `post` has actually received the
-    // value returned by the `get`
     auto google = get("http://google.com");
-    auto correct = post("http://spell_checker.com", google);
+    auto correct = post("http://spell_checker.com", {{"text", google}});
 
-    //EXPECT_TRUE(correct);
     EXPECT_LT(
         events.index({ "get: http://google.com", "exit" }),
         events.index({ "post: http://spell_checker.com", "entry" }));
+    EXPECT_EQ("results for http://google.com",
+              events
+                .find({ "post: http://spell_checker.com", "entry" })
+                .arguments.at("text"));
 }
 
 TEST_F(AsyncTest, DISABLED_we_can_delay_execution_till_input_is_known)
 {
-
     const auto task = [=](int n) {
         events.push({ "task: n received: " + std::to_string(n), "" });
         for (int i = 0; i != n; ++i) {
