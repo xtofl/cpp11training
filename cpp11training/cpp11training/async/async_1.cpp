@@ -53,7 +53,7 @@ public:
     {
         events.push({"get: "+url, "entry"});
         std::this_thread::sleep_for(1000_ms);
-        events.push({"get: " + url, "returning" });
+        events.push({"get: " + url, "exit" });
         return "results for " + url;
     }
 
