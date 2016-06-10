@@ -42,7 +42,9 @@ TEST(exceptions, DISABLED_we_can_guarantee_strong_exception_safety)
         builder.addResources(resource_ids);
     } catch(const std::runtime_error &){
         EXPECT_TRUE(builder.resources.empty());
+        return;
     }
+    FAIL() << "test must exit through exceptional path";
 }
 
 
