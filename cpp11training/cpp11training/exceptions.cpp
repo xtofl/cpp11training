@@ -43,12 +43,13 @@ TEST(exceptions, DISABLED_we_can_guarantee_strong_exception_safety)
     // strong exception safety guarantee
     // HINT: guard your invariants!
     ResourceBuilder builder;
+    builder.addResources({1, 2});
 
     try {
-        std::vector<int> resource_ids{{1, 2, 3, 4, 5, 6, 7, 8}};
+        std::vector<int> resource_ids{{3, 4, 5, 6, 7, 8}};
         builder.addResources(resource_ids);
     } catch(const std::runtime_error &){
-        EXPECT_TRUE(builder.resources.empty());
+        EXPECT_EQ(2u, builder.resources.size()) << "no additional resources should have been added";
         return;
     }
     FAIL() << "test must exit through exceptional path";
