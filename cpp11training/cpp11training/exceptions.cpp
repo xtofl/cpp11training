@@ -4,6 +4,7 @@
 #include <vector>
 #include <algorithm>
 #include <numeric>
+#include <functional>
 
 namespace dont_touch {
     class Resource {
@@ -18,6 +19,12 @@ namespace dont_touch {
 using namespace dont_touch;
 
 namespace {
+
+    struct Destructible {
+        std::function<void()> destructed = []{};
+        ~Destructible(){ destructed(); }
+    };
+
     struct ResourceBuilder {
         void addResources(const std::vector<int> &resource_ids)
         {
@@ -45,6 +52,24 @@ TEST(exceptions, DISABLED_we_can_guarantee_strong_exception_safety)
         return;
     }
     FAIL() << "test must exit through exceptional path";
+}
+
+TEST(exceptions, DISABLED_objects_dont_leak)
+{
+    bool destructed = false;
+    try {
+        {
+            // TODO: adapt this block so that
+            // a doesn't leak
+            // HINT: use a value type
+            auto a = new Destructible();
+            a->destructed = [&]{ destructed = true;};
+        }
+
+        throw std::runtime_error("");
+    } catch(const std::runtime_error &) {
+        EXPECT_TRUE(destructed);
+    }
 }
 
 
