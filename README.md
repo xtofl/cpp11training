@@ -24,11 +24,10 @@ On Linux all you need is
 
 ### Windows
 
-On Windows not all is ready yet: you need google test as a submodule:
-
-    git clone --recurse-submodules git@github.com:xtofl/cpp11training
     
-and open the `cpp11training/cpp11training.sln` solution.
+Prerequisite: currently I have it up and running for Visual Studio 2017 Community edition.  It relies on NuGet package manager, which should be installed explicitly (cf. (stackoverflow)[http://stackoverflow.com/questions/42875451/cant-find-the-nuget-package-manager-in-visual-studio-2017])
+
+Open the `cpp11training/cpp11training.sln` solution.
 
 
 ## Exercising

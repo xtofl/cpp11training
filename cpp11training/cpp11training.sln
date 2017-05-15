@@ -1,11 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.26403.7
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cpp11training", "cpp11training\cpp11training.vcxproj", "{112A7AE9-D86A-4E46-B40B-9D34ADAAC696}"
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gmock", "dependencies\googletest\googlemock\msvc\2015\gmock.vcxproj", "{34681F0D-CE45-415D-B5F2-5C662DFE3BD5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -16,17 +14,13 @@ Global
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{112A7AE9-D86A-4E46-B40B-9D34ADAAC696}.Debug|x64.ActiveCfg = Debug|Win32
+		{112A7AE9-D86A-4E46-B40B-9D34ADAAC696}.Debug|x64.Build.0 = Debug|Win32
 		{112A7AE9-D86A-4E46-B40B-9D34ADAAC696}.Debug|x86.ActiveCfg = Debug|Win32
 		{112A7AE9-D86A-4E46-B40B-9D34ADAAC696}.Debug|x86.Build.0 = Debug|Win32
 		{112A7AE9-D86A-4E46-B40B-9D34ADAAC696}.Release|x64.ActiveCfg = Release|Win32
+		{112A7AE9-D86A-4E46-B40B-9D34ADAAC696}.Release|x64.Build.0 = Release|Win32
 		{112A7AE9-D86A-4E46-B40B-9D34ADAAC696}.Release|x86.ActiveCfg = Release|Win32
 		{112A7AE9-D86A-4E46-B40B-9D34ADAAC696}.Release|x86.Build.0 = Release|Win32
-		{34681F0D-CE45-415D-B5F2-5C662DFE3BD5}.Debug|x64.ActiveCfg = Debug|Win32
-		{34681F0D-CE45-415D-B5F2-5C662DFE3BD5}.Debug|x86.ActiveCfg = Debug|Win32
-		{34681F0D-CE45-415D-B5F2-5C662DFE3BD5}.Debug|x86.Build.0 = Debug|Win32
-		{34681F0D-CE45-415D-B5F2-5C662DFE3BD5}.Release|x64.ActiveCfg = Release|Win32
-		{34681F0D-CE45-415D-B5F2-5C662DFE3BD5}.Release|x86.ActiveCfg = Release|Win32
-		{34681F0D-CE45-415D-B5F2-5C662DFE3BD5}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
