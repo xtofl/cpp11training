@@ -18,7 +18,7 @@ SET_DIRECTORY_PROPERTIES(PROPERTIES EP_PREFIX ${CMAKE_BINARY_DIR}/third_party)
 # http://stackoverflow.com/questions/9689183/cmake-googletest
 ExternalProject_Add(
     gtest
-    GIT_REPOSITORY https://github/google/googletest.git
+    GIT_REPOSITORY https://github.com/google/googletest.git
     GIT_TAG release-1.8.0
     PREFIX gtest
     INSTALL_COMMAND ""
@@ -28,22 +28,18 @@ ExternalProject_Add(
     LOG_BUILD ON)
 
 # Specify include dir
-ExternalProject_Get_Property(gtest source_dir)
-set(GTEST_INCLUDE_DIR ${source_dir}/include)
+ExternalProject_Get_Property(gtest source_dir binary_dir)
 
-# Library
-ExternalProject_Get_Property(gtest binary_dir)
+set(GTEST_INCLUDE_DIR ${source_dir}/googletest/include)
 set(GTEST_LIBRARY_PATH ${binary_dir}/${CMAKE_FIND_LIBRARY_PREFIXES}gtest.a)
-set(GTEST_LIBRARY gtest)
-add_library(${GTEST_LIBRARY} UNKNOWN IMPORTED)
-set_property(TARGET ${GTEST_LIBRARY} PROPERTY IMPORTED_LOCATION
+set_property(TARGET gtest PROPERTY IMPORTED_LOCATION
                 ${GTEST_LIBRARY_PATH} )
-add_dependencies(${GTEST_LIBRARY} gtest)
 
 
 include_directories(cpp11training ${GTEST_INCLUDE_DIR})
 file (GLOB_RECURSE SOURCES cpp11training/*.cpp)
 add_executable(cpp11exercises ${SOURCES})
-target_link_libraries(cpp11exercises gtest pthread)
+add_dependencies(cpp11exercises gtest)
+target_link_libraries(cpp11exercises ${GTEST_LIBRARY_PATH} pthread)
 
 add_custom_target(unittest ${PROJECT_NAME})
