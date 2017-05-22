@@ -10,6 +10,8 @@
 
 TEST(uniform_initialization, DISABLED_initialize_builtins)
 {
+    // TODO: initialize the variables to make the expectations pass
+    // Use uniform initialization syntax.
     int a;
     EXPECT_EQ(5, a);
     int * a_pointer = new int; // yey a leak
@@ -22,6 +24,7 @@ TEST(uniform_initialization, DISABLED_initialize_builtins)
 
 TEST(uniform_initialization, DISABLED_initialize_a_vector)
 {
+    // TODO: initialize the variables to make the expectations pass
     std::vector<int> ints;
     EXPECT_EQ(5u, ints.size());
     EXPECT_EQ(1, ints.at(0));
@@ -34,6 +37,7 @@ TEST(uniform_initialization, DISABLED_initialize_a_vector)
 
 TEST(uniform_initialization, DISABLED_initialize_a_map)
 {
+    // TODO: initialize the variables to make the expectations pass
     std::map<int, char> ascii;
     EXPECT_EQ('a', ascii.at('a'));
     EXPECT_EQ('b', ascii.at('b'));
@@ -55,6 +59,7 @@ struct ProtocolMessage {
 
 TEST(uniform_initialization, DISABLED_initialize_an_object)
 {
+    // TODO: initialize the variables to make the expectations pass
     const ProtocolMessage message;
     EXPECT_EQ(ProtocolMessage::Type::text, message.type);
     ASSERT_EQ(2u, message.bytes.size());
@@ -89,6 +94,7 @@ private:
 
 TEST(uniform_initialization, DISABLED_initialize_a_class_object)
 {
+    // TODO: initialize the variables to make the expectations pass
     auto connection = std::make_shared<Connection>();
     Peer peer;
     peer.send(10);
@@ -101,6 +107,9 @@ TEST(uniform_initialization, DISABLED_initialize_a_class_object)
 }
 
 //TODO #define we_can_use_an_initializer_list
+// and make the code compile and the test succeed.
+// by adding an initializer list argument
+// NOTE: a variadic template would be better.
 #ifdef we_can_use_an_initializer_list
 std::string concatenate(...) {
     return s;
