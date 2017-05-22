@@ -16,9 +16,6 @@
     <Filter Include="Source Files\simple">
       <UniqueIdentifier>{7b6724cc-1b36-4c30-9a08-e927f86aabeb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\simple\class_design">
-      <UniqueIdentifier>{f70ec325-99af-4e1c-b0f9-6a92a867e70c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\resource_management">
       <UniqueIdentifier>{81a63d97-8a81-4f93-88d3-fb5778d6a2f0}</UniqueIdentifier>
     </Filter>
@@ -30,6 +27,9 @@
     </Filter>
     <Filter Include="Source Files\coreextensions">
       <UniqueIdentifier>{c8809e8c-be63-4546-982b-716fabdbdccd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\coreextensions\class_design">
+      <UniqueIdentifier>{f70ec325-99af-4e1c-b0f9-6a92a867e70c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -43,19 +43,19 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="class_design\Instrument.h">
-      <Filter>Source Files\simple\class_design</Filter>
+      <Filter>Source Files\coreextensions\class_design</Filter>
     </ClInclude>
     <ClInclude Include="class_design\Piano.h">
-      <Filter>Source Files\simple\class_design</Filter>
+      <Filter>Source Files\coreextensions\class_design</Filter>
     </ClInclude>
     <ClInclude Include="class_design\Thing.h">
-      <Filter>Source Files\simple\class_design</Filter>
+      <Filter>Source Files\coreextensions\class_design</Filter>
     </ClInclude>
     <ClInclude Include="class_design\Vehicle.h">
-      <Filter>Source Files\simple\class_design</Filter>
+      <Filter>Source Files\coreextensions\class_design</Filter>
     </ClInclude>
     <ClInclude Include="class_design\MyBike.h">
-      <Filter>Source Files\simple\class_design</Filter>
+      <Filter>Source Files\coreextensions\class_design</Filter>
     </ClInclude>
     <ClInclude Include="perftest.h">
       <Filter>Source Files</Filter>
@@ -71,19 +71,7 @@
     <ClCompile Include="cpp11training.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="use_auto.cpp">
-      <Filter>Source Files\simple</Filter>
-    </ClCompile>
-    <ClCompile Include="class_design.cpp">
-      <Filter>Source Files\simple</Filter>
-    </ClCompile>
     <ClCompile Include="types_and_metaprogramming.cpp">
-      <Filter>Source Files\simple</Filter>
-    </ClCompile>
-    <ClCompile Include="enums.cpp">
-      <Filter>Source Files\simple</Filter>
-    </ClCompile>
-    <ClCompile Include="uniform_initialization.cpp">
       <Filter>Source Files\simple</Filter>
     </ClCompile>
     <ClCompile Include="lambdas.cpp">
@@ -113,13 +101,25 @@
     <ClCompile Include="HeavyObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="rangebased_for.cpp">
+      <Filter>Source Files\coreextensions</Filter>
+    </ClCompile>
+    <ClCompile Include="enums.cpp">
+      <Filter>Source Files\coreextensions</Filter>
+    </ClCompile>
     <ClCompile Include="C:\Users\xtofl\projects\cpp11training\cpp11training\cpp11training\..\..\lib\native\src\gtest\gtest-all.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="C:\Users\xtofl\projects\cpp11training\cpp11training\cpp11training\..\..\lib\native\src\gmock\gmock-all.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="rangebased_for.cpp">
+    <ClCompile Include="uniform_initialization.cpp">
+      <Filter>Source Files\coreextensions</Filter>
+    </ClCompile>
+    <ClCompile Include="use_auto.cpp">
+      <Filter>Source Files\coreextensions</Filter>
+    </ClCompile>
+    <ClCompile Include="class_design.cpp">
       <Filter>Source Files\coreextensions</Filter>
     </ClCompile>
   </ItemGroup>
