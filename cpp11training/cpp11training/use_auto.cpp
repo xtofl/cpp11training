@@ -43,11 +43,15 @@ void set_entry(const Language &language, Word word, int i)
 
 TEST(find_number, DISABLED_we_can_just_auto_translate)
 {
+    // TODO: enable the test and implement `find_number` to make it succeed
+    // HINT: return the first entry containing a language that defines the given word
+    // HINT: use the power of range-based for.
+    // HINT: or... more advanced... an stl algorithm with some lambda expressions
+	EXPECT_THROW(find_number("zork"), std::range_error);
 	EXPECT_EQ(1, find_number("een"));
 	EXPECT_EQ(2, find_number("twee"));
 	EXPECT_EQ(1, find_number("one"));
 	EXPECT_EQ(2, find_number("two"));
-	EXPECT_THROW(find_number("zork"), std::range_error);
 }
 
 

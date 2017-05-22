@@ -163,3 +163,7 @@ TEST(lambdas, DISABLED_you_dont_have_to_specify_the_argument_types_in_cpp14)
     }
 }
 #endif
+
+// MORE ADVANCED:
+// revisit use_auto.cpp: implement TEST(find_number, DISABLED_we_can_just_auto_translate)
+// with lambda expressions
