@@ -28,6 +28,9 @@
     <Filter Include="Source Files\async">
       <UniqueIdentifier>{b844615b-7039-44a1-bf3b-caaf75537e78}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\coreextensions">
+      <UniqueIdentifier>{c8809e8c-be63-4546-982b-716fabdbdccd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -74,9 +77,6 @@
     <ClCompile Include="class_design.cpp">
       <Filter>Source Files\simple</Filter>
     </ClCompile>
-    <ClCompile Include="rangebased_for.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="types_and_metaprogramming.cpp">
       <Filter>Source Files\simple</Filter>
     </ClCompile>
@@ -118,6 +118,9 @@
     </ClCompile>
     <ClCompile Include="C:\Users\xtofl\projects\cpp11training\cpp11training\cpp11training\..\..\lib\native\src\gmock\gmock-all.cc">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="rangebased_for.cpp">
+      <Filter>Source Files\coreextensions</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

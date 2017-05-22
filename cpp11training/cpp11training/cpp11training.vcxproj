@@ -100,6 +100,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="rangebased_for.cpp" />
     <ClCompile Include="algorithms\adjacent_find.cpp" />
     <ClCompile Include="algorithms\transform.cpp" />
     <ClCompile Include="async\async_1.cpp" />
@@ -109,7 +110,6 @@
     <ClCompile Include="lambdas.cpp" />
     <ClCompile Include="HeavyObject.cpp" />
     <ClCompile Include="move\moveable_objects.cpp" />
-    <ClCompile Include="rangebased_for.cpp" />
     <ClCompile Include="resource_management\shared_ptr.cpp" />
     <ClCompile Include="resource_management\unique_ptr.cpp" />
     <ClCompile Include="set_algorithms.cpp" />

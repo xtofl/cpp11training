@@ -8,6 +8,10 @@ TEST(range_based_for, DISABLED_rewrite_to_cpp11)
 {
     std::vector<int> ints{ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
     int result = 0;
+    // TODO: convert this C++03 beast into modern c++
+    // GOAL: more readable code
+    // HINT: range-based for
+    // HINT2: later you should use an std::algorithm for this
     for (std::vector<int>::const_iterator it = ints.begin(); it != ints.end(); ++it)
     {
         result += *it;
@@ -33,7 +37,12 @@ TEST(range_based_for, DISABLED_use_on_generic_containers_also_arrays)
 {
     std::vector<int> ints{ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
     EXPECT_EQ(55, sum(ints) );
-// TODO: make this compile (and run...)
+// TODO: 
+    // enable this piece of code
+    // the `sum` function template won't compile.
+    // Adapt the `sum` function template using a range based for loop
+// GOAL:
+    // see?  range based for loops allow more generic code!
 #if working_on_this
     long longs[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
     EXPECT_EQ(55, sum(longs));
@@ -52,10 +61,16 @@ public:
     int after_last;
 };
 
-// TODO: make this compile
+
 TEST(range_based_for, DISABLED_we_can_iterate_over_a_collection)
 {
     int result = 0;
+    // TODO: extend the Range class so that it acts as a
+    // real 'range' and can be used in a range based for loop.
+    //
+    // HINT: This is a harder problem: you need to provide
+    // a free begin(const Range&) and end(const Range&) function
+    // that returns an iterator-like object.
 #ifdef solving_this
     for (const auto &element : Range{ 1, 11 })
     { 
