@@ -8,6 +8,9 @@
 #include "perftest.h"
 
 // TODO: add move support to `HeavyObject` class
+// no need to touch the code in this test
+// NOTE: if the test succeeds without code, increment e.g. Consumer::size until it fails, first.
+// GOAL: learn how to add move support to a class
 //
 TEST(move, DISABLED_speed_this_up_by_adding_move_support)
 {
@@ -30,13 +33,20 @@ TEST(move, DISABLED_speed_this_up_by_adding_move_support)
         Consumer cons(std::move(prototype));
     }, 10'000);
 
-    EXPECT_TRUE(consuming_objects < constructing_objects * 1.1)
+    EXPECT_LT(consuming_objects, constructing_objects * 1.1)
         << "consuming: " << consuming_objects
         << " vs. constructing: " << constructing_objects;
 }
 
 
-
+// TODO: alter the `Pool` class so that
+// the contained resources have move semantics:
+// a borrowed resource is no longer in the pool.
+//
+// GOAL: implementing functions that move objects
+// NOTE: try to make sure the user doesn't _accidentally_
+// lose an object (think of the API!)
+// HINT: rvalue references to the rescue
 TEST(move, DISABLED_there_should_be_only_one_owner)
 {
     class Resource {
@@ -60,8 +70,8 @@ TEST(move, DISABLED_there_should_be_only_one_owner)
         Resource borrow() {
             return Resource{ "?" };
         }
-        
-        void return_(Resource) {}
+
+        void return_(Resource r) {}
 
         bool contains(const std::string &id) const
         {
@@ -84,4 +94,5 @@ TEST(move, DISABLED_there_should_be_only_one_owner)
     EXPECT_EQ(2u, pool.size());
     EXPECT_TRUE(pool.contains("one")); 
     EXPECT_TRUE(pool.contains("two"));
+    EXPECT_EQ(r1.id, "invalid"); // this requires tinkering with the `Resource` class
 }
