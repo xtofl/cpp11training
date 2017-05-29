@@ -59,7 +59,8 @@ namespace {
 TEST(sets, DISABLED_remove_duplicates)
 {
     std::vector<int> values{ 1, 2, 2, 3, 4, 5, 6, 6, 8, 8, 9 };
-
+    // TODO: remove duplicates from `values`
+    // HINT: only 'unique' values should be present
     for (const auto value : values) {
         EXPECT_EQ(1, std::count(std::begin(values), std::end(values), value));
     }
@@ -69,6 +70,8 @@ TEST(sets, DISABLED_remove_duplicates_2)
 {
     std::vector<int> values{ 1, 2, 2, 3, 4, 5, 6, 6, 8, 8, 9 };
     std::random_shuffle(std::begin(values), end(values));
+    // TODO: remove duplicates from `values`
+    // HINT: read the preconditions for `unique`!
 
     for (const auto value : values) {
         EXPECT_EQ(1, std::count(std::begin(values), std::end(values), value));
@@ -82,15 +85,6 @@ struct Person {
 
 bool operator==(const Person &p1, const Person &p2) {
     return std::tie(p1.name, p1.surname) == std::tie(p2.name, p2.surname);
-}
-
-std::vector<Person> common_surnames(const std::vector<Person> &first, const std::vector<Person> &second)
-{
-    return{};
-}
-std::vector<Person> not_in_first(const std::vector<Person> &first, const std::vector<Person> &second)
-{
-    return{};
 }
 
 class WithSomeData : public ::testing::Test {
@@ -115,8 +109,20 @@ public:
 
 TEST_F(WithSomeData, DISABLED_find_common_elements)
 {
+    // TODO: implement `common_surnames` to make the tests succeed
+    // GOAL: learn that you can use a Comparison function
+    // to treat objects as 'same' or 'less'
+    //
+    auto common_surnames = [](const std::vector<Person> &first, const std::vector<Person> &second)
+        -> std::vector<Person>
+    {
+        return{};
+    };
+
     const auto common = common_surnames(classmates, colleagues);
+
     EXPECT_EQ(2u, common.size());
+
     const auto common_contains_if = contains_if(common);
     const auto contains_surname = [&](const std::string n) {
         return common_contains_if([&](const Person &p) { return p.surname == n; });
@@ -131,7 +137,15 @@ TEST_F(WithSomeData, DISABLED_find_common_elements)
 
 TEST_F(WithSomeData, DISABLED_find_lost_classmates)
 {
-    const auto lost = not_in_first(classmates, colleagues);
+     // TODO: implement `in_second_but_not_in_first` to make the tests succeed
+     // GOAL: get to know some set algorithms
+    auto in_second_but_not_in_first = [](const std::vector<Person> &first, const std::vector<Person> &second)
+        -> std::vector<Person>
+    {
+        return{};
+    };
+
+    const auto lost = in_second_but_not_in_first(classmates, colleagues);
     EXPECT_EQ(2u, lost.size());
     const auto lost_contains_if = contains_if(lost);
     const auto lost_person = [&](const Person &p) {
