@@ -107,12 +107,6 @@
     <ClCompile Include="enums.cpp">
       <Filter>Source Files\coreextensions</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\xtofl\projects\cpp11training\cpp11training\cpp11training\..\..\lib\native\src\gtest\gtest-all.cc">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="C:\Users\xtofl\projects\cpp11training\cpp11training\cpp11training\..\..\lib\native\src\gmock\gmock-all.cc">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="uniform_initialization.cpp">
       <Filter>Source Files\coreextensions</Filter>
     </ClCompile>
@@ -121,6 +115,15 @@
     </ClCompile>
     <ClCompile Include="class_design.cpp">
       <Filter>Source Files\coreextensions</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\xtofl\projects\cpp11training\cpp11training\cpp11training\..\..\lib\native\src\gtest\gtest-all.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\xtofl\projects\cpp11training\cpp11training\cpp11training\..\..\lib\native\src\gmock\gmock-all.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="numeric.cpp">
+      <Filter>Source Files\algorithms</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
