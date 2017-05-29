@@ -31,6 +31,10 @@ namespace {
 
 TEST(shared_ptr, DISABLED_resource_is_cleant_up_after_last_user_gone)
 {
+    // TODO: identify Resource owners, and adapt their containment of Resource
+    // so that the Resource can be shared.
+    //
+    // GOAL: you don't need raw pointers
     auto resource = new Resource;
     bool destructed = false;
     resource->destructed = [&] { destructed = true; };
@@ -77,7 +81,10 @@ TEST(shared_ptr, DISABLED_not_only_for_objects)
 {
     Pool pool;
     try {
-        // TODO: make sure h does not leak
+        // TODO: adapt h so that even in case of
+        // an exception, it is freed after usage
+        // GOAL: make sure h does not leak
+        // hint: shared_ptr has two arguments!
         auto h = pool.allocate();
 
         ASSERT_EQ(0, h);
@@ -112,6 +119,10 @@ public:
 
 TEST(shared_ptr, DISABLED_breaking_cycles)
 {
+    // TODO: change the parent-child containment so that it
+    // is impossible to create a resource leak by cyclic reference
+    // GOAL: expressing aggregation and composition
+    //
     bool parent_destructed = false;
     bool parent_called = false;
     bool child_destructed = false;
