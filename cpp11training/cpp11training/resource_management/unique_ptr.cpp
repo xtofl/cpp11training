@@ -55,3 +55,21 @@ TEST(unique_ptr, DISABLED_cant_copy_a_unique_ptr)
     EXPECT_EQ(2, *target.at(1));
 #endif
 }
+
+
+TEST(unique_ptr, DISABLED_cant_copy_a_unique_ptr_wrapped_in_initializer_list)
+{
+    // TODO:
+    // #define i_can_create_a_vector_with_unique_ptrs
+    // work around the fact that the initializer list uses value semantics
+    //
+    // HINT: create a bare array, and use a move_iterator
+    std::vector<std::unique_ptr<int>> values{
+#ifdef i_can_create_a_vector_with_unique_ptrs
+        std::make_unique<int>(1),
+        std::make_unique<int>(1),
+        std::make_unique<int>(1),
+        std::make_unique<int>(1),
+#endif
+    };
+}
