@@ -31,6 +31,9 @@
     <Filter Include="Source Files\coreextensions\class_design">
       <UniqueIdentifier>{f70ec325-99af-4e1c-b0f9-6a92a867e70c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\move_semantics">
+      <UniqueIdentifier>{54202a0f-4fb3-4462-ad3c-2a3a85da7ad6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -95,12 +98,6 @@
     <ClCompile Include="async\async_1.cpp">
       <Filter>Source Files\async</Filter>
     </ClCompile>
-    <ClCompile Include="move\moveable_objects.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="HeavyObject.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="rangebased_for.cpp">
       <Filter>Source Files\coreextensions</Filter>
     </ClCompile>
@@ -116,14 +113,20 @@
     <ClCompile Include="class_design.cpp">
       <Filter>Source Files\coreextensions</Filter>
     </ClCompile>
+    <ClCompile Include="numeric.cpp">
+      <Filter>Source Files\algorithms</Filter>
+    </ClCompile>
     <ClCompile Include="C:\Users\xtofl\projects\cpp11training\cpp11training\cpp11training\..\..\lib\native\src\gtest\gtest-all.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="C:\Users\xtofl\projects\cpp11training\cpp11training\cpp11training\..\..\lib\native\src\gmock\gmock-all.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="numeric.cpp">
-      <Filter>Source Files\algorithms</Filter>
+    <ClCompile Include="HeavyObject.cpp">
+      <Filter>Source Files\move_semantics</Filter>
+    </ClCompile>
+    <ClCompile Include="move\moveable_objects.cpp">
+      <Filter>Source Files\move_semantics</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
