@@ -32,9 +32,7 @@ ExternalProject_Get_Property(gtest source_dir binary_dir)
 
 set(GTEST_INCLUDE_DIR ${source_dir}/googletest/include)
 set(GTEST_LIBRARY_PATH ${binary_dir}/${CMAKE_FIND_LIBRARY_PREFIXES}gtest.a)
-set_property(TARGET gtest PROPERTY IMPORTED_LOCATION
-                ${GTEST_LIBRARY_PATH} )
-
+set_property(TARGET gtest PROPERTY IMPORTED_LOCATION ${GTEST_LIBRARY_PATH} )
 
 include_directories(cpp11training ${GTEST_INCLUDE_DIR})
 file (GLOB_RECURSE SOURCES cpp11training/*.cpp)

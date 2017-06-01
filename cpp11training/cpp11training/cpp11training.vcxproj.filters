@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
+    <Text Include="..\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -125,14 +126,14 @@
     <ClCompile Include="move\moveable_objects.cpp">
       <Filter>Source Files\move_semantics</Filter>
     </ClCompile>
+    <ClCompile Include="variadic_templates.cpp">
+      <Filter>Source Files\variadic_templates</Filter>
+    </ClCompile>
     <ClCompile Include="C:\Users\xtofl\projects\cpp11training\cpp11training\cpp11training\..\..\lib\native\src\gtest\gtest-all.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="C:\Users\xtofl\projects\cpp11training\cpp11training\cpp11training\..\..\lib\native\src\gmock\gmock-all.cc">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="variadic_templates.cpp">
-      <Filter>Source Files\variadic_templates</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
