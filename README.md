@@ -9,6 +9,8 @@ Exercises to train your C++11 (and then some).
 
 ### Linux
 
+DISCLAIMER: the Linux build is currently a bit broken on `gtest`.  I want to fix it but haven't enough CMake knowledge.  I'm open for pull requests :)
+
 On Linux all you need is
 
     # unless you're happy with g++ - the compile messages
