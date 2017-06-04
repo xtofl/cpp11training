@@ -71,6 +71,27 @@ TEST(variadic_monad, DISABLED_flatten_operation)
         (flatten(std::vector<int>({ 1 }), 2, std::vector<int>{ 3, 4, 5 })));
 }
 
+
+// TODO: adapt `contained_by` to return a callable
+// representing a predicate for presence in a compile-time list
+// HINT: contained_by()( anything ) will return false.
+// GRADE: INTERMEDIATE
+template<typename ...Ts>
+auto contained_by(Ts&&...ts)
+{
+    return [](auto x)
+    {
+        return false;
+    };
+}
+
+TEST(variadic_templates, DISABLED_create_a_compile_time_list_lookup)
+{
+    auto in_list = contained_by(1, 2, 3, 4);
+    EXPECT_TRUE(in_list(1));
+    EXPECT_FALSE(in_list(0));
+}
+
 // this exercise will take some more time...
 // 
 // TODO: fill in the `product` function so that it prints a table
