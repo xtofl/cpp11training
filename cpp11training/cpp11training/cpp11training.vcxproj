@@ -101,6 +101,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="name_lookup.cpp" />
     <ClCompile Include="numeric.cpp" />
     <ClCompile Include="rangebased_for.cpp" />
     <ClCompile Include="algorithms\adjacent_find.cpp" />
