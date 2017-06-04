@@ -135,6 +135,9 @@
     <ClCompile Include="C:\Users\xtofl\projects\cpp11training\cpp11training\cpp11training\..\..\lib\native\src\gmock\gmock-all.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="name_lookup.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
