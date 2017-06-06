@@ -141,3 +141,28 @@ TEST_F(AsyncTest, DISABLED_we_can_delay_execution_till_input_is_known)
     EXPECT_LT(events.index({ "input defined", "" }), events.index({ "task: n received: 10", "" }));
     EXPECT_LT(events.index({ "task returns 10", "" }), events.index({ "{return value known: 10", "" }));
 }
+
+
+// F should be a function returning a std::future<void()>
+template<typename F>
+auto async_for_n(int N, F f)
+{
+    return f();
+}
+
+TEST_F(AsyncTest, DISABLED_keep_a_loop_going)
+{
+    // TODO: change the `async_for_n` function to keep
+    // repeating its argument N times, asynchronously
+    // GOAL: allow the equivalent of a for-loop to be written asynchronously
+    // LEVEL: ADVANCED
+    // HINT: loop body and condition are now separated.
+    // apparent recursion is going to be needed.
+    std::atomic<int> counter = 0;
+    auto task = [&] { return std::async(std::launch::async, [&] { ++counter; }); };
+
+    bool task_done = false;
+    auto value = async_for_n(10, task);
+    value.get();
+    EXPECT_EQ(10, counter);
+}
