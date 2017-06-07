@@ -158,7 +158,7 @@ TEST_F(AsyncTest, DISABLED_keep_a_loop_going)
     // LEVEL: ADVANCED
     // HINT: loop body and condition are now separated.
     // apparent recursion is going to be needed.
-    std::atomic<int> counter = 0;
+    std::atomic<int> counter{ 0 };
     auto task = [&] { return std::async(std::launch::async, [&] { ++counter; }); };
 
     bool task_done = false;
