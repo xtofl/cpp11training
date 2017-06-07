@@ -19,8 +19,10 @@ On Linux all you need is
 
     git clone git@github.com:xtofl/cpp11training
     cd cpp11training/cpp11training
-    cmake .
-    make
+    mkdir Debug
+    cd Debug
+    cmake -DCMAKE_BUILD_TYPE=Debug ..
+    make -j $(nproc)
 
 
 
