@@ -41,5 +41,5 @@ script:
     - mkdir build && cd build
     - cmake ..
     - make
-    - make check
+    - ./cpp11training
 
