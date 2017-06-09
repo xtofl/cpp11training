@@ -3,24 +3,21 @@
 Exercises to train your C++11 (and then some).
 
 [![Build Status](https://travis-ci.org/xtofl/cpp11training.svg?branch=master)](https://travis-ci.org/xtofl/cpp11training.svg?branch=master)
-:( Currently I don't get g++5 nor clang installed on drone.io - have to look for e.g. travis or some other ci.
 
 ## Getting started
 
 ### Linux
 
-DISCLAIMER: the Linux build is currently a bit broken on `gtest`.  I want to fix it but haven't enough CMake knowledge.  I'm open for pull requests :)
-
 On Linux all you need is
 
     # unless you're happy with g++ - the compile messages
     # can get quite cumbersome when dealing with templates
-    export CXX=clang++
+    export CXX=g++
 
     git clone git@github.com:xtofl/cpp11training
     cd cpp11training/cpp11training
-    mkdir Debug
-    cd Debug
+    mkdir build
+    cd build
     cmake -DCMAKE_BUILD_TYPE=Debug ..
     make -j $(nproc)
 
