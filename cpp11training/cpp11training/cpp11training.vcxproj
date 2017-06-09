@@ -86,6 +86,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <Text Include="..\CMakeLists.txt" />
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
@@ -100,6 +101,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="name_lookup.cpp" />
     <ClCompile Include="numeric.cpp" />
     <ClCompile Include="rangebased_for.cpp" />
     <ClCompile Include="algorithms\adjacent_find.cpp" />
@@ -121,6 +123,7 @@
     <ClCompile Include="types_and_metaprogramming.cpp" />
     <ClCompile Include="uniform_initialization.cpp" />
     <ClCompile Include="use_auto.cpp" />
+    <ClCompile Include="variadic_templates.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
