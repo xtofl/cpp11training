@@ -1,6 +1,0 @@
-[submodule "moderncpp"]
-	path = moderncpp
-	url = https://xtofl@bitbucket.org/xtofl/moderncpp.git
-[submodule "cpp11training/dependencies/googletest"]
-	path = cpp11training/dependencies/googletest
-	url = https://github.com/xtofl/googletest.git
