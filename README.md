@@ -2,7 +2,7 @@
 
 Exercises to train your C++11 (and then some).
 
-[![Build Status](https://drone.io/github.com/xtofl/cpp11training/status.png)](https://drone.io/github.com/xtofl/cpp11training/latest)
+[![Build Status](https://drone.io/github.com/xtofl/cpp11training/status.png)](https://drone.io/github.com/xtofl/cpp11training/status.png)
 :( Currently I don't get g++5 nor clang installed on drone.io - have to look for e.g. travis or some other ci.
 
 ## Getting started
