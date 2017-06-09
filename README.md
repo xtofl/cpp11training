@@ -1,6 +1,6 @@
 # cpp 11 training 
 
-Exercises to train your C++11 (and then some).
+Exercises to train your C++11/14 (and then some).
 
 [![Build Status](https://travis-ci.org/xtofl/cpp11training.svg?branch=master)](https://travis-ci.org/xtofl/cpp11training.svg?branch=master)
 
@@ -8,11 +8,9 @@ Exercises to train your C++11 (and then some).
 
 ### Linux
 
-On Linux all you need is
+On Linux all you need is a compiler with C++14 support
 
-    # unless you're happy with g++ - the compile messages
-    # can get quite cumbersome when dealing with templates
-    export CXX=g++
+    export CXXFLAGS=-std=c++14
 
     git clone git@github.com:xtofl/cpp11training
     cd cpp11training/cpp11training
@@ -26,7 +24,7 @@ On Linux all you need is
 ### Windows
 
     
-Prerequisite: currently I have it up and running for Visual Studio 2017 Community edition.  It relies on NuGet package manager, which should be installed explicitly (cf. (stackoverflow)[http://stackoverflow.com/questions/42875451/cant-find-the-nuget-package-manager-in-visual-studio-2017])
+Prerequisite: currently I have it up and running for Visual Studio 2017 Community edition.  It relies on NuGet package manager, which should be installed explicitly (cf. [stackoverflow](http://stackoverflow.com/questions/42875451/cant-find-the-nuget-package-manager-in-visual-studio-2017))
 
 Open the `cpp11training/cpp11training.sln` solution.
 
