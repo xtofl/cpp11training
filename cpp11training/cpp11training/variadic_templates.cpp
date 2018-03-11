@@ -92,6 +92,32 @@ TEST(variadic_templates, DISABLED_create_a_compile_time_list_lookup)
     EXPECT_FALSE(in_list(0));
 }
 
+template<typename ...Fs>
+auto fmap(std::tuple<Fs...> arguments) {
+    return [](auto f) {
+        return std::make_tuple(1, 4, 9);
+    };
+}
+
+auto square = [](auto i){ return i*i;};
+
+TEST(variadic, DISABLED_unpack_and_repack)
+{
+    // TODO: alter `fmap` so that it works for
+    // all possible tuples
+    //
+    // GOAL: learn to unpack values from a tuple with
+    // unspecified size/values
+    // GRADE: HARD
+    EXPECT_EQ(
+        std::make_tuple(1, 4, 9),
+        fmap(std::make_tuple(1, 2, 3))(square));
+    EXPECT_EQ(
+        std::make_tuple(0, 9, 36),
+        fmap(std::make_tuple(0, 3, 6))(square));
+}
+
+
 // this exercise will take some more time...
 // 
 // TODO: fill in the `product` function so that it prints a table
