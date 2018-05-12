@@ -110,9 +110,9 @@
     <ClCompile Include="5.enums.cpp" />
     <ClCompile Include="lambdas.cpp" />
     <ClCompile Include="HeavyObject.cpp" />
-    <ClCompile Include="move\moveable_objects.cpp" />
-    <ClCompile Include="resource_management\shared_ptr.cpp" />
-    <ClCompile Include="resource_management\unique_ptr.cpp" />
+    <ClCompile Include="move\3.moveable_objects.cpp" />
+    <ClCompile Include="resource_management\2.shared_ptr.cpp" />
+    <ClCompile Include="resource_management\1.unique_ptr.cpp" />
     <ClCompile Include="set_algorithms.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

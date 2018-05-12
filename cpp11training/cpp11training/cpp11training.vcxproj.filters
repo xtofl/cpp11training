@@ -31,11 +31,11 @@
     <Filter Include="Source Files\coreextensions\class_design">
       <UniqueIdentifier>{f70ec325-99af-4e1c-b0f9-6a92a867e70c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\move_semantics">
-      <UniqueIdentifier>{54202a0f-4fb3-4462-ad3c-2a3a85da7ad6}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\variadic_templates">
       <UniqueIdentifier>{6636ca9c-b8b5-43f4-864b-416fc5c287d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\resource_management\move_semantics">
+      <UniqueIdentifier>{54202a0f-4fb3-4462-ad3c-2a3a85da7ad6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -81,12 +81,6 @@
     <ClCompile Include="lambdas.cpp">
       <Filter>Source Files\simple</Filter>
     </ClCompile>
-    <ClCompile Include="resource_management\unique_ptr.cpp">
-      <Filter>Source Files\resource_management</Filter>
-    </ClCompile>
-    <ClCompile Include="resource_management\shared_ptr.cpp">
-      <Filter>Source Files\resource_management</Filter>
-    </ClCompile>
     <ClCompile Include="algorithms\transform.cpp">
       <Filter>Source Files\algorithms</Filter>
     </ClCompile>
@@ -101,12 +95,6 @@
     </ClCompile>
     <ClCompile Include="numeric.cpp">
       <Filter>Source Files\algorithms</Filter>
-    </ClCompile>
-    <ClCompile Include="HeavyObject.cpp">
-      <Filter>Source Files\move_semantics</Filter>
-    </ClCompile>
-    <ClCompile Include="move\moveable_objects.cpp">
-      <Filter>Source Files\move_semantics</Filter>
     </ClCompile>
     <ClCompile Include="name_lookup.cpp">
       <Filter>Source Files</Filter>
@@ -137,6 +125,18 @@
     </ClCompile>
     <ClCompile Include="7.variadic_templates.cpp">
       <Filter>Source Files\coreextensions</Filter>
+    </ClCompile>
+    <ClCompile Include="resource_management\1.unique_ptr.cpp">
+      <Filter>Source Files\resource_management</Filter>
+    </ClCompile>
+    <ClCompile Include="resource_management\2.shared_ptr.cpp">
+      <Filter>Source Files\resource_management</Filter>
+    </ClCompile>
+    <ClCompile Include="HeavyObject.cpp">
+      <Filter>Source Files\resource_management</Filter>
+    </ClCompile>
+    <ClCompile Include="move\3.moveable_objects.cpp">
+      <Filter>Source Files\resource_management</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
