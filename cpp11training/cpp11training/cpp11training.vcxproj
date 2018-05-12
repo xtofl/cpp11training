@@ -100,10 +100,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="name_lookup.cpp" />
-    <ClCompile Include="numeric.cpp" />
+    <ClCompile Include="4.numeric.cpp" />
     <ClCompile Include="1.rangebased_for.cpp" />
-    <ClCompile Include="algorithms\adjacent_find.cpp" />
-    <ClCompile Include="algorithms\transform.cpp" />
+    <ClCompile Include="algorithms\3.adjacent_find.cpp" />
+    <ClCompile Include="algorithms\1.transform.cpp" />
     <ClCompile Include="async\async_1.cpp" />
     <ClCompile Include="cpp11training.cpp" />
     <ClCompile Include="3.class_design.cpp" />
@@ -113,7 +113,7 @@
     <ClCompile Include="move\3.moveable_objects.cpp" />
     <ClCompile Include="resource_management\2.shared_ptr.cpp" />
     <ClCompile Include="resource_management\1.unique_ptr.cpp" />
-    <ClCompile Include="set_algorithms.cpp" />
+    <ClCompile Include="2.set_algorithms.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>

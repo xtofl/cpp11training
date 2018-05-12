@@ -81,20 +81,8 @@
     <ClCompile Include="lambdas.cpp">
       <Filter>Source Files\simple</Filter>
     </ClCompile>
-    <ClCompile Include="algorithms\transform.cpp">
-      <Filter>Source Files\algorithms</Filter>
-    </ClCompile>
-    <ClCompile Include="algorithms\adjacent_find.cpp">
-      <Filter>Source Files\algorithms</Filter>
-    </ClCompile>
-    <ClCompile Include="set_algorithms.cpp">
-      <Filter>Source Files\algorithms</Filter>
-    </ClCompile>
     <ClCompile Include="async\async_1.cpp">
       <Filter>Source Files\async</Filter>
-    </ClCompile>
-    <ClCompile Include="numeric.cpp">
-      <Filter>Source Files\algorithms</Filter>
     </ClCompile>
     <ClCompile Include="name_lookup.cpp">
       <Filter>Source Files</Filter>
@@ -137,6 +125,18 @@
     </ClCompile>
     <ClCompile Include="move\3.moveable_objects.cpp">
       <Filter>Source Files\resource_management</Filter>
+    </ClCompile>
+    <ClCompile Include="algorithms\1.transform.cpp">
+      <Filter>Source Files\algorithms</Filter>
+    </ClCompile>
+    <ClCompile Include="2.set_algorithms.cpp">
+      <Filter>Source Files\algorithms</Filter>
+    </ClCompile>
+    <ClCompile Include="algorithms\3.adjacent_find.cpp">
+      <Filter>Source Files\algorithms</Filter>
+    </ClCompile>
+    <ClCompile Include="4.numeric.cpp">
+      <Filter>Source Files\algorithms</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
