@@ -78,9 +78,6 @@
     <ClCompile Include="cpp11training.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="types_and_metaprogramming.cpp">
-      <Filter>Source Files\simple</Filter>
-    </ClCompile>
     <ClCompile Include="lambdas.cpp">
       <Filter>Source Files\simple</Filter>
     </ClCompile>
@@ -102,21 +99,6 @@
     <ClCompile Include="async\async_1.cpp">
       <Filter>Source Files\async</Filter>
     </ClCompile>
-    <ClCompile Include="rangebased_for.cpp">
-      <Filter>Source Files\coreextensions</Filter>
-    </ClCompile>
-    <ClCompile Include="enums.cpp">
-      <Filter>Source Files\coreextensions</Filter>
-    </ClCompile>
-    <ClCompile Include="uniform_initialization.cpp">
-      <Filter>Source Files\coreextensions</Filter>
-    </ClCompile>
-    <ClCompile Include="use_auto.cpp">
-      <Filter>Source Files\coreextensions</Filter>
-    </ClCompile>
-    <ClCompile Include="class_design.cpp">
-      <Filter>Source Files\coreextensions</Filter>
-    </ClCompile>
     <ClCompile Include="numeric.cpp">
       <Filter>Source Files\algorithms</Filter>
     </ClCompile>
@@ -126,9 +108,6 @@
     <ClCompile Include="move\moveable_objects.cpp">
       <Filter>Source Files\move_semantics</Filter>
     </ClCompile>
-    <ClCompile Include="variadic_templates.cpp">
-      <Filter>Source Files\variadic_templates</Filter>
-    </ClCompile>
     <ClCompile Include="name_lookup.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -137,6 +116,27 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)..\..\lib\native\src\gmock\gmock-all.cc">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="1.rangebased_for.cpp">
+      <Filter>Source Files\coreextensions</Filter>
+    </ClCompile>
+    <ClCompile Include="2.uniform_initialization.cpp">
+      <Filter>Source Files\coreextensions</Filter>
+    </ClCompile>
+    <ClCompile Include="3.class_design.cpp">
+      <Filter>Source Files\coreextensions</Filter>
+    </ClCompile>
+    <ClCompile Include="4.use_auto.cpp">
+      <Filter>Source Files\coreextensions</Filter>
+    </ClCompile>
+    <ClCompile Include="5.enums.cpp">
+      <Filter>Source Files\coreextensions</Filter>
+    </ClCompile>
+    <ClCompile Include="6.types_and_metaprogramming.cpp">
+      <Filter>Source Files\coreextensions</Filter>
+    </ClCompile>
+    <ClCompile Include="7.variadic_templates.cpp">
+      <Filter>Source Files\coreextensions</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

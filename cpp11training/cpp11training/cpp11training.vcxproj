@@ -101,13 +101,13 @@
   <ItemGroup>
     <ClCompile Include="name_lookup.cpp" />
     <ClCompile Include="numeric.cpp" />
-    <ClCompile Include="rangebased_for.cpp" />
+    <ClCompile Include="1.rangebased_for.cpp" />
     <ClCompile Include="algorithms\adjacent_find.cpp" />
     <ClCompile Include="algorithms\transform.cpp" />
     <ClCompile Include="async\async_1.cpp" />
     <ClCompile Include="cpp11training.cpp" />
-    <ClCompile Include="class_design.cpp" />
-    <ClCompile Include="enums.cpp" />
+    <ClCompile Include="3.class_design.cpp" />
+    <ClCompile Include="5.enums.cpp" />
     <ClCompile Include="lambdas.cpp" />
     <ClCompile Include="HeavyObject.cpp" />
     <ClCompile Include="move\moveable_objects.cpp" />
@@ -118,10 +118,10 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="types_and_metaprogramming.cpp" />
-    <ClCompile Include="uniform_initialization.cpp" />
-    <ClCompile Include="use_auto.cpp" />
-    <ClCompile Include="variadic_templates.cpp" />
+    <ClCompile Include="6.types_and_metaprogramming.cpp" />
+    <ClCompile Include="2.uniform_initialization.cpp" />
+    <ClCompile Include="4.use_auto.cpp" />
+    <ClCompile Include="7.variadic_templates.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
