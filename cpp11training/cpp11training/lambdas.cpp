@@ -26,18 +26,29 @@ TEST(lambdas, DISABLED_we_can_define_local_lambdas)
 
 TEST(lambdas, DISABLED_we_can_capture_the_local_variables_by_value)
 {
+    std::vector<std::function<int(int)>> multipliers;
+
     for (int i = 0; i != 10; ++i)
     {
-        // TODO: alter make_bar to return
-        // different functions on every iteration
+        // TODO: alter my_function to return
+        // a different function on every iteration:
+        // end up with an array of multiplying functions
+        // \n -> \n * i
         //
         // GOAL: lambda expressions can be used
         // to create functions on-the-fly!
-        auto make_bar = [] { return bar; };
+        auto create_function = [] {
+            return [] (int x) { return 0; };
+        };
 
-        auto bar = make_bar();
-        EXPECT_EQ(i, bar());
+        multipliers.push_back(create_function());
     }
+
+    EXPECT_EQ(1, multipliers[1](1));
+    EXPECT_EQ(2, multipliers[1](2));
+
+    EXPECT_EQ(2, multipliers[2](1));
+    EXPECT_EQ(9, multipliers[3](3));
 }
 
 TEST(lambdas, DISABLED_we_can_capture_local_variables_by_reference)
