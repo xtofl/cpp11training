@@ -30,18 +30,15 @@ TEST(lambdas, DISABLED_we_can_capture_the_local_variables_by_value)
 
     for (int i = 0; i != 10; ++i)
     {
-        // TODO: alter my_function to return
-        // a different function on every iteration:
+        // TODO: alter the lambda represent a different
+        // calculation on every iteration, so that we
         // end up with an array of multiplying functions
-        // \n -> \n * i
+        // \n -> n * i
         //
-        // GOAL: lambda expressions can be used
+        // GOAL: learn that lambda expressions can be used
         // to create functions on-the-fly!
-        auto create_function = [] {
-            return [] (int x) { return 0; };
-        };
 
-        multipliers.push_back(create_function());
+        multipliers.push_back([](int x) { return 0; });
     }
 
     EXPECT_EQ(1, multipliers[1](1));
@@ -57,6 +54,8 @@ TEST(lambdas, DISABLED_we_can_capture_local_variables_by_reference)
     // TODO: create a local lambda expression that
     // makes `receiver` equal to `i` every time
     //
+    // GOAL: learn about capture modes
+    //
     for (int i = 0; i != 10; ++i)
     {
         foo();
@@ -69,9 +68,13 @@ TEST(lambdas, DISABLED_we_can_add_state)
 {
     // TODO:
     // create a lambda expression `foo` that
-    // returns a different value upon subsequent calls
+    // stores a different value into `foo_calls` upon subsequent calls
     //
     // HINT: lambda expressions are immutable, unless...
+    //
+    // WHY?  this is sometimes needed in tests to e.g. record the
+    // number of times something was called
+    //
     int foo_calls = 0;
     foo();
     EXPECT_EQ(1, foo_calls);
@@ -80,11 +83,17 @@ TEST(lambdas, DISABLED_we_can_add_state)
 
     {
         // sum of lengths
+        //
+        // TODO: define a lambda `length` that returns
+        // the length of all the strings that have been given to it
         EXPECT_EQ(3, length("abc"));
         EXPECT_EQ(7, length("efgh"));
     }
     {
         // average length
+        //
+        // TODO: define a lambda `length` that returns the average
+        // length of all the strings that have been given to it
         EXPECT_NEAR(3.000, length("abc"), 0.01);
         EXPECT_NEAR(3.500, length("efgh"), 0.01);
         EXPECT_NEAR(3.333, length("ijk"), 0.01);
@@ -96,16 +105,20 @@ TEST(lambdas, DISABLED_we_can_add_state)
 #include "class_design/MyBike.h"
 #include "class_design/Piano.h"
 
-// TODO: implement this with a map<key, factory function>
+// TODO: implement this `make` factory with a map<key, factory function>
 std::unique_ptr<Thing> make(const std::string &what)
 {
-    return nullptr;
+    using Constructor = std::function<std::unique_ptr<Thing>()>;
+    static std::map<std::string, Constructor> constructors;
+    return constructors.at(what)();
 }
 
 TEST(lambdas, DISABLED_we_can_instantiate_based_on_a_typename)
 {
     // TODO: alter the `make` function to return an object
     // of the type specified by the provided argument.
+    //
+    // GOAL: demonstrate that lambdas can be stored in containers
     //
     // HINT: a std::map is great for lookup, but is not polymorphic.
     // a std::function can wrap any lambda expression
@@ -131,6 +144,7 @@ TEST(lambdas, DISABLED_we_can_instantiate_functions_at_runtime)
     auto add5 = make_adder(5.0);
     EXPECT_NEAR(5.0, add5(0.0), 0.001);
     EXPECT_NEAR(15.0, add5(10.0), 0.001);
+    EXPECT_NEAR(20.0, make_adder(-10.0)(30.0), .001);
 }
 
 TEST(lambdas, DISABLED_we_can_bind_arguments)
@@ -140,6 +154,9 @@ TEST(lambdas, DISABLED_we_can_bind_arguments)
 // and define add5 with std::bind
 //
 // HINT: use a placeholder!
+// GOAL: lay the basis for expression trees; provide
+// an alternative to plain lambdas
+//
 #ifdef we_can_bind_an_argument
     EXPECT_EQ(5, add5(0));
     EXPECT_EQ(15, add5(10));
