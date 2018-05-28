@@ -58,7 +58,7 @@ TEST(serialization, DISABLED_serialize_different_types)
 }
 
 // TODO: implement flatten to allow polymorphic concatenation
-// GOAL: learn to iteration from dispatching
+// GOAL: learn to separate iteration from dispatching
 // HINT: the base case is a single vector
 // GRADE: INTERMEDIATE
 template<typename ...Ts>
