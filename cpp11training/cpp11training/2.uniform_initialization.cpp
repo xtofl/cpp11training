@@ -39,8 +39,8 @@ TEST(uniform_initialization, DISABLED_initialize_a_map)
 {
     // TODO: initialize the variables to make the expectations pass
     std::map<int, char> ascii;
-    EXPECT_EQ('a', ascii.at('a'));
-    EXPECT_EQ('b', ascii.at('b'));
+    EXPECT_EQ('a', ascii.at(65));
+    EXPECT_EQ('b', ascii.at(66));
 }
 
 
