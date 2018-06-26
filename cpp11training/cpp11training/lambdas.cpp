@@ -118,6 +118,7 @@ TEST(lambdas, DISABLED_we_can_add_state)
 #include "class_design/Piano.h"
 
 // TODO: implement this `make` factory with a map<key, factory function>
+// (cf. the next test)
 std::unique_ptr<Thing> make(const std::string &what)
 {
     using Constructor = std::function<std::unique_ptr<Thing>()>;
@@ -196,7 +197,9 @@ TEST(lambdas, DISABLED_we_can_add_a_policy_to_a_function)
 }
 
 
-#if __cplusplus >= 201402L // but msvc has __cplusplus still defined to 199711L... https://connect.microsoft.com/VisualStudio/feedback/details/763051/a-value-of-predefined-macro-cplusplus-is-still-199711l
+#if __cplusplus >= 201402L // but msvc has __cplusplus still defined to 199711L...
+// https://blogs.msdn.microsoft.com/vcblog/2018/04/09/msvc-now-correctly-reports-__cplusplus/
+// https://connect.microsoft.com/VisualStudio/feedback/details/763051/a-value-of-predefined-macro-cplusplus-is-still-199711l
 #include <algorithm>
 
 TEST(lambdas, DISABLED_you_dont_have_to_specify_the_argument_types_in_cpp14)
