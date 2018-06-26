@@ -3,6 +3,7 @@
 #include <gtest/gtest.h>
 #include <vector>
 #include <algorithm>
+#include <random>
 
 namespace {
     template<class Container>
@@ -69,7 +70,9 @@ TEST(sets, DISABLED_remove_duplicates)
 TEST(sets, DISABLED_remove_duplicates_2)
 {
     std::vector<int> values{ 1, 2, 2, 3, 4, 5, 6, 6, 8, 8, 9 };
-    std::random_shuffle(std::begin(values), end(values));
+    std::random_device rd;
+    std::mt19937 g(rd());
+    std::shuffle(std::begin(values), end(values), g);
     // TODO: remove duplicates from `values`
     // HINT: read the preconditions for `unique`!
 
