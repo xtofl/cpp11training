@@ -16,9 +16,9 @@ int length(const std::string &s) { return 100; }
 
 TEST(lambdas, DISABLED_we_can_define_local_lambdas)
 {
-	// TODO: create a lambda that returns the length
-	// of a string, and a `foo` that does just nothing
-	//
+    // TODO: create a lambda that returns the length
+    // of a string, and a `foo` that does just nothing
+    //
     // GOAL: get acquainted with the lambda expression syntax
     EXPECT_EQ(3, length("abc"));
     EXPECT_NO_THROW(foo());
@@ -150,13 +150,13 @@ TEST(lambdas, DISABLED_we_can_instantiate_functions_at_runtime)
 TEST(lambdas, DISABLED_we_can_bind_arguments)
 {
     auto add5 = std::plus<int>();
-//TODO: #define we_can_bind_an_argument
-// and define add5 with std::bind
-//
-// HINT: use a placeholder!
-// GOAL: lay the basis for expression trees; provide
-// an alternative to plain lambdas
-//
+    //TODO: #define we_can_bind_an_argument
+    // and define add5 with std::bind
+    //
+    // HINT: use a placeholder!
+    // GOAL: lay the basis for expression trees; provide
+    // an alternative to plain lambdas
+    //
 #ifdef we_can_bind_an_argument
     EXPECT_EQ(5, add5(0));
     EXPECT_EQ(15, add5(10));
