@@ -7,12 +7,16 @@
 #include <memory>
 #include <functional>
 #include <exception>
+#include <algorithm>
 
-// should override these with local lambdas
+//////// DON'T TOUCH THIS
+// you should override these with local lambdas
 // don't touch these functions...
 void foo() { throw std::runtime_error{ "not implemented" }; }
 int bar() { return 1; }
+void baz(int) { }
 int length(const std::string &s) { return 100; }
+///////////////////////////
 
 TEST(lambdas, DISABLED_we_can_define_local_lambdas)
 {
@@ -51,16 +55,14 @@ TEST(lambdas, DISABLED_we_can_capture_the_local_variables_by_value)
 TEST(lambdas, DISABLED_we_can_capture_local_variables_by_reference)
 {
     int receiver = 0;
-    // TODO: create a local lambda expression that
-    // makes `receiver` equal to `i` every time
+    // TODO: create a local lambda expression `baz` that
+    // adds the argument to `receiver`;
     //
     // GOAL: learn about capture modes
     //
-    for (int i = 0; i != 10; ++i)
-    {
-        foo();
-        EXPECT_EQ(i, receiver);
-    }
+    const std::vector<int> ints{ {10, 20, 30, 40, 50} };
+    std::for_each(begin(ints), end(ints), baz);
+    EXPECT_EQ(150, receiver);
 }
 
 
@@ -75,28 +77,38 @@ TEST(lambdas, DISABLED_we_can_add_state)
     // WHY?  this is sometimes needed in tests to e.g. record the
     // number of times something was called
     //
-    int foo_calls = 0;
-    foo();
-    EXPECT_EQ(1, foo_calls);
-    foo();
-    EXPECT_EQ(2, foo_calls);
+    EXPECT_EQ(1, bar());
+    EXPECT_EQ(2, bar());
 
     {
         // sum of lengths
         //
-        // TODO: define a lambda `length` that returns
+        // TODO: define a lambda `add_length` that returns
         // the length of all the strings that have been given to it
-        EXPECT_EQ(3, length("abc"));
-        EXPECT_EQ(7, length("efgh"));
+        auto add_length = [](std::string s) { return 0; };
+        EXPECT_EQ(3, add_length("abc"));
+        EXPECT_EQ(7, add_length("efgh"));
     }
     {
         // average length
         //
-        // TODO: define a lambda `length` that returns the average
+        // TODO: define a lambda `add_length` that returns the average
         // length of all the strings that have been given to it
-        EXPECT_NEAR(3.000, length("abc"), 0.01);
-        EXPECT_NEAR(3.500, length("efgh"), 0.01);
-        EXPECT_NEAR(3.333, length("ijk"), 0.01);
+        auto add_length = [](std::string s) { return 0.0; };
+
+        EXPECT_NEAR(3.000, add_length("abc"), 0.01);
+        EXPECT_NEAR(3.500, add_length("efgh"), 0.01);
+        EXPECT_NEAR(3.333, add_length("ijk"), 0.01);
+    }
+    {
+        std::vector<int> ints;
+        // TODO: create a lambda that returns the next square
+        // on every call
+        //
+        auto squares = [] { return -1; };
+        std::generate_n(std::back_inserter(ints), 10, squares);
+        EXPECT_EQ(9, ints.at(2));
+        EXPECT_EQ(100, ints.at(9));
     }
 }
 
