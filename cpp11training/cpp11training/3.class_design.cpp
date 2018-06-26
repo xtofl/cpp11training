@@ -13,6 +13,8 @@
 // The code still compiles.  That's bad.  Make it so that inheritors
 // don't compile by accident.
 //
+// GOAL: learn to conciously design a class for inheritance
+//
 // HINT: use the `override` keyword
 
 TEST(class_design, DISABLED_adding_constructors_should_be_trivial)

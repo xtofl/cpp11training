@@ -94,7 +94,13 @@ private:
 
 TEST(uniform_initialization, DISABLED_initialize_a_class_object)
 {
-    // TODO: initialize the variables to make the expectations pass
+    // TODO: Adapt the `Peer` class and initialize the variables in the test
+    //
+    // GOAL: learn to use brace initialization in different contexts:
+    // - member initializers
+    // - function arguments
+    // - return values
+    // - local variables
     auto connection = std::make_shared<Connection>();
     Peer peer;
     peer.send(10);
