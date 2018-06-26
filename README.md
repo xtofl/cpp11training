@@ -2,7 +2,7 @@
 
 Exercises to train your C++11/14 (and then some).
 
-[![Build Status](https://travis-ci.org/xtofl/cpp11training.svg?branch=master)](https://travis-ci.org/xtofl/cpp11training.svg?branch=master)
+[![Build Status](https://travis-ci.org/xtofl/cpp11training.svg?branch=master)](https://travis-ci.org/xtofl/cpp11training)
 
 ## Getting started
 
