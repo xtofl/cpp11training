@@ -59,8 +59,14 @@ public:
 
     int first;
     int after_last;
-};
 
+    struct Iterator {
+        int value;
+        Iterator &operator++() { ++value; return *this; }
+        bool operator != (const Iterator &other) const { return value != other.value; }
+        int operator*() const { return value; }
+    };
+};
 
 TEST(range_based_for, DISABLED_we_can_iterate_over_a_collection)
 {
@@ -68,10 +74,14 @@ TEST(range_based_for, DISABLED_we_can_iterate_over_a_collection)
     // TODO: extend the Range class so that it acts as a
     // real 'range' and can be used in a range based for loop.
     //
+    // GOAL: understand the working of range-based for loop, and
+    // adapt existing classes to it
+    //
     // HINT: This is a harder problem: you need to provide
     // a free begin(const Range&) and end(const Range&) function
     // that returns an iterator-like object.
-#ifdef solving_this
+    //
+#ifdef solv
     for (const auto &element : Range{ 1, 11 })
     { 
         result += element;
