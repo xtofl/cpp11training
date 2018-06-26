@@ -37,7 +37,7 @@ TEST(class_design, DISABLED_adding_constructors_should_be_trivial)
 }
 
 // TODO: alter the needed classes to make it impossible to copy things
-// GOAL: learn to use `delete` decorator
+// GOAL: learn to use `delete` qualifier
 TEST(class_design, DISABLED_synthesized_functions)
 {
     Piano p; // { "" };
