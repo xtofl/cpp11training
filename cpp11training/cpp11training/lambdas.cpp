@@ -79,37 +79,44 @@ TEST(lambdas, DISABLED_we_can_add_state)
     //
     EXPECT_EQ(1, bar());
     EXPECT_EQ(2, bar());
+}
 
-    {
-        // sum of lengths
-        //
-        // TODO: define a lambda `add_length` that returns
-        // the length of all the strings that have been given to it
-        auto add_length = [](std::string s) { return 0; };
-        EXPECT_EQ(3, add_length("abc"));
-        EXPECT_EQ(7, add_length("efgh"));
-    }
-    {
-        // average length
-        //
-        // TODO: define a lambda `add_length` that returns the average
-        // length of all the strings that have been given to it
-        auto add_length = [](std::string s) { return 0.0; };
+TEST(lambdas, DISABLED_we_can_add_state2)
+{
+    // sum of lengths
+    //
+    // TODO: define a lambda `add_length` that returns
+    // the length of all the strings that have been given to it
+    auto add_length = [](std::string s) { return 0; };
+    EXPECT_EQ(3, add_length("abc"));
+    EXPECT_EQ(7, add_length("efgh"));
+}
 
-        EXPECT_NEAR(3.000, add_length("abc"), 0.01);
-        EXPECT_NEAR(3.500, add_length("efgh"), 0.01);
-        EXPECT_NEAR(3.333, add_length("ijk"), 0.01);
-    }
-    {
-        std::vector<int> ints;
-        // TODO: create a lambda that returns the next square
-        // on every call
-        //
-        auto squares = [] { return -1; };
-        std::generate_n(std::back_inserter(ints), 10, squares);
-        EXPECT_EQ(9, ints.at(2));
-        EXPECT_EQ(100, ints.at(9));
-    }
+
+TEST(lambdas, DISABLED_we_can_add_state3)
+{
+    // average length
+    //
+    // TODO: define a lambda `add_length` that returns the average
+    // length of all the strings that have been given to it
+    auto add_length = [](std::string s) { return 0.0; };
+
+    EXPECT_NEAR(3.000, add_length("abc"), 0.01);
+    EXPECT_NEAR(3.500, add_length("efgh"), 0.01);
+    EXPECT_NEAR(3.333, add_length("ijk"), 0.01);
+}
+
+
+TEST(lambdas, DISABLED_we_can_add_state4)
+{
+    std::vector<int> ints;
+    // TODO: create a lambda that returns the next square
+    // on every call
+    //
+    auto squares = [] { return -1; };
+    std::generate_n(std::back_inserter(ints), 10, squares);
+    EXPECT_EQ(9, ints.at(2));
+    EXPECT_EQ(100, ints.at(9));
 }
 
 
