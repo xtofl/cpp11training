@@ -226,3 +226,39 @@ TEST(lambdas, DISABLED_you_dont_have_to_specify_the_argument_types_in_cpp14)
 // MORE ADVANCED:
 // revisit use_auto.cpp: implement TEST(find_number, DISABLED_we_can_just_auto_translate)
 // with lambda expressions
+
+
+TEST(state_copies, x) {
+    auto f1 = [i = 0]() mutable {
+        ++i;
+        return i;
+    };
+    EXPECT_EQ(1, f1());
+    auto f2 = f1;
+    EXPECT_EQ(2, f1());
+    EXPECT_EQ(2, f2());
+    
+}
+
+struct Matrix {
+    Matrix transpose() const&
+    {
+        return { values, (int)values.size()/length };
+    }
+    Matrix transpose() &&
+    {
+        return { std::move(values), (int)values.size() / length, std::move(owned) };
+    }
+
+    std::vector<int> values = std::vector<int>(10, 0);
+    int length = 5;
+    std::unique_ptr<bool> owned = std::make_unique<bool>();
+};
+
+
+TEST(refqualifiers, we_can_distinguish_between_temporaries_and_non) {
+    Matrix a;
+    EXPECT_EQ(2, a.transpose().length);
+    EXPECT_EQ(5, a.transpose().transpose().length);
+
+}

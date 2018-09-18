@@ -8,24 +8,24 @@
 #include <cstdint>
 
 
-TEST(uniform_initialization, DISABLED_initialize_builtins)
+TEST(uniform_initialization, initialize_builtins)
 {
     // TODO: initialize the variables to make the expectations pass
     // Use uniform initialization syntax.
-    int a;
+    int a{ 5 };
     EXPECT_EQ(5, a);
-    int * a_pointer = new int; // yey a leak
+    int * a_pointer{ &a }; // yey a leak
     EXPECT_TRUE(&a == a_pointer);
-    int an_array[5];
+    int an_array[5]{ 5, 5, 5, 5, 5 };
     EXPECT_EQ(5, an_array[4]);
-    std::string a_string;
+    std::string a_string{ "abc" };
     EXPECT_EQ("abc", a_string);
 }
 
-TEST(uniform_initialization, DISABLED_initialize_a_vector)
+TEST(uniform_initialization, initialize_a_vector)
 {
     // TODO: initialize the variables to make the expectations pass
-    std::vector<int> ints;
+    std::vector<int> ints{1, 2, 3, 4, 5};
     EXPECT_EQ(5u, ints.size());
     EXPECT_EQ(1, ints.at(0));
     EXPECT_EQ(2, ints.at(1));
@@ -35,10 +35,13 @@ TEST(uniform_initialization, DISABLED_initialize_a_vector)
 }
 
 
-TEST(uniform_initialization, DISABLED_initialize_a_map)
+TEST(uniform_initialization, initialize_a_map)
 {
     // TODO: initialize the variables to make the expectations pass
-    std::map<int, char> ascii;
+    std::map<int, char> ascii{
+        {65, 'a'},
+        {66, 'b'}
+    };
     EXPECT_EQ('a', ascii.at(65));
     EXPECT_EQ('b', ascii.at(66));
 }
@@ -52,15 +55,17 @@ struct ProtocolMessage {
     ConversationId conversation;
     Type type;
     Bytes bytes;
-
-    ProtocolMessage() : conversation(-1), type(Type::number), bytes() {}
 };
 
 
 TEST(uniform_initialization, DISABLED_initialize_an_object)
 {
     // TODO: initialize the variables to make the expectations pass
-    const ProtocolMessage message;
+    const ProtocolMessage message{
+        0,
+        ProtocolMessage::Type::text, 
+        ProtocolMessage::Bytes{'a', 'b'}
+    };
     EXPECT_EQ(ProtocolMessage::Type::text, message.type);
     ASSERT_EQ(2u, message.bytes.size());
     EXPECT_EQ('a', message.bytes.at(0));

@@ -14,7 +14,7 @@ public:
     }
 };
 
-TEST(unique_ptr, DISABLED_object_is_destructed_when_ptr_out_of_scope)
+TEST(unique_ptr, object_is_destructed_when_ptr_out_of_scope)
 {
 	// TODO: make `thing_wrapper` 'own' the object,
 	// to prevent it from leaking
