@@ -111,9 +111,6 @@
     <ClCompile Include="6.types_and_metaprogramming.cpp">
       <Filter>Source Files\coreextensions</Filter>
     </ClCompile>
-    <ClCompile Include="7.variadic_templates.cpp">
-      <Filter>Source Files\coreextensions</Filter>
-    </ClCompile>
     <ClCompile Include="resource_management\1.unique_ptr.cpp">
       <Filter>Source Files\resource_management</Filter>
     </ClCompile>
@@ -137,6 +134,9 @@
     </ClCompile>
     <ClCompile Include="4.numeric.cpp">
       <Filter>Source Files\algorithms</Filter>
+    </ClCompile>
+    <ClCompile Include="7.variadic_templates.cpp">
+      <Filter>Source Files\variadic_templates</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
