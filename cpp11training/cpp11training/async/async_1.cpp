@@ -174,19 +174,22 @@ TEST(AsyncTest, DISABLED_we_can_delay_execution_till_input_is_known)
         events.push({ "task returns " + std::to_string(size), "" });
         return size;
     };
-    // TODO: alter/wrap above `processing_task` so that it waits for its `size` argument,
-    // and that client code can wait for its return value.
-    // HINT: ... accept and return a future and store the result in a promise.
-    // PURPOSE: learn to define your own Async Context Provider
-
     int input = 0;
+    auto set_input = [&](auto i) { input = i; };
+
+    // TODO: alter/wrap above `processing_task` and `input` so that
+    // it waits for its `size` argument,
+    // and that client code can wait for its return value.
+    // HINT: ... accept and return a future, store the result in a promise.
+    // PURPOSE: learn to use your own Async Provider
+
     auto result_fut = std::async(std::launch::async,
         processing_task, input);
 
     auto input_defined = std::async(std::launch::async, [&] {
         std::this_thread::sleep_for(1000_ms);
         events.push({ "input defined", "" });
-        input = 10;
+        set_input(10);
     });
 
     input_defined.wait();
@@ -206,24 +209,37 @@ namespace myasync {
     template<typename F>
     Waitable for_n(int N, F f)
     {
-        for (auto i = 0; i != N; ++i) f();
+        for (auto i = 0; i != N; ++i) {
+           std::thread(f).detach();
+        }
         return {};
     };
 }
 
 TEST(AsyncTest, DISABLED_keep_a_loop_going)
 {
-    // TODO: change the `async_for_n` function to keep
-    // repeating its argument N times, asynchronously
+    // TODO: change the `myasync::for_n` function to keep
+    // repeating its argument function N times, asynchronously
     // GOAL: allow the equivalent of a for-loop to be written asynchronously
     // LEVEL: ADVANCED
     // HINT: loop body and condition are now separated.
     // apparent recursion is going to be needed.
     std::atomic<int> counter{ 0 };
-    auto task = [&] { return std::async(std::launch::async, [&] { ++counter; }); };
+    std::vector<std::promise<int>> promises(10);
+    std::vector<int> results;
+    auto task = [&] { return std::async(std::launch::async, [&] {
+        auto fut = promises[counter++].get_future();
+        results.push_back(fut.get());
+    }); };
 
     bool task_done = false;
-    auto value = myasync::for_n(10, task);
-    value.wait();
-    EXPECT_EQ(10, counter);
+    auto all_done = myasync::for_n(5, task);
+    promises[0].set_value(100);
+    promises[4].set_value(104);
+    promises[2].set_value(102);
+    promises[1].set_value(101);
+    promises[3].set_value(103);
+    wait_for(all_done);
+    EXPECT_EQ(5, results.size());
+    EXPECT_EQ((std::vector{ { 100, 101, 102, 103, 104 } }), results);
 }
