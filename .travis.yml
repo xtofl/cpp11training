@@ -14,14 +14,14 @@ matrix:
           sources: &sources
             - ubuntu-toolchain-r-test
             - kalakris-cmake
-    - env: CXX=g++-5 CC=gcc-5 CXXFLAGS=-std=c++14
+    - env: CXX=g++-5 CC=gcc-5
       addons:
         apt:
           packages:
             - g++-5
             - cmake
           sources: *sources
-    - env: CXX=g++-4.9 CC=gcc-4.9 CXXFLAGS=-std=c++14
+    - env: CXX=g++-4.9 CC=gcc-4.9
       addons:
         apt:
           packages:
