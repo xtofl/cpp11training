@@ -180,27 +180,18 @@ std::string product(std::tuple<Fs...> functions, std::tuple<Ts...> arguments)
 TEST(composition, print_a_matrix)
 {
     const auto table = product(
-        std::make_tuple(
             [](auto i) { return i; },
             [](auto i) { return i*i; },
             [](auto i) { return i*i*i - 1; }
-            ),
-        std::make_tuple(1, 2, 3)
-    );
-    EXPECT_EQ(R"(
-1, 2, 3
+            )
+            (1, 2, 3);
+    EXPECT_EQ(R"(1, 2, 3
 1, 4, 9
-0, 7, 26
-)", table);
+0, 7, 26)", table);
 
-    EXPECT_EQ(R"(
-1, 4, 9, 100
-0, 7, 26, 1000
-)", (product(
-    std::make_tuple(
+    EXPECT_EQ(R"(1, 4, 9, 100
+1, 8, 27, 1000)", product(
         [](auto i) { return i*i; },
         [](auto i) { return i*i*i; }
-        ),
-    std::make_tuple(1, 2, 3, 10)
-)));
+        )(1, 2, 3, 10));
 }
