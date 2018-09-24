@@ -107,32 +107,6 @@ TEST(variadic_templates, DISABLED_create_a_compile_time_list_lookup)
     EXPECT_FALSE(in_list(0));
 }
 
-// this exercise will take some more time...
-// 
-// TODO: fill in the `product` function so that it prints a table
-// of the functions applied to the arguments
-// GOAL: learn to deal with multiple packs and expansions
-// GRADE: HARD
-std::string join(std::string sep) {
-    return "";
-}
-namespace std {
-    std::string to_string(const std::string &s) { return s; }
-}
-template<typename T, typename ...Ts>
-std::string join(std::string sep, T t, Ts...ts) {
-    return std::to_string(t) + sep + join(sep, ts...);
-}
-template<typename T>
-std::string join(std::string sep, T t) {
-    return std::to_string(t);
-}
-TEST(vt, canjoin) {
-    EXPECT_EQ("", join(", "));
-    EXPECT_EQ("1", join(", ", 1));
-    EXPECT_EQ("1, abc", join(", ", 1, std::string("abc")));
-}
-
 template<typename F, typename A, typename T, typename ...Ts>
 auto accumulate(F f, A a, T t, Ts...ts) {
     return a;
@@ -170,28 +144,35 @@ TEST(variadic_tuple_iteration, DISABLED_we_can_transform_an_indexed_tuple) {
     EXPECT_EQ(3, std::get<1>(result));
     EXPECT_EQ(4, std::get<2>(result));
 }
-
-template<typename ...Fs, typename ...Ts>
-std::string product(std::tuple<Fs...> functions, std::tuple<Ts...> arguments)
+auto product = [](auto... functions)
 {
-    return "";
-}
+    return [](auto ...arguments) {
+        return std::string{ "not implemented" };
+    };
+};
 
-TEST(composition, print_a_matrix)
+TEST(composition, DISABLED_print_a_matrix)
 {
+
+    // this exercise will take some more time...
+    // 
+    // TODO: fill in the `product` function so that it prints a table
+    // of the functions applied to the arguments
+    // GOAL: learn to deal with multiple packs and expansions
+    // GRADE: HARD
     const auto table = product(
-            [](auto i) { return i; },
-            [](auto i) { return i*i; },
-            [](auto i) { return i*i*i - 1; }
-            )
-            (1, 2, 3);
+        [](auto i) { return i; },
+        [](auto i) { return i * i; },
+        [](auto i) { return i * i*i - 1; }
+    )
+    (1, 2, 3);
     EXPECT_EQ(R"(1, 2, 3
 1, 4, 9
 0, 7, 26)", table);
 
     EXPECT_EQ(R"(1, 4, 9, 100
-1, 8, 27, 1000)", product(
-        [](auto i) { return i*i; },
-        [](auto i) { return i*i*i; }
-        )(1, 2, 3, 10));
+1, 8, 27, 1000)",
+    product([](auto i) { return i*i; },
+            [](auto i) { return i*i*i; })
+    (1, 2, 3, 10));
 }
