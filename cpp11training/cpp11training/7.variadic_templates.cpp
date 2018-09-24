@@ -133,6 +133,20 @@ TEST(vt, canjoin) {
     EXPECT_EQ("1, abc", join(", ", 1, std::string("abc")));
 }
 
+template<typename F, typename A, typename T, typename ...Ts>
+auto accumulate(F f, A a, T t, Ts...ts) {
+    return a;
+}
+
+TEST(variable_templates, DISABLED_we_can_accumulate) {
+    // TODO: create the `accumulate` function template so that
+    // it behaves like a compile time accumulation
+    // GOAL: create an ingredient for further good
+    // LEVEL: INTERMEDIATE
+    EXPECT_EQ(10, accumulate(std::plus<>(), 0,   1, 8, 1));
+    EXPECT_EQ(10, accumulate(std::plus<>(), 0,   1, 2, 3, 4));
+}
+
 template<typename F, typename T>
 auto transform(F f, T t) {
     return t;
