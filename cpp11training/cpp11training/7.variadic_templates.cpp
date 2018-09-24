@@ -113,13 +113,33 @@ TEST(variadic_templates, DISABLED_create_a_compile_time_list_lookup)
 // of the functions applied to the arguments
 // GOAL: learn to deal with multiple packs and expansions
 // GRADE: HARD
+std::string join(std::string sep) {
+    return "";
+}
+namespace std {
+    std::string to_string(const std::string &s) { return s; }
+}
+template<typename T, typename ...Ts>
+std::string join(std::string sep, T t, Ts...ts) {
+    return std::to_string(t) + sep + join(sep, ts...);
+}
+template<typename T>
+std::string join(std::string sep, T t) {
+    return std::to_string(t);
+}
+TEST(vt, canjoin) {
+    EXPECT_EQ("", join(", "));
+    EXPECT_EQ("1", join(", ", 1));
+    EXPECT_EQ("1, abc", join(", ", 1, std::string("abc")));
+}
+
 template<typename ...Fs, typename ...Ts>
 std::string product(std::tuple<Fs...> functions, std::tuple<Ts...> arguments)
 {
     return "";
 }
 
-TEST(composition, DISABLED_print_a_matrix)
+TEST(composition, print_a_matrix)
 {
     const auto table = product(
         std::make_tuple(
