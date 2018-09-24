@@ -133,6 +133,30 @@ TEST(vt, canjoin) {
     EXPECT_EQ("1, abc", join(", ", 1, std::string("abc")));
 }
 
+template<typename F, typename T>
+auto transform(F f, T t) {
+    return t;
+};
+
+TEST(variadic_tuple_iteration, DISABLED_we_can_transform_an_indexed_tuple) {
+    // TODO: create a `transform` function to convert each
+    // element of the provided tuple to a corresponding element
+    // of a new tuple
+    // GOAL: learn to construct a 'helper' argument.  This shows that
+    // tuples are Functors, too.
+    // HINT: this tuple has elements of the same type.
+    // simply iterating using the Type doesn't work anymore.
+    // So we need a helper structure/accumulator/loop variable to keep track
+    // of the element index we're looking at.
+    //
+    const auto input = std::make_tuple(1, 2, 3);
+    const auto f = [](auto i) { return i + 1; };
+    const auto result = transform(f, input);
+    EXPECT_EQ(2, std::get<0>(result));
+    EXPECT_EQ(3, std::get<1>(result));
+    EXPECT_EQ(4, std::get<2>(result));
+}
+
 template<typename ...Fs, typename ...Ts>
 std::string product(std::tuple<Fs...> functions, std::tuple<Ts...> arguments)
 {
