@@ -171,11 +171,14 @@ TEST(variadic_tuple_iteration, DISABLED_we_can_transform_an_indexed_tuple) {
     EXPECT_EQ(4, std::get<2>(result));
 }
 
-template<typename ...Fs, typename ...Ts>
-std::string product(std::tuple<Fs...> functions, std::tuple<Ts...> arguments)
-{
-    return "";
-}
+auto product = [](auto ...fs) {
+    return [&](auto ...is) {
+        auto rowf = [&is...](auto f) {
+            return join(", ", f(is)...);
+        };
+        return join("\n", rowf(fs)...);
+    };
+};
 
 TEST(composition, print_a_matrix)
 {
