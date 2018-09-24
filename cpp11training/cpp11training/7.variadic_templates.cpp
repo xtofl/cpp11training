@@ -38,9 +38,14 @@ TEST(variadic, we_can_count_arguments2)
 #endif
 
 namespace {
-    auto add5 = [](auto t) { return t; };
+    template<typename ...Ts>
+    std::tuple<Ts...> add5(std::tuple<Ts...> input) {
+        return std::make_tuple(
+            (std::get<Ts>(input) + 5)...
+        );
+    }
 }
-TEST(tuples, DISABLED_i_can_transform_all_elements_of_a_tuple) {
+TEST(tuples, i_can_transform_all_elements_of_a_tuple) {
     // TODO: make `add5` process each element of the `input` tuple
     // to generate a new tuple where each element is 5 bigger
     // GOAL: learn to use pack expansion in function arguments
@@ -64,7 +69,7 @@ TEST(serialization, DISABLED_serialize_different_types)
 {
     // TODO: fill in serialize so that the test passes
     // GOAL: get familiar with template parameter packs
-    // GOAL: learn how to expand a (single) parameter pack
+    // GOAL: learn how to expand a (single) parameter pack in operator expressions
     // GRADE: INTERMEDIATE
     EXPECT_EQ("", serialize());
     EXPECT_EQ("int@1", serialize(1));
@@ -147,9 +152,15 @@ TEST(variable_templates, DISABLED_we_can_accumulate) {
     EXPECT_EQ(10, accumulate(std::plus<>(), 0,   1, 2, 3, 4));
 }
 
+template<typename F, typename ...Ts, size_t ...Ints>
+auto transform_impl(F f, std::tuple<Ts...> args, std::index_sequence<Ints...>) {
+    return std::make_tuple(f(std::get<Ints>(args))...);
+}
 template<typename F, typename T>
 auto transform(F f, T t) {
-    return t;
+    return transform_impl(
+        f, t, std::make_index_sequence<std::tuple_size_v<T>>{}
+    );
 };
 
 TEST(variadic_tuple_iteration, DISABLED_we_can_transform_an_indexed_tuple) {
@@ -181,6 +192,7 @@ auto product = [](auto ...fs) {
 };
 
 TEST(composition, print_a_matrix)
+
 {
     const auto table = product(
             [](auto i) { return i; },
