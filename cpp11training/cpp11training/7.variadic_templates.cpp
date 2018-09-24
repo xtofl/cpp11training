@@ -37,7 +37,22 @@ TEST(variadic, we_can_count_arguments2)
 }
 #endif
 
-
+namespace {
+    auto add5 = [](auto t) { return t; };
+}
+TEST(tuples, DISABLED_i_can_transform_all_elements_of_a_tuple) {
+    // TODO: make `add5` process each element of the `input` tuple
+    // to generate a new tuple where each element is 5 bigger
+    // GOAL: learn to use pack expansion in function arguments
+    // LEVEL: BASIC
+    // HINT: return types can be `auto`
+    // HINT: make_tuple deduces its template arguments
+    const auto input = std::make_tuple(5, 5.0, 'A');
+    const auto &result = add5(input);
+    EXPECT_EQ(10, std::get<0>(result));
+    EXPECT_EQ(10.0, std::get<1>(result));
+    EXPECT_EQ('F', std::get<2>(result));
+}
 
 namespace {
     template<typename ...Ts>
