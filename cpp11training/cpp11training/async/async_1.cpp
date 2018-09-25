@@ -102,10 +102,10 @@ namespace myasync {
 
     auto get_three_urls() {
         TheWeb theWeb;
-        return std::vector{ { // look mom!  no template arguments!
+        return std::vector{ // look mom!  no template arguments!
             get(theWeb, "url1"),
             get(theWeb, "url2"),
-            get(theWeb, "url3") } };
+            get(theWeb, "url3") };
     }
 
     template<class Urls>
@@ -241,5 +241,5 @@ TEST(AsyncTest, DISABLED_keep_a_loop_going)
     promises[3].set_value(103);
     wait_for(all_done);
     EXPECT_EQ(5, results.size());
-    EXPECT_EQ((std::vector{ { 100, 101, 102, 103, 104 } }), results);
+    EXPECT_EQ((std::vector{ 100, 101, 102, 103, 104 }), results);
 }
