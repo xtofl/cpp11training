@@ -28,7 +28,8 @@ namespace linear_algebra {
 
 TEST(name_lookup, DISABLED_we_can_overload_a_function_with_adl)
 {
-    // TODO: enable following line and add `size` overloads
+//#define i_know_where_to_define_a_size_function
+    // TODO: enable previous line and add `size` overloads
     // to make it compile
     // GOAL: show that ADL uses the _whole_ namespace of the
     // actual arguments
