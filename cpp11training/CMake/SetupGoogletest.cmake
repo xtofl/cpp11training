@@ -42,8 +42,9 @@ function (setup_cpp_project_with_googletest SOURCE_DIR_PREFIX)
 		set(_SETUP_GOOGLETEST_DONE "1" CACHE INTERNAL "_SETUP_GOOGLETEST_DONE")
 	endif()
 
-	set(CMAKE_CXX_STANDARD 14)
+	set(CMAKE_CXX_STANDARD 17)
 	set(CMAKE_CXX_STANDARD_REQUIRED ON)
+	set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 	# Unique target names for exercises and solutions
 	get_directory_property(PARENT_DIRECTORY_PATH PARENT_DIRECTORY)
