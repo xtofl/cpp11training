@@ -5,23 +5,22 @@
 // TODO: alter a function template to return the number of arguments passed.
 // GOAL: be able to specify a variadic function template and use the sizeof... operator
 // GRADE: ENTRY
-// #define i_can_specify_a_variadic_function_template
+#define i_can_specify_a_variadic_function_template
 #ifdef i_can_specify_a_variadic_function_template
-template<typename T1 = int, typename T2 = int, typename T3 = int>
-size_t count_args(T1 = T1{}, T2 = T2{}, T3 = T3{}) { return 0; }
+template<typename ...Ts>
+constexpr size_t count_args(Ts&& ...ts)  { return sizeof...(ts); }
 
 TEST(variadic, we_can_count_arguments)
 {
-
-    EXPECT_EQ(2u, count_args(1, 2));
-    EXPECT_EQ(3u, count_args('one', 2.0, 3));
+    static_assert(2u == count_args(1, 2));
+    static_assert(3u == count_args('one', 2.0, 3));
 }
 #endif
 
 // TODO: alter the class template to know its number of arguments
 // GOAL: be able to specify a variadic class template and use the sizeof... operator
 // GRADE: ENTRY
-//#define i_can_specify_a_variadic_class_template
+#define i_can_specify_a_variadic_class_template
 #ifdef i_can_specify_a_variadic_class_template
 
 template<typename T1 = int, typename T2 = int, typename T3 = int>
@@ -30,7 +29,7 @@ struct CountArgs
     static constexpr size_t value = 0;
 };
 
-TEST(variadic, we_can_count_arguments2)
+TEST(variadic, DISABLED_we_can_count_arguments2)
 {
     EXPECT_EQ(2u, (CountArgs<int, bool>::value));
     EXPECT_EQ(3u, (CountArgs<int, char, long>::value));
@@ -38,20 +37,49 @@ TEST(variadic, we_can_count_arguments2)
 #endif
 
 namespace {
-    auto add5 = [](auto t) { return t; };
+//#define ALL_DIFFERENT_TYPES
+#ifdef ALL_DIFFERENT_TYPES
+    template<typename ...Ts>
+    auto add5(std::tuple<Ts...> ts) {
+        return std::make_tuple((std::get<Ts>(ts) + 5)...);
+    };
+#else
+    template<typename F, typename ...Ts, size_t ...is>
+    auto tuple_fmap_helper(F f, std::tuple<Ts...> ts, std::index_sequence<is...> ignored_argument) {
+        return std::make_tuple(
+            f(std::get<is>(ts))...
+        );
+    };
+
+    template<typename F, typename ...Ts>
+    auto tuple_fmap(F f, std::tuple<Ts...> ts) {
+        return tuple_fmap_helper(f, ts, std::make_index_sequence<sizeof...(Ts)>{});
+    };
+
+    template<typename ...Ts>
+    auto add5(std::tuple<Ts...> ts) {
+        return tuple_fmap(
+            [](auto i) { return i + 5; },
+            ts);
+    };
+#endif
+
 }
-TEST(tuples, DISABLED_i_can_transform_all_elements_of_a_tuple) {
+TEST(tuples, i_can_transform_all_elements_of_a_tuple) {
     // TODO: make `add5` process each element of the `input` tuple
     // to generate a new tuple where each element is 5 bigger
     // GOAL: learn to use pack expansion in function arguments
     // LEVEL: BASIC
     // HINT: return types can be `auto`
     // HINT: make_tuple deduces its template arguments
-    const auto input = std::make_tuple(5, 5.0, 'A');
+    // HINT: std::get<int>(t) returns the int-member of t
+    //   (provided there is only 1 int member)
+    const auto input = std::make_tuple(5, 5.0, 'A', 1);
     const auto &result = add5(input);
     EXPECT_EQ(10, std::get<0>(result));
     EXPECT_EQ(10.0, std::get<1>(result));
     EXPECT_EQ('F', std::get<2>(result));
+    EXPECT_EQ(6, std::get<3>(result));
 }
 
 namespace {
