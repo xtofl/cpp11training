@@ -5,29 +5,24 @@ cache:
 
 matrix:
     include:
-    - env: CXX=g++-6 CC=gcc-6
+    - env: CXX=g++-8 CC=gcc-8
       addons:
         apt:
           packages:
-            - g++-6
+            - g++-8
             - cmake
           sources: &sources
             - ubuntu-toolchain-r-test
             - kalakris-cmake
-    - env: CXX=g++-5 CC=gcc-5
+    - env: CXX=g++-7 CC=gcc-7
       addons:
         apt:
           packages:
-            - g++-5
+            - g++-7
             - cmake
-          sources: *sources
-    - env: CXX=g++-4.9 CC=gcc-4.9
-      addons:
-        apt:
-          packages:
-            - g++-4.9
-            - cmake
-          sources: *sources
+          sources: &sources
+            - ubuntu-toolchain-r-test
+            - kalakris-cmake
 
 script:
     - cd cpp11training
