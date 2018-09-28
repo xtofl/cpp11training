@@ -5,6 +5,15 @@ cache:
 
 matrix:
     include:
+    - env: CXX=clang++
+      addons:
+        apt:
+          packages:
+            - clang++-3.9
+            - cmake
+          sources: &sources
+            - ubuntu-toolchain-r-test
+            - kalakris-cmake
     - env: CXX=g++-8 CC=gcc-8
       addons:
         apt:

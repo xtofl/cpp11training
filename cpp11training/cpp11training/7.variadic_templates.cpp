@@ -117,8 +117,8 @@ TEST(variable_templates, DISABLED_we_can_accumulate) {
     // it behaves like a compile time accumulation
     // GOAL: create an ingredient for further good
     // LEVEL: INTERMEDIATE
-    EXPECT_EQ(10, accumulate(std::plus<>(), 0,   1, 8, 1));
-    EXPECT_EQ(10, accumulate(std::plus<>(), 0,   1, 2, 3, 4));
+    EXPECT_EQ(10, accumulate(std::plus<int>(), 0,   1, 8, 1));
+    EXPECT_EQ(10, accumulate(std::plus<int>(), 0,   1, 2, 3, 4));
 }
 
 template<typename F, typename T>
