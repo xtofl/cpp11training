@@ -30,6 +30,17 @@ matrix:
             - llvm-toolchain-trusty-6.0
             - ubuntu-toolchain-r-test
             - kalakris-cmake
+    - env: CXX=clang++-5.0 CC=clang-5.0
+      addons:
+        apt:
+          packages:
+            - clang-5.0
+            - g++-7 # For the standard library
+            - cmake
+          sources: &sources
+            - llvm-toolchain-trusty-5.0
+            - ubuntu-toolchain-r-test
+            - kalakris-cmake
     - env: CXX=g++-8 CC=gcc-8
       addons:
         apt:
