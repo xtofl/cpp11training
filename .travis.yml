@@ -7,12 +7,24 @@ cache:
 
 matrix:
     include:
+    - env: CXX=clang++-7 CC=clang-7
+      addons:
+        apt:
+          packages:
+            - clang-7
+            - g++-7 # For the standard library
+            - cmake
+          sources: &sources
+            - sourceline: deb http://apt.llvm.org/trusty/ llvm-toolchain-trusty-7 main
+              key_url: https://%{app_host}/files/gpg/llvm-toolchain-trusty.asc
+            - ubuntu-toolchain-r-test
+            - kalakris-cmake
     - env: CXX=clang++-6.0 CC=clang-6.0
       addons:
         apt:
           packages:
             - clang-6.0
-            - g++-7
+            - g++-7 # For the standard library
             - cmake
           sources: &sources
             - llvm-toolchain-trusty-6.0
