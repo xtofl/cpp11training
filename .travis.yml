@@ -12,51 +12,11 @@ matrix:
         apt:
           packages:
             - clang-7
-            - g++-7 # For the standard library
+            - libstdc++-8
             - cmake
           sources: &sources
             - sourceline: deb http://apt.llvm.org/trusty/ llvm-toolchain-trusty-7 main
               key_url: https://%{app_host}/files/gpg/llvm-toolchain-trusty.asc
-            - ubuntu-toolchain-r-test
-            - kalakris-cmake
-    - env: CXX=clang++-6.0 CC=clang-6.0
-      addons:
-        apt:
-          packages:
-            - clang-6.0
-            - g++-7 # For the standard library
-            - cmake
-          sources: &sources
-            - llvm-toolchain-trusty-6.0
-            - ubuntu-toolchain-r-test
-            - kalakris-cmake
-    - env: CXX=clang++-5.0 CC=clang-5.0
-      addons:
-        apt:
-          packages:
-            - clang-5.0
-            - g++-7 # For the standard library
-            - cmake
-          sources: &sources
-            - llvm-toolchain-trusty-5.0
-            - ubuntu-toolchain-r-test
-            - kalakris-cmake
-    - env: CXX=g++-8 CC=gcc-8
-      addons:
-        apt:
-          packages:
-            - g++-8
-            - cmake
-          sources: &sources
-            - ubuntu-toolchain-r-test
-            - kalakris-cmake
-    - env: CXX=g++-7 CC=gcc-7
-      addons:
-        apt:
-          packages:
-            - g++-7
-            - cmake
-          sources: &sources
             - ubuntu-toolchain-r-test
             - kalakris-cmake
 
