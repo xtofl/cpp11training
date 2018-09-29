@@ -206,17 +206,41 @@ TEST(AsyncTest, DISABLED_we_can_delay_execution_till_input_is_known)
 }
 
 namespace myasync {
-    template<typename F>
-    Waitable for_n(int N, F f)
+    template<typename T>
+    auto make_ready_future(T &&t) { //this should be in the standard, really
+        std::promise<T> promise;
+        auto future = promise.get_future();
+        promise.set_value(t);
+        return future;
+    }
+
+    template<typename C, typename S, typename F, typename I>
+    std::future<int> async_while(C condition, S state, I increment, F f)
     {
-        for (auto i = 0; i != N; ++i) {
-           std::thread(f).detach();
-        }
-        return {};
+        if(! condition(state) )
+            return make_ready_future(0);
+        else
+            return std::async(
+                [condition, state = std::move(state), increment=std::move(increment), f=std::move(f)]{
+                    // return f().and_then(for_n(N-1, move(f)));
+                    f().wait();
+                    return async_while(std::move(condition), increment(state), std::move(increment), std::move(f)).get();
+                }
+            );
     };
+
+    template<typename F>
+    auto for_n(int N, F f) {
+        return async_while(
+            [=](int i){ return i != N; },
+            0,
+            [](int i){ return i+1; },
+            std::move(f)
+        );
+    }
 }
 
-TEST(AsyncTest, DISABLED_keep_a_loop_going)
+TEST(AsyncTest, keep_a_loop_going)
 {
     // TODO: change the `myasync::for_n` function to keep
     // repeating its argument function N times, asynchronously
@@ -239,7 +263,7 @@ TEST(AsyncTest, DISABLED_keep_a_loop_going)
     promises[2].set_value(102);
     promises[1].set_value(101);
     promises[3].set_value(103);
-    wait_for(all_done);
+    all_done.wait();
     EXPECT_EQ(5, results.size());
     EXPECT_EQ((std::vector{ 100, 101, 102, 103, 104 }), results);
 }
