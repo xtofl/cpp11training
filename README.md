@@ -15,8 +15,8 @@ On Linux all you need is a compiler with C++17 support; gcc-7 and gcc-8 have it.
     cd cpp11training/cpp11training
     mkdir build
     cd build
-    cmake -DCMAKE_BUILD_TYPE=Debug ..
-    make -j $(nproc)
+    cmake ..
+    make
 
 
 
