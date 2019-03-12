@@ -22,7 +22,7 @@ TEST(move, DISABLED_speed_this_up_by_adding_move_support)
         // and do stuff with it so that this loop
         // can't be optimized away (by the compiler)
         Consumer::access(prototype);
-    }, 10'000);
+    }, 1'000);
 
     auto consuming_objects = duration([&]
     {
@@ -31,6 +31,7 @@ TEST(move, DISABLED_speed_this_up_by_adding_move_support)
         std::generate( begin(prototype), end(prototype), [] { return Heavy{ 1000 }; });
         // and move to sink
         Consumer cons(std::move(prototype));
+    }, 1'000);
     }, 10'000);
 
     EXPECT_LT(consuming_objects, constructing_objects * 1.1)
