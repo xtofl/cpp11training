@@ -39,26 +39,25 @@ TEST(move, DISABLED_speed_this_up_by_adding_move_support)
         << " vs. constructing: " << constructing_objects;
 }
 
+class Resource {
+public:
+    Resource(std::string id)
+        : id{std::move(id)}
+    {}
+
+    std::string id;
+};
 
 // TODO: alter the `Pool` class so that
 // the contained resources have move semantics:
 // a borrowed resource is no longer in the pool.
 //
-// GOAL: implementing functions that move objects
+// GOAL: implementing functions that transfer ownership
 // NOTE: try to make sure the user doesn't _accidentally_
 // lose an object (think of the API!)
 // HINT: rvalue references to the rescue
 TEST(move, DISABLED_there_should_be_only_one_owner)
 {
-    class Resource {
-    public:
-        Resource(std::string id)
-            : id(std::move(id))
-        {}
-
-        std::string id;
-    };
-
     class Pool {
     public:
         Pool()
@@ -67,13 +66,19 @@ TEST(move, DISABLED_there_should_be_only_one_owner)
         size_t size() const {
             return resources.size();
         }
-        
+
+        // TODO: make sure that a borrowed resource
+        // is no longer in the pool
+        // (it can only be borrowed once!)
         Resource borrow() {
             return Resource{ "?" };
         }
 
+        // TODO: make sure that the returned
+        // resource can be borrowed again
         void return_(Resource r) {}
 
+        // don't touch this
         bool contains(const std::string &id) const
         {
             return std::any_of(begin(resources), end(resources),
