@@ -8,6 +8,7 @@
 #include <functional>
 #include <exception>
 #include <algorithm>
+#include <cmath>
 
 //////// DON'T TOUCH THIS
 // you should override these with local lambdas
@@ -25,6 +26,8 @@ TEST(lambdas, DISABLED_we_can_define_local_lambdas)
     //
     // GOAL: get acquainted with the lambda expression syntax
     EXPECT_EQ(3, length("abc"));
+    EXPECT_EQ(10, length("abcdefghij"));
+
     EXPECT_NO_THROW(foo());
 }
 
@@ -66,7 +69,7 @@ TEST(lambdas, DISABLED_we_can_capture_local_variables_by_reference)
 }
 
 
-TEST(lambdas, DISABLED_we_can_add_state)
+TEST(lambdas, DISABLED_we_can_store_internal_state)
 {
     // TODO:
     // create a lambda expression `foo` that
@@ -77,17 +80,24 @@ TEST(lambdas, DISABLED_we_can_add_state)
     // WHY?  this is sometimes needed in tests to e.g. record the
     // number of times something was called
     //
+
+    // don't touch this:
     EXPECT_EQ(1, bar());
     EXPECT_EQ(2, bar());
+    EXPECT_EQ(3, bar());
 }
 
-TEST(lambdas, DISABLED_we_can_add_state2)
+TEST(lambdas, DISABLED_we_can_store_internal_state2)
 {
     // sum of lengths
     //
-    // TODO: define a lambda `add_length` that returns
-    // the length of all the strings that have been given to it
+    // TODO: make the lambda `add_length` return
+    // the accumulated length of all the strings that have
+    // been given to it
     auto add_length = [](std::string s) { return 0; };
+
+    // |  don't touch this
+    // V
     EXPECT_EQ(3, add_length("abc"));
     EXPECT_EQ(7, add_length("efgh"));
 }
@@ -97,10 +107,12 @@ TEST(lambdas, DISABLED_we_can_add_state3)
 {
     // average length
     //
-    // TODO: define a lambda `add_length` that returns the average
+    // TODO: make the lambda `add_length` return the average
     // length of all the strings that have been given to it
     auto add_length = [](std::string s) { return 0.0; };
 
+    // |  don't touch this
+    // V
     EXPECT_NEAR(3.000, add_length("abc"), 0.01);
     EXPECT_NEAR(3.500, add_length("efgh"), 0.01);
     EXPECT_NEAR(3.333, add_length("ijk"), 0.01);
@@ -114,6 +126,8 @@ TEST(lambdas, DISABLED_we_can_add_state4)
     // on every call
     //
     auto squares = [] { return -1; };
+    // |  don't touch this
+    // V
     std::generate_n(std::back_inserter(ints), 10, squares);
     EXPECT_EQ(9, ints.at(2));
     EXPECT_EQ(100, ints.at(9));
@@ -124,13 +138,18 @@ TEST(lambdas, DISABLED_we_can_add_state4)
 #include "class_design/MyBike.h"
 #include "class_design/Piano.h"
 
-// TODO: implement this `make` factory with a map<key, factory function>
+// TODO: implement this `thing` factory with a map<key, factory function>
 // (cf. the next test)
 std::unique_ptr<Thing> make(const std::string &what)
 {
-    using Constructor = std::function<std::unique_ptr<Thing>()>;
-    static std::map<std::string, Constructor> constructors;
-    return constructors.at(what)();
+    using ThingFactory = std::function<std::unique_ptr<Thing>()>;
+
+    // fill in this map to work with bikes, pianos and the like:
+    static std::map<std::string, ThingFactory> constructors;
+
+    const auto construct = constructors.at(what);
+
+    return construct();
 }
 
 TEST(lambdas, DISABLED_we_can_instantiate_based_on_a_typename)
@@ -138,7 +157,7 @@ TEST(lambdas, DISABLED_we_can_instantiate_based_on_a_typename)
     // TODO: alter the `make` function to return an object
     // of the type specified by the provided argument.
     //
-    // GOAL: demonstrate that lambdas can be stored in containers
+    // GOAL: demonstrate that functions can be stored in containers
     //
     // HINT: a std::map is great for lookup, but is not polymorphic.
     // a std::function can wrap any lambda expression
@@ -149,23 +168,6 @@ TEST(lambdas, DISABLED_we_can_instantiate_based_on_a_typename)
 }
 
 
-std::function<double(double)> make_adder(double operand)
-{
-    return std::function<double(double)>{};
-}
-
-TEST(lambdas, DISABLED_we_can_instantiate_functions_at_runtime)
-{
-    // TODO: alter make_adder so that it can be used
-    // to create different functions, depending on the argument
-    //
-    // GOAL: an entry-level functional programming exercise
-    //
-    auto add5 = make_adder(5.0);
-    EXPECT_NEAR(5.0, add5(0.0), 0.001);
-    EXPECT_NEAR(15.0, add5(10.0), 0.001);
-    EXPECT_NEAR(20.0, make_adder(-10.0)(30.0), .001);
-}
 
 TEST(lambdas, DISABLED_we_can_bind_arguments)
 {
@@ -183,24 +185,39 @@ TEST(lambdas, DISABLED_we_can_bind_arguments)
 #endif
 }
 
-std::function<double(double)> make_safe(
+
+// TODO: alter this function so that it 'wraps' a function
+// in a validation-check.  If the check would fail,
+// the resulting function should throw an std::runtime_error
+auto make_safe(
     std::function<double(double)> unsafe_function,
     std::function<bool(double)> check)
 {
     return std::function<double(double)>{};
 }
 
-TEST(lambdas, DISABLED_we_can_add_a_policy_to_a_function)
+TEST(lambdas, DISABLED_we_can_decorate_a_function_with_a_check)
 {
+    // TODO: alter `make_safe` so that it throws runtime_error when
+    // its check returns false, and otherwise calls the provided function
+    //
+    // GOAL: learn to create 'meta' functions to allow
+    // decoupling aspects of your code even more.  This results
+    // in more reusable code.
+
     const auto reciproc = [](double f) { return 1. / f; };
 
     const auto &safe_reciproc = make_safe(reciproc, [&](double f) {
         return (f != 0.0);
     });
-    // TODO: alter `make_safe` so that it throws runtime_error when
-    // its policy returns false, and otherwise calls the provided function
+    const auto &safe_sqrt = make_safe(sqrt, [](double d) {
+        return d >= 0;
+    });
+
     EXPECT_NEAR(2.0, safe_reciproc(0.5), 1e-5);
     EXPECT_THROW(safe_reciproc(0.0), std::runtime_error);
+    EXPECT_NEAR(2.0, safe_sqrt(4), 1.e5);
+    EXPECT_THROW(safe_sqrt(-1), std::runtime_error);
 }
 
 
