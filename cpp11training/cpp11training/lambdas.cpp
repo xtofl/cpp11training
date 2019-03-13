@@ -57,23 +57,33 @@ TEST(lambdas, DISABLED_we_can_capture_the_local_variables_by_value)
 
 TEST(lambdas, DISABLED_we_can_capture_local_variables_by_reference)
 {
-    int receiver = 0;
-    // TODO: create a local lambda expression `baz` that
-    // adds the argument to `receiver`;
-    //
-    // GOAL: learn about capture modes
-    //
-    const std::vector<int> ints{ {10, 20, 30, 40, 50} };
-    std::for_each(begin(ints), end(ints), baz);
-    EXPECT_EQ(150, receiver);
+    using F2 = std::function<int(int, int)>;
+    using Op = std::string;
+
+    std::vector<Op> sequence;
+
+    std::map<Op, F2> operators{
+        // TODO: adapt the lambda's so that they 'log'
+        // to the `sequence` container.
+        // GOAL: learn how to capture a variable by reference
+        // GOAL2: this becomes a use case for a higher order
+        // function
+        {"+", [](int i, int j){ return i+j;}},
+        {"-", [](int i, int j){ return i-j;}}
+    };
+    EXPECT_EQ(5, operators.at("+")(3, 2));
+    EXPECT_EQ(1, operators.at("-")(3, 2));
+    EXPECT_EQ(6, operators.at("*")(3, 2));
+
+    EXPECT_EQ((std::vector<Op>{"+", "-", "*"}), sequence);
 }
 
 
 TEST(lambdas, DISABLED_we_can_store_internal_state)
 {
     // TODO:
-    // create a lambda expression `foo` that
-    // stores a different value into `foo_calls` upon subsequent calls
+    // create a lambda expression `bar` that
+    // stores a different value into `bar_calls` upon subsequent calls
     //
     // HINT: lambda expressions are immutable, unless...
     //
