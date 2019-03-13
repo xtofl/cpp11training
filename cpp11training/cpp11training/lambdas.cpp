@@ -206,6 +206,7 @@ TEST(lambdas, DISABLED_we_can_decorate_a_function_with_a_check)
     // in more reusable code.
 
     const auto reciproc = [](double f) { return 1. / f; };
+    const auto sqrt = [](double f) { return std::sqrt(f); };
 
     const auto &safe_reciproc = make_safe(reciproc, [&](double f) {
         return (f != 0.0);
