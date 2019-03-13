@@ -152,14 +152,14 @@ TEST(lambdas, DISABLED_we_can_add_state4)
 // (cf. the next test)
 std::unique_ptr<Thing> make(const std::string &what)
 {
-    using ThingFactory = std::function<std::unique_ptr<Thing>()>;
+    using ThingFactory = std::function<Thing*()>;
 
     // fill in this map to work with bikes, pianos and the like:
     static std::map<std::string, ThingFactory> constructors;
 
     const auto construct = constructors.at(what);
 
-    return construct();
+    return std::unique_ptr<Thing>{construct()};
 }
 
 TEST(lambdas, DISABLED_we_can_instantiate_based_on_a_typename)
