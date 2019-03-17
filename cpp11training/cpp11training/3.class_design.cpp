@@ -32,14 +32,14 @@ public:
 TEST(member_initializers, defaults_can_be_specified_in_class) {
     Person x;
     EXPECT_EQ(1900, x.birthyear);
-    EXPECT_EQ("John", x.name);
+    EXPECT_EQ(std::string{"John"}, x.name);
 }
 
 TEST(member_initializers, defaults_can_be_overriden_with_aggregate_constructor)
 {
     Person me{1976, "xtofl", "drarip"};
     EXPECT_EQ(1976, me.birthyear);
-    EXPECT_EQ("xtofl", me.name);
+    EXPECT_EQ(std::string{"xtofl"}, me.name);
 }
 
 TEST(member_initializers, defaults_can_be_set_by_child_constructor)
@@ -47,7 +47,7 @@ TEST(member_initializers, defaults_can_be_set_by_child_constructor)
     Person me{1976, "xtofl", "drarip"};
 
     Child c{me, 2002, "Natan"};
-    EXPECT_EQ("drarip", c.given_name);
+    EXPECT_EQ(std::string{"drarip"}, c.given_name);
 }
 
 // TODO:
