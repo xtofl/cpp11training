@@ -4,6 +4,7 @@ Exercises to train your C++11/14/17 (and then some).
 
 [![Build Status](https://travis-ci.org/xtofl/cpp11training.svg?branch=master)](https://travis-ci.org/xtofl/cpp11training)
 [![Build status](https://xtofl.visualstudio.com/cpp11exercises/_apis/build/status/cpp11exercises-CI)](https://xtofl.visualstudio.com/cpp11exercises/_build/latest?definitionId=2)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/e1556f3ddf3645fe98d1fb06bf011b1c)](https://app.codacy.com/app/kristoffel-pirard/cpp11training?utm_source=github.com&utm_medium=referral&utm_content=xtofl/cpp11training&utm_campaign=Badge_Grade_Dashboard)
 
 ## Getting started
 
