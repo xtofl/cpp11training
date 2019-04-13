@@ -176,4 +176,49 @@ Slidedeck mainline
 
 ---
 
+## Testing the Signature
+
+--
+
+###  Design Time
+
+* Time to find a proper name
+* Long time => wrong abstraction?
+* Tools for validation
+    * Rubber Duck
+    * Polls
+
+--
+
+### Review Time
+
+* One Shot opportunity for "learnability"
+    * => Pay Attention!
+* What questions are asked
+    * Missing context?
+    * Ambiguity?
+    * "Too smart"?
+* What is unclear
+* "Taste" vs. reality
+
+--
+
+### Life Time
+
+Bugs occuring from this signature?
+
+
+---
+
 ## Conclusion
+
+* Use the Tool Belt
+* Naming is Hard
+    * => Test it
+
+
+---
+
+examples
+
+* plurals indicate containerss
