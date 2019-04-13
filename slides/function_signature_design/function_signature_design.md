@@ -91,27 +91,89 @@ Slidedeck mainline
     * side effects
     * error handling indications
 
+---
 
+## Context
+
+* what is a function
+* single entry/exit...
+    * exceptions
+    * coroutines
 
 ---
 
-## Function Signature Design
+## Rationale
 
-Why?
+* why bother?
+    * readability/learnability/usability
+* what is the essence the function does
+* goals
+    * client view: make it
+        * easy to use => client code clutter
+        * easy to understand => client code correctness
+        * easy to learn => reusability
+    * maintainer view
+        * make it easy to adapt => maintainability
+* Abstraction levels
+    * cognitive limitations (5 +- 2)
+    * function length = indicator
 
-Functions?
+---
 
-* divide and conquer
-* code reuse
-* composability
-    * e.g. `std::sort`
+## Our Tool Belt
 
---
+* typing
+* naming
+* contextual, implicit, domain knowledge
+    * e.g. `std::lerp`, `std::iota`
+* documentation
 
-* Readability
-    * in code reviews => Quality ^^
-* Learnability
-    * reuse => dev speed
-    * mental overhead vv
-* Usability
-    * useful abstraction
+---
+
+## Types Convey Meaning
+
+* vocabulary types
+* argument type
+* argument qualifiers (sinks)
+* member function qualifiers
+* return type
+* return type qualifiers
+* Note: parameters = signature <-> arguments = call+implementation
+
+---
+
+## Naming is Hard
+
+* explain what it does
+    * to your colleague
+    * to your dad
+    * to your kid
+* verbs, nouns, adjectives
+    * NEED INTERACTION HERE; an execise?
+* role vs. type
+* fish in the same pont
+    * begin/end start/stop first/last
+    * more examples?
+* context vs. repetition
+* C++: name lookup/overloading
+    * asInt, asBool, asString... cast operator!
+    * fromInt, fromBool, ... overloads
+    * compatibility <-> onion arch. adapters
+* C++: conventional functions
+    * construct/destruct
+    * indexing
+    * converting
+    * calling (?)
+* Note: ~~foo~~ ~~bar~~
+
+---
+
+## The Non Functional Aspects
+
+    * sync/async
+    * side effects
+    * error handling indications
+
+---
+
+## Conclusion
