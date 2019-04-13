@@ -1,11 +1,11 @@
 <!-- .slide: style="text-align: left;"> -->
 
 title: Function Signature Design
-<span style="font-size:.4em; margin-right:0">v1.3</span>
+<span style="font-size:.4em; margin-right:0">v0.1</span>
 
 author: Kristoffel Pirard
 
-url: http://github.com/xtofl/articles/monoid/monoid.md
+url: https://github.com/xtofl/cpp11training/blob/add-function-signatures-workshop/slides/function_signature_design/function_signature_design.md
 style: night.css
 
 <div style="font-size:.4em">
