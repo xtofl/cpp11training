@@ -86,6 +86,9 @@ Slidedeck mainline
         * converting
         * calling (?)
     * Note: ~~foo~~ ~~bar~~
+
+---
+
 ## Rationale
 
 * why bother?
@@ -124,15 +127,6 @@ Slidedeck mainline
 
 --
 
-### Notes
-
-* single entry/exit...
-    * exceptions
-    * coroutines
-
-
----
-
 ## Rationale
 
 * why bother?
@@ -143,7 +137,13 @@ Slidedeck mainline
 
 ### Goals of the Function Signature
 
-* what is the essence the function does?
+
+* what is the essence of the function
+* non-functional aspects
+    * sync/async
+    * side effects
+    * error handling indications
+
 
 --
 
@@ -175,28 +175,63 @@ Make the essence of the function
 * to all needed parties
 * in all needed situations
 
+With the tools we have at our disposal
+
 ---
 
 ## Our Tool Belt
 
-* types: built-in, library, custom
+* types
+* names
+* audience interaction
+* (documentation)
+
+--
+
+### Types
+
+* type signatures
+    * built-in, library, custom
+    * error handling indications
+
+--
+
+### Names
+
 * naming
-* contextual, implicit, domain knowledge
-    * e.g. `std::lerp`, `std::iota`
-* documentation
-    * out of scope: we want to limit this to the "why"
+    * sync/async: `auto t = transact_async(...)`?
+    * argument roles
+        * `transact(Account from, Account to)`
+
+--
+
+### Audience Interaction
+
+* knowing the audience
+    * contextual, implicit, domain knowledge
+    * level of expertise
+* testing with the audience
+    * :) or :( on first encounter?
+
+--
+
+### Documentation
+
+is out of scope here: we want to limit it to describe the "why"
 
 ---
 
 ## Types Convey Meaning
 
-* vocabulary types
-* argument type
-* argument qualifiers (sinks)
-* member function qualifiers
-* return type
-* return type qualifiers
-* Note: parameters = signature <-> arguments = call+implementation
+* What
+    * type
+    * qualifiers
+* Where
+    * argument type + qualifiers
+    * member function qualifiers
+    * return type + qualifiers
+
+Note: parameters = signature <-> arguments = call+implementation
 
 ---
 
