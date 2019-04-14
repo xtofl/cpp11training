@@ -233,6 +233,232 @@ is out of scope here: we want to limit it to describe the "why"
 
 Note: parameters = signature <-> arguments = call+implementation
 
+--
+
+### Type: a Taxonomy
+
+* C++
+    * Built-in
+    * Standard
+* Library
+* Domain <--- probably you need these
+
+--
+
+### Vocabulary Types
+
+For expressing a pattern
+
+* Ownership: `std::unique_ptr`
+* An error happened: `std::expected<E, T>`
+* A collection: `vector`, `map`, ...
+* Decouple timing: `future<T>`, `task<T>`
+* Decouple iteration: `range`, `iterator`
+
+These have counterparts in every language.
+
+--
+
+### Stick to the Domain
+
+
+--
+
+### Stick to the Domain
+
+Why?
+
+* maximal compiler error checking
+    * `auto x = get(matrix, 4, 2)` You're screwed.
+    * `auto x = get(matrix, Row{2}, Col{4})`
+* little (textual!) overhead, no run-time overhead
+* cohesion
+    * `pump::state what_if(pump, event)`
+    * `int what_if(pump, char)`
+
+--
+
+### Domain Types
+
+AKA Semantic/Meaningful/Strong types
+
+```
+int remove_needle(MyStringType&, const char*, int&);
+
+int error = 0;
+auto removed = remove_needle("a b c d b", "b", error);
+if (!error) cout << "removed " << removed << "\n";
+```
+What???
+
+```
+struct removed { std::string result; int occurences; };
+optional<removed> remove_from(
+    const std::string&,
+    const std::string&);
+
+remove_from("a b c d b", "b").and_then(
+    [](auto &&removed) {
+        cout << "removed " << removed.occurences << "\n";
+    }
+).or_else([]{});
+```
+Ah... Ok.
+
+--
+
+### Domain Types
+
+Advice: build domain types
+
+* however small; they'll help later!
+* built-ins are for
+    * storage
+    * utter performance
+    * platform dependencies
+    * adapting to foreing functions
+* domain types are for
+    * meaning
+
+
+--
+
+### Qualifiers
+
+* const, volatile
+* value, ref, pointer, rvalue-ref
+
+--
+
+### Argument passing
+
+* Value (preferably) / copy
+    * thread-safe!
+* `&&` Rvalue-ref
+    * Ownership / performance
+* `const &` const reference
+    * same instance
+    * ! lifetime = _your_ job
+* `*` pointer
+    * meaning: Non-Owning ()
+    * ! lifetime = _your_ job
+
+--
+
+### Pointer Passing
+
+[GotW 91](https://herbsutter.com/2013/06/05/gotw-91-solution-smart-pointer-parameters/)
+
+--
+
+```
+void handle_events(shared_ptr<Widget> w);
+```
+
+--
+
+Does `handle_events` use the `shared_ptr` functions?
+
+Probably only dereferencing
+
+=> Why not `handle_events(Widget &w)`?
+
+* reduce coupling
+* greatly reduce risk of spoiling ownership
+* limit responsibilities:
+    * ownership
+    * widget twiddling
+
+--
+
+### A Taxonomy of Pointer Arguments
+
+* ownership
+* access
+
+--
+
+### Ownership Arguments
+
+```
+void our_function(owning_type<T>)
+```
+
+* `unique_ptr`: transfer ownership
+    * argument => "sink" function
+    * return value => "source" function
+* shared => ... shared ownership
+    * sometimes forced by library: tasks, async, ...
+
+--
+
+### Ownership by Reference
+
+```
+void our_function(owning<T> &)
+```
+
+our function can
+
+* ref count
+* validity
+* create weak ref
+* copy it
+* CHANGE IT!? (use `const &` by default)
+
+Mostly _not_ what is intended
+
+--
+
+### Pointer Arguments: Access
+
+`our_function(T &)` (or `const &`)
+
+--
+
+### Pointer Arguments: Raw Pointers?
+
+* expresses 'maybe null'
+    * => always check!
+    * alternative: continuation passing style with optional/future/...
+* as return value: an element of an array
+* no other meaning without better alternative
+
+
+---
+
+## Expressing Errors
+
+Standard C++: exceptions
+
+But... 50% of respondents use -fno-exceptions (cf. [Optional is Not a Failure (Phil Nash)](https://www.youtube.com/watch?v=iWDjoD3MdXs))
+
+So what's left?
+
+--
+
+## Optionals
+
+Simple: it works or it didn't
+
+```
+optional<unique_ptr<Widget>> create(WidgetName);
+
+auto w = create("EditBox");
+if(w) { w->defaultValue("xxx"); }
+```
+
+--
+
+## Expected (C++20)
+
+```
+expected<MyErr, Widget> create(WidgetName);
+
+auto w = create("EditBox");
+if(w) { w->defaultValue("xxx"); }
+```
+
 ---
 
 ## Naming is Hard
@@ -286,7 +512,7 @@ Note: parameters = signature <-> arguments = call+implementation
 
 --
 
-## Consistent Dictionary Chapter
+## Words from the Same Domain
 
 * fish in the same pont
     * begin/end start/stop first/last
