@@ -6,7 +6,7 @@ title: Function Signature Design
 author: Kristoffel Pirard
 
 url: https://github.com/xtofl/cpp11training/blob/add-function-signatures-workshop/slides/function_signature_design/function_signature_design.md
-style: night.css
+style: sioux.css
 
 <div style="font-size:.4em">
 [(single-page version)](?print-pdf&pdfSeparateFragments=false)
@@ -27,65 +27,16 @@ articles> make function_signature_design/function_signature_design.reveal
 
 
 ![recognisable signature from snap!](01.snap_recognisable_signature.png) <!-- .element: width="300" style="display: block; margin-left: auto; margin-right: auto;" -->
-<div style="font-size:.4em">credit: Bartosz Milewski</div>reveal
-reveal
---reveal
-reveal
-Hidden slidereveal
-reveal
-Slidedeck mainline
+<div style="font-size:.4em">credit: snap!</div>
 
+--
 
-* CONTEXT
-    * what is a function
-    * single entry/exit...
-        * exceptions
-        * coroutines
-* RATIONALE
-    * why?  readability/learnability/usability
-    * what is the essence the function does
-    * goals of function signature
-        * understand the code that uses it
-        * limit documentation to the "why"
-    * Abstraction levels
-        * cognitive limitations (5 +- 2)
-        * function length = indicator
-* Our Tool Belt
-    * typingontext vs. repetition
-    * naming
-    * contextual, implicit, domain knowledge
-        * e.g. `std::lerp`, `std::iota`
-    * documentation
-* Types convey meaning
-    * vocabulary types
-    * argument type
-    * argument qualifiers (sinks)
-    * member function qualifiers
-    * return type
-    * return type qualifiers
-    * Note: parameters = signature <-> arguments = call+implementation
-* naming
-    * explain what it does
-        * to your colleague
-        * to your dad
-        * to your kid
-    * verbs, nouns, adjectives
-        * NEED INTERACTION HERE; an execise?
-    * role vs. type
-    * fish in the same pont
-        * begin/end start/stop first/last
-        * more examples?
-    * context vs. repetition
-    * C++: name lookup/overloading
-        * asInt, asBool, asString... cast operator!
-        * fromInt, fromBool, ... overloads
-        * compatibility <-> onion arch. adapters
-    * C++: conventional functions
-        * construct/destruct
-        * indexing
-        * converting
-        * calling (?)
-    * Note: ~~foo~~ ~~bar~~
+## What Others Say...
+
+* [CppCoreGuidelines F:Functions](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#S-functions)
+* ... (to be continued)
+
+This presentation focuses on the whole process.
 
 ---
 

@@ -21,7 +21,7 @@ reveal_slides: $(subst .md,.html,$(MARKDOWN_SLIDES))
 pdf_slides: $(subst .md,.pdf,$(MARKDOWN_SLIDES))
 
 %.reveal: reveal.js %.html
-	cp -r $(dir $(basename $@))/* reveal.js/
+	cp -r $(dir p$(basename $@))/* reveal.js/
 	cp $*.html reveal.js/index.html
 
 %.pdf: %.reveal reveal_running
@@ -29,3 +29,12 @@ pdf_slides: $(subst .md,.pdf,$(MARKDOWN_SLIDES))
 
 %.html: %.md to_reveal.py
 	python3 to_reveal.py $< >$@
+
+%.overview.md: %.md md_overview.sh
+	./md_overview.sh < $< > $@
+
+MD_SLIDES=$(shell find . -name "*.md" | grep -v reveal.js | grep -v overview.md)
+MD_OVERVIEWS=$(addsuffix .overview.md,$(basename $(MD_SLIDES)))
+overview: ./md_overview.sh $(MD_OVERVIEWS))
+
+.PHONY: overview
