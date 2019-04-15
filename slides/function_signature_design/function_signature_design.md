@@ -6,11 +6,11 @@ title: Function Signature Design
 author: Kristoffel Pirard
 
 url: https://github.com/xtofl/cpp11training/blob/add-function-signatures-workshop/slides/function_signature_design/function_signature_design.md
+
 style: sioux.css
 
-<div style="font-size:.4em">
+
 [single-page version](/?print-pdf&pdfSeparateFragments=false)
-</div>
 
 <div style="font-size:.4em">
 This slide deck is intended for use with reveal.js;
