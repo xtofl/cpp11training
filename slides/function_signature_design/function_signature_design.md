@@ -271,6 +271,18 @@ Advice: build domain types
 
 --
 
+### Const vs. Immutable
+
+`const X& x` means: _you_ aren't going to change it.
+
+This is often confused.
+
+If it's not yours, somebody may change it!
+
+Need immutable?  Ask for a copy!
+
+--
+
 ### Argument passing
 
 * Value (preferably) / copy
