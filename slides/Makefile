@@ -35,6 +35,6 @@ pdf_slides: $(subst .md,.pdf,$(MARKDOWN_SLIDES))
 
 MD_SLIDES=$(shell find . -name "*.md" | grep -v reveal.js | grep -v overview.md)
 MD_OVERVIEWS=$(addsuffix .overview.md,$(basename $(MD_SLIDES)))
-overview: ./md_overview.sh $(MD_OVERVIEWS))
+overview: ./md_overview.sh $(MD_OVERVIEWS)
 
 .PHONY: overview
