@@ -9,7 +9,7 @@ url: https://github.com/xtofl/cpp11training/blob/add-function-signatures-worksho
 style: sioux.css
 
 <div style="font-size:.4em">
-[(single-page version)](?print-pdf&pdfSeparateFragments=false)
+[single-page version](/?print-pdf&pdfSeparateFragments=false)
 </div>
 
 <div style="font-size:.4em">

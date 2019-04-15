@@ -21,7 +21,7 @@ reveal_slides: $(subst .md,.html,$(MARKDOWN_SLIDES))
 pdf_slides: $(subst .md,.pdf,$(MARKDOWN_SLIDES))
 
 %.reveal: reveal.js %.html
-	cp -r $(dir p$(basename $@))/* reveal.js/
+	cp -r $(dir $(basename $@))/* reveal.js/
 	cp $*.html reveal.js/index.html
 
 %.pdf: %.reveal reveal_running
