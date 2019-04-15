@@ -73,23 +73,17 @@ This presentation focuses on the tools and the thought process.
 * why bother?
     * readability/learnability/usability
     * who's the audience?
-* form: 'non-functional'
-    * sync/async
-    * side effects
-    * error handling indications
 
 --
 
 
 ### Goals of the Function Signature
 
-
 * what is the essence of the function
-* non-functional aspects
+* indicate some non-functional aspects:
     * sync/async
     * side effects
     * error handling indications
-
 
 --
 
@@ -164,6 +158,9 @@ With the tools we have at our disposal
 ### Documentation
 
 is out of scope here: we want to limit it to describe the "why"
+
+But: studies show that without _good_ and _comprehensive_ documentation,
+reuse is not very likely.
 
 ---
 
