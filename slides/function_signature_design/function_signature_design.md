@@ -33,21 +33,11 @@ articles> make function_signature_design/function_signature_design.reveal
 
 ## What Others Say...
 
+* [API design](https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/32713.pdf) (Joshua Bloch, Java)
 * [CppCoreGuidelines F:Functions](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#S-functions)
 * ... (to be continued)
 
-This presentation focuses on the whole process.
-
----
-
-## Rationale
-
-* why bother?
-    * readability/learnability/usability
-* form: 'non-functional'
-    * sync/async
-    * side effects
-    * error handling indications
+This presentation focuses on the tools and the thought process.
 
 ---
 
@@ -58,7 +48,7 @@ This presentation focuses on the whole process.
     * => a tool for the user
     * 'Structure' = divide and conquer
         * -> how fine?  how coarse?
-        * how even?
+        * how evenly?
         <img src="http://www.rosslawinc.com/wp-content/uploads/2014/02/14B11-Stairs-1.jpg" style="width:200px"/>
 
 --
@@ -82,6 +72,11 @@ This presentation focuses on the whole process.
 
 * why bother?
     * readability/learnability/usability
+    * who's the audience?
+* form: 'non-functional'
+    * sync/async
+    * side effects
+    * error handling indications
 
 --
 
@@ -212,11 +207,6 @@ These have counterparts in every language.
 
 ### Stick to the Domain
 
-
---
-
-### Stick to the Domain
-
 Why?
 
 * maximal compiler error checking
@@ -229,7 +219,7 @@ Why?
 
 --
 
-### Domain Types
+### Domain Types (1/2)
 
 AKA Semantic/Meaningful/Strong types
 
@@ -258,7 +248,7 @@ Ah... Ok.
 
 --
 
-### Domain Types
+### Domain Types (2/2)
 
 Advice: build domain types
 
@@ -388,7 +378,7 @@ So what's left?
 
 --
 
-## Optionals
+### Optionals
 
 Simple: it works or it didn't
 
@@ -401,7 +391,7 @@ if(w) { w->defaultValue("xxx"); }
 
 --
 
-## Expected (C++20)
+### Expected (C++20)
 
 ```
 expected<MyErr, Widget> create(WidgetName);
@@ -421,7 +411,7 @@ if(w) { w->defaultValue("xxx"); }
 
 --
 
-## The word type
+### The word type
 
 * Noun
 * Verb
@@ -429,7 +419,7 @@ if(w) { w->defaultValue("xxx"); }
 
 --
 
-## Word type: Noun
+### Word type: Noun
 
 
 * immutable
@@ -438,7 +428,7 @@ if(w) { w->defaultValue("xxx"); }
 
 --
 
-## Wordt Type: Verb
+### Wordt Type: Verb
 
 * action
 * side-effect
@@ -446,7 +436,7 @@ if(w) { w->defaultValue("xxx"); }
 
 --
 
-## Wordt Type: Adjective
+### Wordt Type: Adjective
 
 * property
 * predicate
@@ -455,7 +445,7 @@ if(w) { w->defaultValue("xxx"); }
 
 --
 
-## Roles vs. Types
+### Roles vs. Types
 
 * `power_consumption(const Machine &machine)`
     * duplication!
@@ -463,7 +453,9 @@ if(w) { w->defaultValue("xxx"); }
 
 --
 
-## Words from the Same Domain
+### Words from the Same Domain
+
+"Symmetry"
 
 * fish in the same pont
     * begin/end start/stop first/last
@@ -473,14 +465,14 @@ if(w) { w->defaultValue("xxx"); }
 
 --
 
-## Context avoids Repetition
+### Context avoids Repetition
 
 * `math::sin` vs. `confession::sin`
 * `myMachine.startMachine()`???
 
 --
 
-## C++ has Overloads!
+### C++ has Overloads!
 
 context is provided by the argument type
 
@@ -494,7 +486,7 @@ context is provided by the argument type
 
 --
 
-## C++ conventional functions
+### C++ conventional functions
 
 * indexing with `operator[]`
 * calling with `operator()`
@@ -515,7 +507,7 @@ context is provided by the argument type
 
 --
 
-###  Design Time
+### Design Time
 
 * Time to find a proper name
 * Long time => wrong abstraction?
@@ -542,18 +534,19 @@ context is provided by the argument type
 
 Bugs occuring from this signature?
 
+Anticipate api evolution
+
+* e.g. `X from_database(db)`
+    * `X v1::from_database(db)`
+    * `X from_database(v1::db)`
 
 ---
 
 ## Conclusion
 
+* Know your Goals
+* Know your Audience
 * Use the Tool Belt
 * Naming is Hard
     * => Test it
 
-
----
-
-examples
-
-* plurals indicate containerss
