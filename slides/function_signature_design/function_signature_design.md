@@ -26,7 +26,7 @@ articles> make function_signature_design/function_signature_design.reveal
 # Function Signature Design
 
 
-![pig throwing flares at itself](milewski_monoid.jpg) <!-- .element: width="300" style="display: block; margin-left: auto; margin-right: auto;" -->
+![recognisable signature from snap!](01.snap_recognisable_signature.png) <!-- .element: width="300" style="display: block; margin-left: auto; margin-right: auto;" -->
 <div style="font-size:.4em">credit: Bartosz Milewski</div>reveal
 reveal
 --reveal
