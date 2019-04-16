@@ -92,21 +92,17 @@ bool operator==(const Person &p1, const Person &p2) {
 
 class WithSomeData : public ::testing::Test {
 public:
-    WithSomeData()
-        : classmates({
+
+    std::vector<Person> classmates{
             { "Ton", "Lathauwers" },
             { "Filip", "Dickens" },
             { "Stephan", "De Schrijver" }
-        })
-        , colleagues({
+        };
+    std::vector<Person> colleagues{
             { "Ton", "Sauerplum" },
             { "Filip", "Dickens" },
             { "Johan", "De Schrijver" }
-        })
-    {}
-
-    std::vector<Person> classmates;
-    std::vector<Person> colleagues;
+        };
 };
 
 
