@@ -76,10 +76,11 @@ This presentation focuses on the tools and the thought process.
 
 --
 
-
 ### Goals of the Function Signature
 
 * what is the essence of the function
+    * easy to use
+    * hard to get wrong
 * indicate some non-functional aspects:
     * sync/async
     * side effects
@@ -87,12 +88,15 @@ This presentation focuses on the tools and the thought process.
 
 --
 
-### Audience
+### Communication Context
 
-* new code/maintenance
-* reading/writing
-* lib author/user
+Goals are served differently in different contexts
+
+* is this new code/maintenance
+* are you reading/writing
+* are you the author/maintainer or the user
 * finding/learning/using
+* new or experienced coder
 
 -- 
 
@@ -102,8 +106,8 @@ This presentation focuses on the tools and the thought process.
     * easy to use => client code clutter
     * easy to understand => client code correctness
     * easy to learn => reusability
-* maintainer view
-    * make it easy to adapt => maintainability
+* maintainer view: make it
+    * easy to adapt => maintainability
 
 --
 
@@ -112,8 +116,8 @@ This presentation focuses on the tools and the thought process.
 Make the essence of the function
 
 * as clear as possible
-* to all needed parties
-* in all needed situations
+* to all parties
+* in all situations
 
 With the tools we have at our disposal
 
@@ -123,7 +127,9 @@ With the tools we have at our disposal
 
 * types
 * names
-* audience interaction
+* audience
+    * interactive?
+    * communication skills (people... hard!)
 * (documentation)
 
 --
@@ -167,7 +173,8 @@ reuse is not very likely.
 ## Types Convey Meaning
 
 * What
-    * type
+    * underlying type
+    * argument passing mechanism
     * qualifiers
 * Where
     * argument type + qualifiers
@@ -176,47 +183,61 @@ reuse is not very likely.
 
 Note: parameters = signature <-> arguments = call+implementation
 
+Note: Hoogle: search by type!
+
 --
 
 ### Type: a Taxonomy
 
 * C++
     * Built-in
-    * Standard
+    * Standard Library
 * Library
 * Domain <--- probably you need these
 
 --
 
-### Vocabulary Types
+### Built-in Types: Metal
 
-For expressing a pattern
+For 'metal' representation
 
-* Ownership: `std::unique_ptr`
-* An error happened: `std::expected<E, T>`
-* A collection: `vector`, `map`, ...
-* Decouple timing: `future<T>`, `task<T>`
-* Decouple iteration: `range`, `iterator`
+* wire-format
+* storage format
+
+No "meaning" in your program
+
+--
+
+### Standard Library Types
+
+"Vocabulary Types" for expressing a pattern
+
+* Examples
+    * Ownership: `std::unique_ptr`
+    * Errors: `std::expected<E, T>`
+    * A collection: `vector`, `map`, ...
+    * Decouple timing: `future<T>`, `task<T>`
+    * Decouple iteration: `range`, `iterator`
 
 These have counterparts in every language.
 
 --
 
-### Stick to the Domain
+### Domain Types (1/3)
 
 Why?
 
 * maximal compiler error checking
-    * `auto x = get(matrix, 4, 2)` You're screwed.
-    * `auto x = get(matrix, Row{2}, Col{4})`
+    * `get(matrix, 4, 2)` You're screwed.
+    * `get(matrix, Row{2}, Col{4})`
 * little (textual!) overhead, no run-time overhead
 * cohesion
-    * `pump::state what_if(pump, event)`
-    * `int what_if(pump, char)`
+    * `char what_if(pump, char)` (bad)
+    * `state what_if(pump, event)`
 
 --
 
-### Domain Types (1/2)
+### Domain Types (2/3)
 
 AKA Semantic/Meaningful/Strong types
 
@@ -245,19 +266,15 @@ Ah... Ok.
 
 --
 
-### Domain Types (2/2)
+### Domain Types (3/3)
 
 Advice: build domain types
 
-* however small; they'll help later!
-* built-ins are for
-    * storage
-    * utter performance
-    * platform dependencies
-    * adapting to foreing functions
-* domain types are for
-    * meaning
-
+* Decoupling
+    * Allow the representation to change
+    * Cross-language 
+* However small; they'll help later!
+* [P.1 Ideas in Code](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#Rp-direct)
 
 --
 
