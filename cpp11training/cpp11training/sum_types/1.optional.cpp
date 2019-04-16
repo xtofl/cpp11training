@@ -9,7 +9,7 @@
 #include <gtest/gtest.h>
 
 
-struct FormInput { std::string_view value; }; 
+struct FormInput { std::string_view value; };
 struct Index { int value; };
 struct Ratio { double value; };
 
@@ -81,3 +81,30 @@ TEST(optional, DISABLED_we_can_deal_with_overflow) {
     EXPECT_EQ(toVoltageString({"10000"}), "?");
     EXPECT_EQ(toVoltageString({"-10000"}), "?");
 }
+
+// TODO:
+// #define LOOK_MA_IM_DOING_FUNCTORS
+// and make the code compile and the tests succeed
+//
+// Note: this is a little more advanced, requires some template programming
+//
+#ifdef LOOK_MA_IM_DOING_FUNCTORS
+namespace functor {
+    // TODO: create a `transform` implementation that
+    // will convert optional<T> to optional<R>
+    template<typename T, typename FTR>
+    auto transform(std::optional<T> what, FTR &&function_T_to_R) {
+        return what; // you'll want an optional<R> here... declval, decltype anyone?
+    };
+}
+
+using namespace functor;
+TEST(optional, DISABLED_make_it_a_functor) {
+    EXPECT_EQ(std::optional<Index>{}, transform(std::optional<FormInput>{}, fromForm));
+
+    auto itos = [](int i){ return std::to_string(i);};
+    EXPECT_EQ(std::optional<std::string>{"1"}, transform(std::optional<int>{1}, itos));
+    EXPECT_EQ(std::optional<std::string>{}, transform(std::optional<int>{}, itos));
+}
+
+#endif
