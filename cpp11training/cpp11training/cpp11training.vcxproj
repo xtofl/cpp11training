@@ -122,6 +122,7 @@
     <ClCompile Include="move\3.moveable_objects.cpp" />
     <ClCompile Include="resource_management\2.shared_ptr.cpp" />
     <ClCompile Include="resource_management\1.unique_ptr.cpp" />
+    <ClCompile Include="sum_types\1.optional.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
