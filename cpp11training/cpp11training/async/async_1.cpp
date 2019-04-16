@@ -28,7 +28,7 @@ namespace myasync {
         return web.get(url);
     }
 
-    auto get(TheWeb &web, const std::string &url, TheWeb::Args args) {
+    auto get(TheWeb &web, const std::string &url, Args args) {
         return web.get(url, args);
     }
 
@@ -99,7 +99,7 @@ TEST(AsyncTest, DISABLED_we_can_delegate_a_variable_amount_of_stuff)
 
 TEST(AsyncTest, DISABLED_we_can_delay_execution_till_input_is_known)
 {
-    TheWeb::Events events;
+    Events events;
 
     const auto processing_task = [&](int size) {
         events.push({ "task: n received: " + std::to_string(size), "" });

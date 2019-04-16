@@ -4,11 +4,8 @@
 #include <vector>
 #include <map>
 
-class TheWeb {
-public:
-    // This is scaffolding to facilitate writing test cases
-    // like "this function has been called before that function"
     using Args = std::map<std::string, std::string>;
+
     class Events {
         // a thread-safe event queue
     public:
@@ -49,6 +46,12 @@ public:
         std::recursive_mutex mutex;
         std::vector<Event> events;
     };
+
+
+class TheWeb {
+public:
+    // This is scaffolding to facilitate writing test cases
+    // like "this function has been called before that function"
 
     mutable Events events;
     TheWeb() = default;
