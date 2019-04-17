@@ -35,8 +35,7 @@ namespace myasync {
     template<typename T>
     auto wait_for(const T &t) {}
 
-    auto get_three_urls() {
-        TheWeb theWeb;
+    auto get_three_urls(TheWeb &theWeb) {
         return std::vector{ // look mom!  no template arguments!
             get(theWeb, "url1"),
             get(theWeb, "url2"),
@@ -60,7 +59,7 @@ TEST(AsyncTest, DISABLED_we_can_delegate_stuff)
     // TODO: tweak get_three_urls in order to start retrieving all
     // urls simultaneously
     // PURPOSE: express parallelism, use std::async
-    EXPECT_GT(2 * 1000_ms, duration(&myasync::get_three_urls, 1));
+    EXPECT_GT(2 * 1000_ms, duration([]{ TheWeb web; myasync::get_three_urls(web); }, 1));
 }
 
 template<typename Document>
