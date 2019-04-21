@@ -454,20 +454,24 @@ if(w) { w->defaultValue("xxx"); }
 
 --
 
-### Wordt Type: Verb
+### Word Type: Verb
 
-* action
-* side-effect
-* non-pure
+* present tense: action, side-effect
+    * `shuffle(begin(xs), end(xs))`
+    * non-pure
+* past tense: derivative
+    * `sorted(range)`
+    * pure
 
 --
 
-### Wordt Type: Adjective
+### Word Type: Adjective
 
-* property
-* predicate
-    * replace `isBig()` with `big()`
-    * replace `hasX()` with `optional<X> x()` or `withX(callback)`
+* property: describes an aspect
+    * `Person.name`
+* predicate: answer to yes/no question
+    * C++: replace `isBig()` with `big()`
+    * C++: replace `hasX()` with `optional<X> x()` or `withX(callback)`
 
 --
 
