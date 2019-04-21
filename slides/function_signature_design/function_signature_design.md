@@ -43,52 +43,58 @@ This presentation focuses on the tools and the thought process.
 
 ## Context
 
-* Why do we have functions
-* Structured Programming
-    * => a tool for the user
-    * 'Structure' = divide and conquer
-        * -> how fine?  how coarse?
-        * how evenly?
-        <img src="http://www.rosslawinc.com/wp-content/uploads/2014/02/14B11-Stairs-1.jpg" style="width:200px"/>
+Q: Why do we have functions ?
+
+A: Structured Programming, divide and conquer
 
 --
 
-### Notation
+### Why Functions
 
-(TODO: find better name for 'our_function')
-
-* No more ~~foo~~ and ~~bar~~
-    * `ret_t our_function(arg_t)`
-    * ```
-    void client_code() {
-        ...
-        auto x = our_function(a);
-        ...
-    }```
+* As a reusable tool for the user
+* 'Structure' = divide and conquer
+    * -> how fine?  how coarse?
+    * how evenly?
+    <img src="http://www.rosslawinc.com/wp-content/uploads/2014/02/14B11-Stairs-1.jpg" style="width:200px"/>
 
 --
 
 ## Rationale
 
-* why bother?
-    * readability/learnability/usability
-    * who's the audience?
+why bother with the signature design?
+
+* Goals
+* Audience
+* Constraints
+* Tools
 
 --
 
 ### Goals of the Function Signature
 
-* what is the essence of the function
-    * easy to use
-    * hard to get wrong
-* indicate some non-functional aspects:
-    * sync/async
-    * side effects
-    * error handling indications
+Communication:
+
+* Functional aspects
+* Non-functional aspects
 
 --
 
-### Communication Context
+#### Communication: Functional Aspects
+
+* easy to use
+* hard to get wrong
+
+--
+
+#### Communication: Non-functional Aspects
+
+* sync/async
+* side effects
+* error handling indications
+
+--
+
+#### Communication Context
 
 Goals are served differently in different contexts
 
@@ -111,15 +117,35 @@ Goals are served differently in different contexts
 
 --
 
-### Goal
+### Constraints
 
-Make the essence of the function
+* Language
+    * English?
+    * C compatibility?
+* Time
+    * design for change!
+* Knowledge
+    * Of the audience
+    * Of the maintaining devs
+
+--
+
+### Tools
+
+To achieve this, we can use a number of tools
+
+Tool = generic term here
+
+--
+
+### Rationale: Conclusion
+
+Goal = make the essence of the function
 
 * as clear as possible
 * to all parties
 * in all situations
-
-With the tools we have at our disposal
+* with the tools we have at our disposal
 
 ---
 
@@ -492,13 +518,20 @@ if(w) { w->defaultValue("xxx"); }
     * more examples?
 * even level of abstraction
 
+--
+
+Hints:
+
+* use a synonym dictionary e.g. [m-w](https://www.merriam-webster.com/thesaurus/clear).
+* mind irregular verbs (to read/read/read: very ambiguous)
+* ask a native English speaker
 
 --
 
 ### Context avoids Repetition
 
-* `math::sin` vs. `confession::sin`
-* `myMachine.startMachine()`???
+* `myMachine.start()` starts what?
+    * C, Pascal, ...: `machine_start(machine)` for lack of namespaces/classes
 
 --
 
