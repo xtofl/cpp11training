@@ -8,6 +8,48 @@
 #include "class_design/Vehicle.h"
 #include "class_design/MyBike.h"
 
+#include <utility>
+
+// Question from the class:
+// Uniform Initialization: can you specify a member variable default with braces?
+//   --> Yes.  It's called a "brace-or-equal-initializer"
+//   cf. https://arne-mertz.de/2015/08/new-c-features-default-initializers-for-member-variables/
+//
+class Person {
+public:
+    int birthyear = 1900; // <-- equal-initializer
+    std::string name{"John"}; // <-- brace-initializer
+    std::string given_name{"Doe"};
+};
+
+class Child : public Person {
+public:
+    Child(Person parent, int n, std::string name)
+        : Person{n, std::move(name), std::move(parent.given_name)}
+    {}
+};
+
+TEST(member_initializers, defaults_can_be_specified_in_class) {
+    Person x;
+    EXPECT_EQ(1900, x.birthyear);
+    EXPECT_EQ(std::string{"John"}, x.name);
+}
+
+TEST(member_initializers, defaults_can_be_overriden_with_aggregate_constructor)
+{
+    Person me{1976, "xtofl", "drarip"};
+    EXPECT_EQ(1976, me.birthyear);
+    EXPECT_EQ(std::string{"xtofl"}, me.name);
+}
+
+TEST(member_initializers, defaults_can_be_set_by_child_constructor)
+{
+    Person me{1976, "xtofl", "drarip"};
+
+    Child c{me, 2002, "Natan"};
+    EXPECT_EQ(std::string{"drarip"}, c.given_name);
+}
+
 // TODO:
 // visit Thing.h, and rename Thing::size_in_cm to size_in_m.
 // The code still compiles.  That's bad.  Make it so that inheritors
