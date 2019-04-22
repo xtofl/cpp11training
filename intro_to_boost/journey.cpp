@@ -4,6 +4,10 @@
 #include <vector>
 #include <cstdio>
 
+#include "di.hpp"
+
+namespace di = boost::di;
+
 namespace logging {
 	class message {
 		public:
@@ -112,19 +116,15 @@ namespace travel {
 	};
 }
 int main() {
-	auto logging = std::make_shared<logging::Logging>();
 
+	auto injector = di::make_injector(
+		di::bind<logging::Logging>.to(std::make_shared<logging::Logging>()),
+		di::bind<vehicle::Vehicle>.to<vehicle::Car>()
+	);
+	auto logging = injector.create<std::shared_ptr<logging::Logging>>();
 	logging->append(logging::message{"Logging started"});
-	{
-		auto journey = new travel::Journey(
-				std::make_shared<vehicle::Car>(
-					std::make_unique<vehicle::Engine>(logging),
-					logging
-				),
-				logging
-			);
-		journey->make("Brussels");
-	}
+	auto journey = injector.create<travel::Journey>();
+	journey.make("Brussels");
 	logging->append(logging::message{"Logging stopped"});
 
 	for(const auto &m: logging->messages()) {
