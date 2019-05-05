@@ -3,7 +3,7 @@
 #include <memory>
 #include <vector>
 #include <cstdio>
-
+#include <boost/asio.hpp>
 #include "di.hpp"
 
 namespace di = boost::di;
