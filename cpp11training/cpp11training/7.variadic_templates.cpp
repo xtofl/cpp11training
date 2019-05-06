@@ -144,7 +144,81 @@ TEST(variadic_tuple_iteration, DISABLED_we_can_transform_an_indexed_tuple) {
     EXPECT_EQ(3, std::get<1>(result));
     EXPECT_NEAR(4.5, std::get<2>(result), .0001);
 }
-auto product = [](auto... functions)
+
+using Amount = int;
+struct Account {
+    Amount balance;
+};
+auto consult(const Account &a) {
+    return a.balance;
+}
+auto transaction(Account& from, Account& to, Amount amount)
+{
+    if (from.balance <= amount) return false;
+    from.balance -= amount;
+    to.balance += amount;
+    return true;
+}
+
+
+// TODO:
+// uncomment next line
+// #define I_CAN_WRAP_FUNCTIONS
+//
+// And now...
+//
+// create the `writer` meta-function so that it
+// returns a function that
+//    * accepts an existing M _and_ all the arguments for `f`
+//    * appends `m` to an existing M
+//    * returns the tuple { m, f(args) }
+//
+// GOAL:
+//   Learn to work with functions as first class citizens
+//   allows you to write more orthogonal code: the code
+//   concerned with the logging does not need to have anything to
+//   do with the code performing the action.
+//
+// HINT:
+//   use generic lambdas
+//   mind reference arguments!  They need to be perfect-forwarded!
+//
+#ifdef I_CAN_WRAP_FUNCTIONS
+template<typename M, typename F>
+auto writer(M m, F f) {
+}
+#endif
+
+TEST(variadic_templates, DISABLED_can_be_used_to_wrap_existing_functions) {
+    Account mine{1000};
+    Account yours{50};
+
+    ASSERT_TRUE(transaction(mine, yours, 50));
+    ASSERT_EQ(950, mine.balance);
+    ASSERT_EQ(100, yours.balance);
+
+#ifdef I_CAN_WRAP_FUNCTIONS
+    using namespace std::string_literals;
+    auto v_consult = writer("consult\n"s, consult);
+    auto v_transaction = writer("transaction\n"s, transaction);
+
+    std::string logs0;
+    {
+        auto [logs1, balance] = v_consult(logs0, mine);
+        EXPECT_EQ("consult\n", logs1);
+        EXPECT_EQ(950, balance);
+        EXPECT_EQ(100, yours.balance);
+        auto [logs2, u] = v_transaction(logs1, yours, mine, 50);
+        EXPECT_EQ("consult\ntransaction\n", logs2);
+        EXPECT_EQ(true, u);
+        EXPECT_EQ(1000, mine.balance);
+        EXPECT_EQ(50, yours.balance);
+    }
+#endif
+}
+
+
+auto tabulate = [](auto... functions)
 {
     return [](auto ...arguments) {
         return std::string{ "not implemented" };
@@ -156,11 +230,11 @@ TEST(composition, DISABLED_print_a_matrix)
 
     // this exercise will take some more time...
     // 
-    // TODO: fill in the `product` function so that it prints a table
+    // TODO: fill in the `tabulate` function so that it prints a table
     // of the functions applied to the arguments
     // GOAL: learn to deal with multiple packs and expansions
     // GRADE: HARD
-    const auto table = product(
+    const auto table = tabulate(
         [](auto i) { return i; },
         [](auto i) { return i * i; },
         [](auto i) { return i * i*i - 1; }
@@ -172,7 +246,7 @@ TEST(composition, DISABLED_print_a_matrix)
 
     EXPECT_EQ(R"(1, 4, 9, 100
 1, 8, 27, 1000)",
-    product([](auto i) { return i*i; },
+    tabulate([](auto i) { return i*i; },
             [](auto i) { return i*i*i; })
     (1, 2, 3, 10));
 }
