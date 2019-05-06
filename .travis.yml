@@ -66,4 +66,11 @@ script:
     - cmake ..
     - make
     - ./cpp11training
+    - cd ../..
+    - cd coupling
+    - mkdir build && cd build
+    - cmake ..
+    - make
+    - ./coupled_program
+    - cd ../..
 
