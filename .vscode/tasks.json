@@ -23,7 +23,7 @@
         },
         {
             "label": "build slide",
-            "command": "make function_signature_design/function_signature_design.reveal",
+            "command": "make cpp20/cpp20.reveal",
             "options": {
                 "cwd": "${workspaceFolder}/slides"
             },
