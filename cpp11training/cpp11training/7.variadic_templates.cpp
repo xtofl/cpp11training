@@ -137,12 +137,12 @@ TEST(variadic_tuple_iteration, DISABLED_we_can_transform_an_indexed_tuple) {
     // So we need a helper structure/accumulator/loop variable to keep track
     // of the element index we're looking at.
     //
-    const auto input = std::make_tuple(1, 2, 3);
+    const auto input = std::make_tuple(1, 2, 3.5);
     const auto f = [](auto i) { return i + 1; };
     const auto result = transform(f, input);
     EXPECT_EQ(2, std::get<0>(result));
     EXPECT_EQ(3, std::get<1>(result));
-    EXPECT_EQ(4, std::get<2>(result));
+    EXPECT_NEAR(4.5, std::get<2>(result), .0001);
 }
 auto product = [](auto... functions)
 {
