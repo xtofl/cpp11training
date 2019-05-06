@@ -17,7 +17,7 @@ struct Edge {
 
 // TODO:
 //
-// install a compilation firewall around
+// 1. install a compilation firewall around
 // the graph representation.
 //
 // In other words, client does not see
@@ -29,6 +29,9 @@ struct Edge {
 //
 // This removes the coupling to the STL of this class,
 // and to the std::unique_ptr C++11 addition.
+//
+// 2. decouple the client code from the representation
+// by making the Node and Edge opaque types (handles) too.
 //
 // ADVANCED:
 // You may attempt to even use this class
