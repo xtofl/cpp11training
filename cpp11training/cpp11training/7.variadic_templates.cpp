@@ -55,6 +55,15 @@ TEST(tuples, DISABLED_i_can_transform_all_elements_of_a_tuple) {
 }
 
 namespace {
+    namespace detail {
+        std::string serialize(std::string s) {
+            return "string@'"+s+"'";
+        }
+        std::string serialize(int i){
+            return "int@"+std::to_string(i);
+        }
+    }
+
     template<typename ...Ts>
     std::string serialize(Ts ...ts) {
         return "";
@@ -65,6 +74,8 @@ TEST(serialization, DISABLED_serialize_different_types)
     // TODO: fill in serialize so that the test passes
     // GOAL: get familiar with template parameter packs
     // GOAL: learn how to expand a (single) parameter pack
+    // HINT: use recursion: add a degenerate case and the general case
+    //       or work with `if constexpr(sizeof...(ts)==0)` somehow
     // GRADE: INTERMEDIATE
     EXPECT_EQ("", serialize());
     EXPECT_EQ("int@1", serialize(1));
