@@ -1,0 +1,1 @@
+docker run -it -v "%~dp0:/cpp11training" cpptraining /bin/bash
