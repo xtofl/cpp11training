@@ -28,6 +28,14 @@ Prerequisite: currently I have it up and running for Visual Studio 2017 Communit
 
 Open the `cpp11training/cpp11training.sln` solution.
 
+### Docker host
+
+If you don't want to litter your system with tools you don't trust, but you _do_ trust Docker, you can
+build and run the docker container in [docker](docker).  You may even be in luck and simply `docker pull xtofl/cpp11training`.
+
+Then, clone the repository, and start a cpp11training container.  Now you can follow the steps like in Linux.
+
+(windows users may be happy to find a `run_container.bat` script to help)
 
 ## Exercising
 
