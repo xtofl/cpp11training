@@ -54,16 +54,15 @@ matrix:
             - ubuntu-toolchain-r-test
 
 script:
-    - cd cpp11training
     - mkdir build && cd build
     - cmake ..
     - make
     - ./cpp11training
-    - cd ../..
+    - cd ..
     - cd coupling
     - mkdir build && cd build
     - cmake ..
     - make
     - ./coupled_program
-    - cd ../..
+    - cd ..
 
