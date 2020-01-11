@@ -55,7 +55,7 @@ matrix:
 
 script:
     - mkdir build && cd build
-    - cmake ..
+    - cmake ../cpp11training
     - make
     - ./cpp11training
     - cd ..
