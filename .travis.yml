@@ -62,7 +62,7 @@ install:
 
 script:
     - mkdir build && cd build
-    - cmake ../cpp11training
+    - cmake ../src
     - make
     - ./cpp11training
     - cd ..
