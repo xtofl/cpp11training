@@ -53,17 +53,23 @@ matrix:
           sources: &sources
             - ubuntu-toolchain-r-test
 
+install:
+        - |
+                CMAKE_URL="https://cmake.org/files/v3.16/cmake-3.16.2-Linux-x86_64.tar.gz"
+                mkdir cmake && travis_retry wget --quiet -O - ${CMAKE_URL} | tar --strip-components=1 -xz -C cmake
+                export PATH=$(realpath cmake/bin):${PATH}
+                cmake --version
+
 script:
-    - cd cpp11training
     - mkdir build && cd build
-    - cmake ..
+    - cmake ../src
     - make
     - ./cpp11training
-    - cd ../..
+    - cd ..
     - cd coupling
     - mkdir build && cd build
     - cmake ..
     - make
     - ./coupled_program
-    - cd ../..
+    - cd ..
 

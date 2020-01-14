@@ -13,13 +13,10 @@ Exercises to train your C++11/14/17 (and then some).
 On Linux all you need is a compiler with C++17 support; gcc-7 and gcc-8 have it.
 
     git clone git@github.com:xtofl/cpp11training
-    cd cpp11training/cpp11training
-    mkdir build
-    cd build
-    cmake ..
+    mkdir -p cpp11training/build
+    cd cpp11training/build
+    cmake ../src
     make
-
-
 
 ### Windows
 
