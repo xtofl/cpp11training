@@ -1,6 +1,6 @@
-FROM ubuntu:18.04
+FROM alpine:3
 
-RUN apt update
-RUN apt install -y gcc-8 cmake
-RUN apt install -y vim git
-RUN apt install -y g++-8
+RUN apk update
+RUN apk add make cmake>=3.11 g++>=9
+RUN apk add vim git
+RUN apk add clang
