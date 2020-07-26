@@ -5,6 +5,7 @@ Exercises to train your C++11/14/17 (and then some).
 [![Build Status](https://travis-ci.org/xtofl/cpp11training.svg?branch=master)](https://travis-ci.org/xtofl/cpp11training)
 [![Build status](https://xtofl.visualstudio.com/cpp11exercises/_apis/build/status/cpp11exercises-CI)](https://xtofl.visualstudio.com/cpp11exercises/_build/latest?definitionId=2)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/e1556f3ddf3645fe98d1fb06bf011b1c)](https://app.codacy.com/app/kristoffel-pirard/cpp11training?utm_source=github.com&utm_medium=referral&utm_content=xtofl/cpp11training&utm_campaign=Badge_Grade_Dashboard)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fxtofl%2Fcpp11training.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fxtofl%2Fcpp11training?ref=badge_shield)
 
 ## Getting started
 
@@ -41,3 +42,7 @@ The project contains a bunch of failing unit tests.  The idea is that you un-DIS
 I tried to add a TODO: comment hinting what's expected from you to fulfill the exercise.
 
 Once all tests pass, I have nothing more to teach you :)
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fxtofl%2Fcpp11training.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fxtofl%2Fcpp11training?ref=badge_large)
