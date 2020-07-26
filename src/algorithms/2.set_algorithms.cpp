@@ -151,7 +151,7 @@ TEST_F(WithSomeData, DISABLED_find_lost_classmates)
         return lost_contains_if([&](const Person &p2) { return p == p2; });
     };
     EXPECT_TRUE(lost_person({ "Ton", "Lathauwers" }));
-    EXPECT_TRUE(lost_person({ "Stephen", "De Schrijver" }));
+    EXPECT_TRUE(lost_person({ "Stephan", "De Schrijver" }));
     EXPECT_FALSE(lost_person({ "Filip", "Dickens" }));
     EXPECT_FALSE(lost_person({ "Ton", "Sauerplum" }));
     EXPECT_FALSE(lost_person({ "Johan", "De Schrijver" }));

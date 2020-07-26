@@ -9,6 +9,7 @@
 #include <exception>
 #include <algorithm>
 #include <cmath>
+#include <cctype>
 
 //////// DON'T TOUCH THIS
 // you should override these with local lambdas
@@ -78,6 +79,57 @@ TEST(lambdas, DISABLED_we_can_capture_local_variables_by_reference)
     EXPECT_EQ((std::vector<Op>{"+", "-", "*"}), sequence);
 }
 
+#include <algorithm>
+auto transform = [](auto &&x, auto f) {
+    return std::transform(begin(x), end(x), begin(x), f);
+};
+
+auto lowcase(std::string &s) { return transform(s, [](auto c){ return std::tolower(c);}); }
+auto upcase(std::string &s) { return transform(s, [](auto c){ return std::toupper(c);}); }
+
+TEST(lambdas, DISABLED_we_can_capture_by_const_reference)
+{
+    std::vector<std::string> tokens;
+
+    auto contains_token =
+    // TODO:
+    //  change the capture expression so that the lambda fails to compile
+    //  by capturing tokens as const
+    //  cf. https://stackoverflow.com/a/32440415/6610
+    //
+        [&tokens] (std::string_view text) {
+    // GOAL:
+    //   Become able to express that a lambda,
+    //   though it captures some variable, will not
+    //   actually _change_ that variable.
+    //
+    // NOTE: we only have capture by ref and capture by copy.
+    //  maybe capture by const-ref is an oversight in the standard?
+    //
+    // NOTE 2: you'll have to adapt the labmda body to make the test pass
+    //
+    // APPLICATION: when you want to avoid expensive copying of the
+    // closure, but have no control over the lambda body itself.
+    // In this case, the 'lack of control' is approximated by using
+    // some mutator functions that are out of our range.
+        for(auto &t: tokens) {
+            lowcase(t);
+            if (text.find(t) != text.npos) {
+                return true;
+            }
+            upcase(t);
+            if (text.find(t) != text.npos) {
+                return true;
+            }
+        }
+        return false;
+    };
+
+    tokens = {"token1", "token2"};
+    EXPECT_TRUE(contains_token("bla bla bla token2"));
+    EXPECT_EQ("token1", tokens[0]);
+    EXPECT_EQ("token2", tokens[1]);
+}
 
 TEST(lambdas, DISABLED_we_can_store_internal_state)
 {

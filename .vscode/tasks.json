@@ -1,0 +1,45 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "test",
+            "command": "make && ./cpp11training",
+            "type": "shell",
+            "options": {
+                "cwd": "${workspaceFolder}/cpp11training/build/"
+            },
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": true
+            }
+        },
+        {
+            "label": "build slide",
+            "command": "make function_signature_design/function_signature_design.reveal",
+            "options": {
+                "cwd": "${workspaceFolder}/slides"
+            },
+            "type": "shell",
+            "args": [],
+            "problemMatcher": [
+                "$tsc"
+            ],
+            "presentation": {
+                "reveal": "always",
+                "clear": true
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }        
+        }
+    ]
+}

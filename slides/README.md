@@ -52,5 +52,5 @@ A brief guide through 'basic' c++ concepts.  Actually this is kindof required kn
 
 ## Variadic templates
 
-[Alexandrescu's Going Native 2012 talk](/slides/docslide.us_gn12variadictemplatesarefunadic.pdf/)
+[Alexandrescu's Going Native 2012 slides](/slides/docslide.us_gn12variadictemplatesarefunadic.pdf/)
 If you've got a hour, [watch his talk on youtube](https://youtu.be/dD57tJjkumE)
